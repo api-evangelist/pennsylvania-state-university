@@ -1,0 +1,52 @@
+---
+name: Pennsylvania State University
+description: Pennsylvania State University public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/pennsylvania-state-university/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 3
+    summary: >-
+      Penn State has a genuine developer surface but it is mixed in maturity.
+      The Office of Physical Plant LionSpaceFIS REST API was verified live and
+      public (GET /fis-api/v1/campuses and /fis-api/health both returned 200).
+      The University Libraries Researcher Metadata Database exposes an
+      OpenAPI-described REST API but requires a license key, so endpoints were
+      not exercised. The Penn State IT web developer portal landing page loads,
+      but every documented service reference (PSU ID, Academic Course,
+      Cornerstone, Sponsored Accounts, ASR Lookup) redirects to Shibboleth
+      single sign-on and is not publicly viewable. Public GitHub organizations
+      (PennState, psu-libraries) were confirmed. No endpoints or auth schemes
+      were fabricated; gated and dead surfaces are recorded as such.
+    endpoints:
+      - url: https://apps.opp.psu.edu/fis-api/
+        status: 200
+        note: LionSpaceFIS API human docs landing page; public.
+      - url: https://apps.opp.psu.edu/fis-api/health
+        status: 200
+        note: Health endpoint, returns version/status; publicly reachable.
+      - url: https://apps.opp.psu.edu/fis-api/v1/campuses
+        status: 200
+        note: Live public REST endpoint returning campus data.
+      - url: https://metadata.libraries.psu.edu/
+        status: 200
+        note: Researcher Metadata Database homepage; license key requested via L-FAMS@lists.psu.edu.
+      - url: https://metadata.libraries.psu.edu/api_docs
+        status: 200
+        note: Interactive API docs page (client-rendered SPA); API is OpenAPI-described, license-key gated.
+      - url: https://docs.developer.psu.edu/
+        status: 200
+        note: Penn State IT developer portal landing; service sub-pages redirect to Shibboleth SSO.
+      - url: https://public.lionpath.psu.edu/
+        status: 403
+        note: Public LionPATH class search UI; returned 403 to automated request, not an API.
+      - url: https://github.com/PennState
+        status: 200
+        note: Official public open-source GitHub org (~80 repos).
+      - url: https://github.com/psu-libraries
+        status: 200
+        note: University Libraries GitHub org (~54 repos), hosts researcher-metadata source.
+      - url: https://www.psu.edu/
+        status: 200
+        note: Official university website.
