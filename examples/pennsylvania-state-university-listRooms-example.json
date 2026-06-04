@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://apps.opp.psu.edu/fis-api/v1/rooms?limit=2"
+  },
+  "response": [
+    {
+      "number": "109D",
+      "floor": "1",
+      "floorVerticalOrder": null,
+      "netArea": 12.09,
+      "fireCodeCapacity": 0,
+      "photoUrl": null,
+      "collegeNetKey": null,
+      "businessAreaKey": "6530",
+      "principalInvestigators": null,
+      "occupants": null,
+      "maximoLocation": "0290012-109D",
+      "id": "0290012-1-109D",
+      "name": null,
+      "facilityCoordinators": null,
+      "capacity": 0,
+      "occupancy": 0,
+      "campus": {
+        "id": "UP",
+        "maximoCampusCode": "UP",
+        "lionPathCampusCode": "UP",
+        "name": "University Park"
+      },
+      "lastUpdateDate": "2022-03-28",
+      "dateInactivated": null,
+      "latLong": {
+        "latitude": 40.78896,
+        "longitude": -77.8739
+      },
+      "building": { "id": "0290012" },
+      "type": { "id": "955", "description": "Apartment Service" }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/pennsylvania-state-university/main/json-schema/pennsylvania-state-university-building-schema.json",
+  "title": "Building",
+  "description": "A Penn State building as returned by the LionSpaceFIS REST API (Office of Physical Plant).",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "examples": ["0402000"] },
+    "name": { "type": "string", "examples": ["Wartik Laboratory (Dr Thomas)"] },
+    "abbreviation": { "type": "string", "examples": ["Wartik Lab"] },
+    "maximoName": { "type": "string", "examples": ["WARTIK LAB"] },
+    "function": { "type": "string", "examples": ["30500"] },
+    "buildingFunctionCat": { "type": "string", "examples": ["EG"] },
+    "status": { "type": "string", "examples": ["ACTV"] },
+    "county": { "type": "string", "examples": ["Centre"] },
+    "address": { "type": "string", "examples": ["360 SCIENCE DR"] },
+    "city": { "type": "string", "examples": ["UNIVERSITY PARK"] },
+    "state": { "type": "string", "examples": ["PA"] },
+    "zipCode": { "type": "string", "examples": ["16802"] },
+    "businessAreaKey": { "type": "string", "examples": ["6390"] },
+    "isWorkspace": { "type": "boolean" },
+    "facilityCoordinators": { "type": ["string", "null"] },
+    "capacity": { "type": "integer" },
+    "occupancy": { "type": "integer" },
+    "campus": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "maximoCampusCode": { "type": "string" },
+        "lionPathCampusCode": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "lastUpdateDate": { "type": "string", "format": "date" },
+    "dateInactivated": { "type": ["string", "null"], "format": "date" },
+    "latLong": {
+      "type": "object",
+      "properties": {
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" }
+      }
+    }
+  },
+  "required": ["id", "name", "status"]
+}

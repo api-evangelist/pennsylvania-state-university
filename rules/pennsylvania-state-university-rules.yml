@@ -1,0 +1,47 @@
+extends: spectral:oas
+formats:
+  - oas3
+documentationUrl: https://apps.opp.psu.edu/fis-api/
+rules:
+  # LionSpaceFIS exposes only read-only GET collection endpoints.
+  psu-fis-get-only:
+    description: LionSpaceFIS endpoints are read-only; only GET operations are expected.
+    message: "Only GET operations are expected on the LionSpaceFIS API."
+    severity: warn
+    given: $.paths[*]
+    then:
+      field: put
+      function: undefined
+  psu-fis-no-post:
+    description: LionSpaceFIS endpoints are read-only; POST is not expected.
+    message: "POST operations are not expected on the LionSpaceFIS API."
+    severity: warn
+    given: $.paths[*]
+    then:
+      field: post
+      function: undefined
+  # All operations should carry an operationId.
+  psu-fis-operation-id:
+    description: Every operation should declare an operationId.
+    severity: error
+    given: $.paths[*][get]
+    then:
+      field: operationId
+      function: truthy
+  # Collection endpoints should support limit/offset pagination as documented.
+  psu-fis-pagination-params:
+    description: Collection list operations should document limit and offset query parameters.
+    severity: info
+    given: $.paths[*][get]
+    then:
+      field: parameters
+      function: truthy
+  # Server URLs should target the public OPP host.
+  psu-fis-server-host:
+    description: Servers should point at the public apps.opp.psu.edu host.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://apps\\.opp\\.psu\\.edu/fis-api"

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/pennsylvania-state-university/main/json-schema/pennsylvania-state-university-room-schema.json",
+  "title": "Room",
+  "description": "A room within a Penn State building as returned by the LionSpaceFIS REST API.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "examples": ["0290012-1-109D"] },
+    "number": { "type": "string", "examples": ["109D"] },
+    "name": { "type": ["string", "null"] },
+    "floor": { "type": "string", "examples": ["1"] },
+    "floorVerticalOrder": { "type": ["integer", "null"] },
+    "netArea": { "type": "number", "examples": [12.09] },
+    "fireCodeCapacity": { "type": "integer" },
+    "capacity": { "type": "integer" },
+    "occupancy": { "type": "integer" },
+    "photoUrl": { "type": ["string", "null"] },
+    "collegeNetKey": { "type": ["string", "null"] },
+    "businessAreaKey": { "type": "string", "examples": ["6530"] },
+    "principalInvestigators": { "type": ["string", "null"] },
+    "occupants": { "type": ["string", "null"] },
+    "facilityCoordinators": { "type": ["string", "null"] },
+    "maximoLocation": { "type": "string", "examples": ["0290012-109D"] },
+    "lastUpdateDate": { "type": "string", "format": "date" },
+    "dateInactivated": { "type": ["string", "null"], "format": "date" },
+    "campus": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "maximoCampusCode": { "type": "string" },
+        "lionPathCampusCode": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "latLong": {
+      "type": "object",
+      "properties": {
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" }
+      }
+    },
+    "building": {
+      "type": "object",
+      "properties": { "id": { "type": "string" } }
+    },
+    "type": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "description": { "type": "string" }
+      }
+    }
+  },
+  "required": ["id", "number", "building"]
+}

@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://apps.opp.psu.edu/fis-api/v1/buildings?limit=2"
+  },
+  "response": [
+    {
+      "function": "30500",
+      "status": "ACTV",
+      "county": "Centre",
+      "address": "360 SCIENCE DR",
+      "city": "UNIVERSITY PARK",
+      "state": "PA",
+      "zipCode": "16802",
+      "abbreviation": "Wartik Lab",
+      "maximoName": "WARTIK LAB",
+      "buildingFunctionCat": "EG",
+      "businessAreaKey": "6390",
+      "isWorkspace": true,
+      "id": "0402000",
+      "name": "Wartik Laboratory (Dr Thomas)",
+      "capacity": 178,
+      "occupancy": 69,
+      "campus": {
+        "id": "UP",
+        "maximoCampusCode": "UP",
+        "lionPathCampusCode": "UP",
+        "name": "University Park"
+      },
+      "lastUpdateDate": "2026-04-29",
+      "dateInactivated": null,
+      "latLong": {
+        "latitude": 40.79974,
+        "longitude": -77.86252
+      }
+    }
+  ]
+}

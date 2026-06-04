@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/pennsylvania-state-university/main/json-structure/pennsylvania-state-university-room-structure.json",
+  "name": "Room",
+  "description": "JSON Structure for a Penn State LionSpaceFIS room object.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "number": { "type": "string" },
+    "name": { "type": ["string", "null"] },
+    "floor": { "type": "string" },
+    "floorVerticalOrder": { "type": ["int32", "null"] },
+    "netArea": { "type": "double" },
+    "fireCodeCapacity": { "type": "int32" },
+    "capacity": { "type": "int32" },
+    "occupancy": { "type": "int32" },
+    "photoUrl": { "type": ["string", "null"] },
+    "collegeNetKey": { "type": ["string", "null"] },
+    "businessAreaKey": { "type": "string" },
+    "principalInvestigators": { "type": ["string", "null"] },
+    "occupants": { "type": ["string", "null"] },
+    "facilityCoordinators": { "type": ["string", "null"] },
+    "maximoLocation": { "type": "string" },
+    "lastUpdateDate": { "type": "string", "format": "date" },
+    "dateInactivated": { "type": ["string", "null"], "format": "date" },
+    "campus": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "maximoCampusCode": { "type": "string" },
+        "lionPathCampusCode": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "latLong": {
+      "type": "object",
+      "properties": {
+        "latitude": { "type": "double" },
+        "longitude": { "type": "double" }
+      }
+    },
+    "building": {
+      "type": "object",
+      "properties": { "id": { "type": "string" } }
+    },
+    "type": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "description": { "type": "string" }
+      }
+    }
+  },
+  "required": ["id", "number", "building"]
+}

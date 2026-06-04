@@ -1,0 +1,53 @@
+vocabulary:
+  name: Penn State LionSpaceFIS Facilities Vocabulary
+  description: >-
+    Controlled vocabulary of terms observed in the Penn State Office of Physical
+    Plant LionSpaceFIS REST API, covering facilities, buildings, rooms, campuses,
+    and change events.
+  version: 1.14.0
+  terms:
+    - term: Building
+      definition: A university building with address, function, capacity, occupancy, and geolocation attributes.
+      tags: [facilities, building]
+    - term: Room
+      definition: A room within a building, with floor, net area, capacity, occupancy, and room type.
+      tags: [facilities, room]
+    - term: Campus
+      definition: A Penn State campus location, identified by Maximo and LionPath campus codes.
+      tags: [facilities, campus]
+    - term: BuildingEvent
+      definition: A daily change record for a building, with an event code (A add, U update) and change date.
+      tags: [events, building]
+    - term: RoomEvent
+      definition: A daily change record for a room, capturing the changed field, old value, and new value.
+      tags: [events, room]
+    - term: maximoName
+      definition: The building name as recorded in the Maximo asset management system.
+      tags: [building, maximo]
+    - term: buildingFunctionCat
+      definition: The functional category code classifying the building's primary use (e.g. EG).
+      tags: [building, classification]
+    - term: businessAreaKey
+      definition: Internal financial/organizational business area identifier associated with a facility.
+      tags: [building, room, finance]
+    - term: facilityCoordinators
+      definition: Comma-delimited list of staff coordinators and their allocation percentages for a facility.
+      tags: [building, staff]
+    - term: isWorkspace
+      definition: Boolean indicating whether the building is classified as workspace.
+      tags: [building, classification]
+    - term: latLong
+      definition: Geographic latitude and longitude coordinates of a building or room.
+      tags: [geolocation]
+    - term: netArea
+      definition: The net usable floor area of a room.
+      tags: [room, measurement]
+    - term: fireCodeCapacity
+      definition: The maximum occupancy of a room permitted under fire code.
+      tags: [room, safety]
+    - term: maximoLocation
+      definition: The room's location identifier in the Maximo asset management system.
+      tags: [room, maximo]
+    - term: lionPathCampusCode
+      definition: The campus code as used in the LionPath student information system.
+      tags: [campus, lionpath]

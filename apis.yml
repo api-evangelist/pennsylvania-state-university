@@ -46,6 +46,24 @@ apis:
     properties:
       - type: Documentation
         url: https://apps.opp.psu.edu/fis-api/
+      - type: OpenAPI
+        url: openapi/pennsylvania-state-university-fis.yaml
+      - type: JSONSchema
+        url: json-schema/pennsylvania-state-university-building-schema.json
+      - type: JSONSchema
+        url: json-schema/pennsylvania-state-university-room-schema.json
+      - type: x-json-structure
+        url: json-structure/pennsylvania-state-university-building-structure.json
+      - type: x-json-structure
+        url: json-structure/pennsylvania-state-university-room-structure.json
+      - type: x-examples
+        url: examples/pennsylvania-state-university-listBuildings-example.json
+      - type: x-rules
+        url: rules/pennsylvania-state-university-rules.yml
+      - type: x-vocabulary
+        url: vocabulary/pennsylvania-state-university-vocabulary.yml
+      - type: x-json-ld
+        url: json-ld/pennsylvania-state-university-context.jsonld
   - aid: pennsylvania-state-university:rmd
     name: Researcher Metadata Database (RMD) API
     description: >-

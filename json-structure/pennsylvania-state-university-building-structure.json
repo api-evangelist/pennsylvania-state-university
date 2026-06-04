@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/pennsylvania-state-university/main/json-structure/pennsylvania-state-university-building-structure.json",
+  "name": "Building",
+  "description": "JSON Structure for a Penn State LionSpaceFIS building object.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "abbreviation": { "type": "string" },
+    "maximoName": { "type": "string" },
+    "function": { "type": "string" },
+    "buildingFunctionCat": { "type": "string" },
+    "status": { "type": "string" },
+    "county": { "type": "string" },
+    "address": { "type": "string" },
+    "city": { "type": "string" },
+    "state": { "type": "string" },
+    "zipCode": { "type": "string" },
+    "businessAreaKey": { "type": "string" },
+    "isWorkspace": { "type": "boolean" },
+    "facilityCoordinators": { "type": ["string", "null"] },
+    "capacity": { "type": "int32" },
+    "occupancy": { "type": "int32" },
+    "campus": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "maximoCampusCode": { "type": "string" },
+        "lionPathCampusCode": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "lastUpdateDate": { "type": "string", "format": "date" },
+    "dateInactivated": { "type": ["string", "null"], "format": "date" },
+    "latLong": {
+      "type": "object",
+      "properties": {
+        "latitude": { "type": "double" },
+        "longitude": { "type": "double" }
+      }
+    }
+  },
+  "required": ["id", "name", "status"]
+}
