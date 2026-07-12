@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://security.psu.edu/
+url: https://security.psu.edu/
+certifications:
+- PCI DSS
+- HIPAA
+- GDPR
+evidence:
+- source: https://security.psu.edu/
+  keywords:
+  - pci-dss
+  - hipaa
+  - gdpr
