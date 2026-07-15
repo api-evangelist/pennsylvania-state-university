@@ -100,6 +100,8 @@ apis:
       - type: Authentication
         url: https://docs.developer.psu.edu/
 common:
+  - type: AgenticAccess
+    url: agentic-access/pennsylvania-state-university-agentic-access.yml
   - type: TrustCenter
     url: security/pennsylvania-state-university-trust-center.yml
   - type: VulnerabilityDisclosure
