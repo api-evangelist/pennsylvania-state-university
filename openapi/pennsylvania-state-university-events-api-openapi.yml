@@ -1,0 +1,123 @@
+openapi: 3.0.3
+info:
+  title: LionSpaceFIS REST Buildings Events API
+  description: Public REST API from the Penn State Office of Physical Plant (OPP) exposing the university's facilities and space data, the successor to the legacy FIS Facilities Information System. Exposes buildings, rooms, campuses, buildingEvents, and roomEvents entities with filtering, wildcard, and comparison operators, plus a health endpoint. This OpenAPI description was reconstructed from the public HTML documentation and from live, observed responses of the running service (appVersion 1.14.0); the provider does not publish a machine-readable specification of its own.
+  version: 1.14.0
+  contact:
+    name: Penn State Office of Physical Plant
+    url: https://apps.opp.psu.edu/fis-api/
+servers:
+- url: https://apps.opp.psu.edu/fis-api/v1
+  description: Production v1 API
+- url: https://apps.opp.psu.edu/fis-api
+  description: Service root (health endpoint)
+tags:
+- name: Events
+  description: Change events for buildings and rooms.
+paths:
+  /buildingEvents:
+    get:
+      tags:
+      - Events
+      summary: List building change events
+      description: Returns change events for buildings. Events are reported once daily to avoid redundant updates. Event codes include A (add) and U (update).
+      operationId: listBuildingEvents
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: A list of building change events.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BuildingEvent'
+  /roomEvents:
+    get:
+      tags:
+      - Events
+      summary: List room change events
+      description: Returns change events for rooms. Events are reported once daily. Event codes include A (add) and U (update), with oldValue/newValue and the changed fieldName for updates.
+      operationId: listRoomEvents
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: A list of room change events.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoomEvent'
+components:
+  schemas:
+    RoomEvent:
+      type: object
+      properties:
+        event:
+          type: string
+          description: Event code (A = add, U = update).
+          example: U
+        oldValue:
+          type: string
+          nullable: true
+          example: '1'
+        newValue:
+          type: string
+          nullable: true
+          example: '0'
+        changeDate:
+          type: string
+          format: date
+          example: '2021-05-28'
+        fieldName:
+          type: string
+          nullable: true
+          example: OCCUPANCY
+        roomId:
+          type: string
+          example: 0965002-G-164
+    BuildingEvent:
+      type: object
+      properties:
+        event:
+          type: string
+          description: Event code (A = add, U = update).
+          example: A
+        oldValue:
+          type: string
+          nullable: true
+        newValue:
+          type: string
+          nullable: true
+        changeDate:
+          type: string
+          format: date
+          example: '2021-05-28'
+        fieldName:
+          type: string
+          nullable: true
+        buildingId:
+          type: string
+          example: '0002000'
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      required: false
+      schema:
+        type: integer
+        minimum: 0

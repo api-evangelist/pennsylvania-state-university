@@ -1,0 +1,81 @@
+openapi: 3.0.3
+info:
+  title: LionSpaceFIS REST Buildings Campuses API
+  description: Public REST API from the Penn State Office of Physical Plant (OPP) exposing the university's facilities and space data, the successor to the legacy FIS Facilities Information System. Exposes buildings, rooms, campuses, buildingEvents, and roomEvents entities with filtering, wildcard, and comparison operators, plus a health endpoint. This OpenAPI description was reconstructed from the public HTML documentation and from live, observed responses of the running service (appVersion 1.14.0); the provider does not publish a machine-readable specification of its own.
+  version: 1.14.0
+  contact:
+    name: Penn State Office of Physical Plant
+    url: https://apps.opp.psu.edu/fis-api/
+servers:
+- url: https://apps.opp.psu.edu/fis-api/v1
+  description: Production v1 API
+- url: https://apps.opp.psu.edu/fis-api
+  description: Service root (health endpoint)
+tags:
+- name: Campuses
+  description: Penn State campus reference data.
+paths:
+  /campuses:
+    get:
+      tags:
+      - Campuses
+      summary: List campuses
+      description: Returns the list of Penn State campuses known to the facilities system.
+      operationId: listCampuses
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: A list of campuses.
+          headers:
+            X-Total-Count:
+              description: Total number of matching records (pagination metadata).
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Campus'
+components:
+  parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+  schemas:
+    Campus:
+      type: object
+      properties:
+        id:
+          type: string
+          example: UP
+        maximoCampusCode:
+          type: string
+          example: UP
+        lionPathCampusCode:
+          type: string
+          example: UP
+        maximoCode:
+          type: string
+          example: UP
+        lionPathCode:
+          type: string
+          example: AE
+        name:
+          type: string
+          example: University Park

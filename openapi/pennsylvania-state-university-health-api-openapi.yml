@@ -1,0 +1,63 @@
+openapi: 3.0.3
+info:
+  title: LionSpaceFIS REST Buildings Health API
+  description: Public REST API from the Penn State Office of Physical Plant (OPP) exposing the university's facilities and space data, the successor to the legacy FIS Facilities Information System. Exposes buildings, rooms, campuses, buildingEvents, and roomEvents entities with filtering, wildcard, and comparison operators, plus a health endpoint. This OpenAPI description was reconstructed from the public HTML documentation and from live, observed responses of the running service (appVersion 1.14.0); the provider does not publish a machine-readable specification of its own.
+  version: 1.14.0
+  contact:
+    name: Penn State Office of Physical Plant
+    url: https://apps.opp.psu.edu/fis-api/
+servers:
+- url: https://apps.opp.psu.edu/fis-api/v1
+  description: Production v1 API
+- url: https://apps.opp.psu.edu/fis-api
+  description: Service root (health endpoint)
+tags:
+- name: Health
+  description: Service health and status.
+paths:
+  /health:
+    servers:
+    - url: https://apps.opp.psu.edu/fis-api
+    get:
+      tags:
+      - Health
+      summary: Service health
+      description: Returns the service status and dependency health checks.
+      operationId: getHealth
+      responses:
+        '200':
+          description: Service health information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+components:
+  schemas:
+    Health:
+      type: object
+      properties:
+        appVersion:
+          type: string
+          example: 1.14.0
+        appStatus:
+          type: string
+          example: UP
+        totalTime:
+          type: integer
+          example: 59
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthDetail'
+    HealthDetail:
+      type: object
+      properties:
+        name:
+          type: string
+          example: databaseConnectivity
+        result:
+          type: string
+          example: OK
+        time:
+          type: integer
+          example: 51
