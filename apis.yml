@@ -15,9 +15,21 @@ description: >-
   license key. Penn State also maintains public open-source GitHub
   organizations.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Free
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/pennsylvania-state-university.png
 url: https://raw.githubusercontent.com/api-evangelist/pennsylvania-state-university/refs/heads/main/apis.yml
 tags:
   - Education
@@ -31,74 +43,187 @@ created: '2026-06-03'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-  - aid: pennsylvania-state-university:fis
-    name: LionSpaceFIS REST API
-    description: >-
-      Public REST API from the Penn State Office of Physical Plant exposing the
-      university's facilities/space data (the successor to the legacy FIS
-      Facilities Information System). Provides buildings, rooms, campuses,
-      buildingEvents, and roomEvents entities with filtering, wildcard, and
-      comparison operators, plus a health endpoint. Confirmed publicly
-      reachable (GET /fis-api/v1/campuses and /fis-api/health both return 200).
-    humanURL: https://apps.opp.psu.edu/fis-api/
-    baseURL: https://apps.opp.psu.edu/fis-api/v1
-    tags: [ Facilities, Buildings, Campuses, Space, REST ]
-    properties:
-      - type: Documentation
-        url: https://apps.opp.psu.edu/fis-api/
-      - type: OpenAPI
-        url: openapi/pennsylvania-state-university-fis.yaml
-      - type: JSONSchema
-        url: json-schema/pennsylvania-state-university-building-schema.json
-      - type: JSONSchema
-        url: json-schema/pennsylvania-state-university-room-schema.json
-      - type: x-json-structure
-        url: json-structure/pennsylvania-state-university-building-structure.json
-      - type: x-json-structure
-        url: json-structure/pennsylvania-state-university-room-structure.json
-      - type: x-examples
-        url: examples/pennsylvania-state-university-listBuildings-example.json
-      - type: x-rules
-        url: rules/pennsylvania-state-university-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/pennsylvania-state-university-vocabulary.yml
-      - type: x-json-ld
-        url: json-ld/pennsylvania-state-university-context.jsonld
-  - aid: pennsylvania-state-university:rmd
-    name: Researcher Metadata Database (RMD) API
-    description: >-
-      Penn State University Libraries' faculty and research metadata service,
-      maintained with OSVPR and West Arete. Publishes cleaned researcher
-      metadata (publications, presentations, performances, advising, news, and
-      biographical content) through a RESTful API described with the OpenAPI
-      standard. A license key is required to query the data; interactive API
-      docs are served at /api_docs.
-    humanURL: https://metadata.libraries.psu.edu/api_docs
-    tags: [ Research, Metadata, Publications, Library, OpenAPI ]
-    properties:
-      - type: Documentation
-        url: https://metadata.libraries.psu.edu/api_docs
-      - type: Signup
-        url: https://metadata.libraries.psu.edu/
-      - type: GitHub
-        url: https://github.com/psu-libraries/researcher-metadata
-  - aid: pennsylvania-state-university:developer-portal
-    name: Penn State IT Web Developer Services
-    description: >-
-      Penn State Information Technology operates a web developer portal that
-      catalogs internal REST services and events and lets developers find,
-      subscribe to, and request elevated access for APIs. Documented services
-      include PSU ID Service, Academic Course Service, Cornerstone Service,
-      Sponsored Accounts Service, and ASR Lookup Service. The portal landing
-      page is reachable, but individual API reference pages redirect to
-      Shibboleth/WebAccess single sign-on and are not publicly viewable.
-    humanURL: https://docs.developer.psu.edu/
-    tags: [ Identity, Courses, Internal, Gated, Authentication ]
-    properties:
-      - type: Documentation
-        url: https://docs.developer.psu.edu/
-      - type: Authentication
-        url: https://docs.developer.psu.edu/
+- aid: pennsylvania-state-university:rmd
+  name: Researcher Metadata Database (RMD) API
+  description: >-
+    Penn State University Libraries' faculty and research metadata service, maintained with OSVPR and
+    West Arete. Publishes cleaned researcher metadata (publications, presentations, performances, advising,
+    news, and biographical content) through a RESTful API described with the OpenAPI standard. A license
+    key is required to query the data; interactive API docs are served at /api_docs.
+  humanURL: https://metadata.libraries.psu.edu/api_docs
+  tags:
+  - Research
+  - Metadata
+  - Publications
+  - Library
+  - OpenAPI
+  properties:
+  - type: Documentation
+    url: https://metadata.libraries.psu.edu/api_docs
+  - type: Signup
+    url: https://metadata.libraries.psu.edu/
+  - type: GitHub
+    url: https://github.com/psu-libraries/researcher-metadata
+- aid: pennsylvania-state-university:developer-portal
+  name: Penn State IT Web Developer Services
+  description: >-
+    Penn State Information Technology operates a web developer portal that catalogs internal REST services
+    and events and lets developers find, subscribe to, and request elevated access for APIs. Documented
+    services include PSU ID Service, Academic Course Service, Cornerstone Service, Sponsored Accounts
+    Service, and ASR Lookup Service. The portal landing page is reachable, but individual API reference
+    pages redirect to Shibboleth/WebAccess single sign-on and are not publicly viewable.
+  humanURL: https://docs.developer.psu.edu/
+  tags:
+  - Identity
+  - Courses
+  - Internal
+  - Gated
+  - Authentication
+  properties:
+  - type: Documentation
+    url: https://docs.developer.psu.edu/
+  - type: Authentication
+    url: https://docs.developer.psu.edu/
+- aid: pennsylvania-state-university:pennsylvania-state-university-buildings-api
+  name: Pennsylvania State University Buildings API
+  description: University buildings and their facility attributes.
+  humanURL: https://apps.opp.psu.edu/fis-api/
+  baseURL: https://apps.opp.psu.edu/fis-api/v1
+  tags:
+  - Buildings
+  properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-buildings-api-openapi.yml
+  - type: Documentation
+    url: https://apps.opp.psu.edu/fis-api/
+  - type: JSONSchema
+    url: json-schema/pennsylvania-state-university-building-schema.json
+  - type: JSONSchema
+    url: json-schema/pennsylvania-state-university-room-schema.json
+  - type: x-json-structure
+    url: json-structure/pennsylvania-state-university-building-structure.json
+  - type: x-json-structure
+    url: json-structure/pennsylvania-state-university-room-structure.json
+  - type: x-examples
+    url: examples/pennsylvania-state-university-listBuildings-example.json
+  - type: x-rules
+    url: rules/pennsylvania-state-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/pennsylvania-state-university-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/pennsylvania-state-university-context.jsonld
+- aid: pennsylvania-state-university:pennsylvania-state-university-campuses-api
+  name: Pennsylvania State University Campuses API
+  description: Penn State campus reference data.
+  humanURL: https://apps.opp.psu.edu/fis-api/
+  baseURL: https://apps.opp.psu.edu/fis-api/v1
+  tags:
+  - Campuses
+  properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-campuses-api-openapi.yml
+  - type: Documentation
+    url: https://apps.opp.psu.edu/fis-api/
+  - type: JSONSchema
+    url: json-schema/pennsylvania-state-university-building-schema.json
+  - type: JSONSchema
+    url: json-schema/pennsylvania-state-university-room-schema.json
+  - type: x-json-structure
+    url: json-structure/pennsylvania-state-university-building-structure.json
+  - type: x-json-structure
+    url: json-structure/pennsylvania-state-university-room-structure.json
+  - type: x-examples
+    url: examples/pennsylvania-state-university-listBuildings-example.json
+  - type: x-rules
+    url: rules/pennsylvania-state-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/pennsylvania-state-university-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/pennsylvania-state-university-context.jsonld
+- aid: pennsylvania-state-university:pennsylvania-state-university-events-api
+  name: Pennsylvania State University Events API
+  description: Change events for buildings and rooms.
+  humanURL: https://apps.opp.psu.edu/fis-api/
+  baseURL: https://apps.opp.psu.edu/fis-api/v1
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-events-api-openapi.yml
+  - type: Documentation
+    url: https://apps.opp.psu.edu/fis-api/
+  - type: JSONSchema
+    url: json-schema/pennsylvania-state-university-building-schema.json
+  - type: JSONSchema
+    url: json-schema/pennsylvania-state-university-room-schema.json
+  - type: x-json-structure
+    url: json-structure/pennsylvania-state-university-building-structure.json
+  - type: x-json-structure
+    url: json-structure/pennsylvania-state-university-room-structure.json
+  - type: x-examples
+    url: examples/pennsylvania-state-university-listBuildings-example.json
+  - type: x-rules
+    url: rules/pennsylvania-state-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/pennsylvania-state-university-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/pennsylvania-state-university-context.jsonld
+- aid: pennsylvania-state-university:pennsylvania-state-university-health-api
+  name: Pennsylvania State University Health API
+  description: Service health and status.
+  humanURL: https://apps.opp.psu.edu/fis-api/
+  baseURL: https://apps.opp.psu.edu/fis-api/v1
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-health-api-openapi.yml
+  - type: Documentation
+    url: https://apps.opp.psu.edu/fis-api/
+  - type: JSONSchema
+    url: json-schema/pennsylvania-state-university-building-schema.json
+  - type: JSONSchema
+    url: json-schema/pennsylvania-state-university-room-schema.json
+  - type: x-json-structure
+    url: json-structure/pennsylvania-state-university-building-structure.json
+  - type: x-json-structure
+    url: json-structure/pennsylvania-state-university-room-structure.json
+  - type: x-examples
+    url: examples/pennsylvania-state-university-listBuildings-example.json
+  - type: x-rules
+    url: rules/pennsylvania-state-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/pennsylvania-state-university-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/pennsylvania-state-university-context.jsonld
+- aid: pennsylvania-state-university:pennsylvania-state-university-rooms-api
+  name: Pennsylvania State University Rooms API
+  description: Rooms within buildings.
+  humanURL: https://apps.opp.psu.edu/fis-api/
+  baseURL: https://apps.opp.psu.edu/fis-api/v1
+  tags:
+  - Rooms
+  properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-rooms-api-openapi.yml
+  - type: Documentation
+    url: https://apps.opp.psu.edu/fis-api/
+  - type: JSONSchema
+    url: json-schema/pennsylvania-state-university-building-schema.json
+  - type: JSONSchema
+    url: json-schema/pennsylvania-state-university-room-schema.json
+  - type: x-json-structure
+    url: json-structure/pennsylvania-state-university-building-structure.json
+  - type: x-json-structure
+    url: json-structure/pennsylvania-state-university-room-structure.json
+  - type: x-examples
+    url: examples/pennsylvania-state-university-listBuildings-example.json
+  - type: x-rules
+    url: rules/pennsylvania-state-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/pennsylvania-state-university-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/pennsylvania-state-university-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/pennsylvania-state-university-agentic-access.yml
