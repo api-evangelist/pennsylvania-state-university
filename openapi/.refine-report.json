@@ -1,0 +1,22 @@
+{
+  "provider": "pennsylvania-state-university",
+  "sources": [
+    "pennsylvania-state-university-buildings-api-openapi.yml",
+    "pennsylvania-state-university-campuses-api-openapi.yml",
+    "pennsylvania-state-university-events-api-openapi.yml",
+    "pennsylvania-state-university-health-api-openapi.yml",
+    "pennsylvania-state-university-rooms-api-openapi.yml"
+  ],
+  "outputs": [
+    "pennsylvania-state-university-buildings-api-openapi.yml",
+    "pennsylvania-state-university-campuses-api-openapi.yml",
+    "pennsylvania-state-university-events-api-openapi.yml",
+    "pennsylvania-state-university-health-api-openapi.yml",
+    "pennsylvania-state-university-rooms-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
