@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LionSpaceFIS REST Buildings Rooms API",
+    "version": "1.14.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rooms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List rooms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apps.opp.psu.edu/fis-api/v1/rooms",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "floor",
+                "value": "",
+                "type": "query",
+                "description": "Filter by room floor."
+              }
+            ]
+          },
+          "docs": "Returns rooms within buildings. Supports filtering by building id, floor, and other properties using the same comparison operators as buildings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

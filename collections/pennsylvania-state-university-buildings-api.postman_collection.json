@@ -1,0 +1,144 @@
+{
+  "item": [
+    {
+      "id": "b2d28687-aa9f-475e-b62a-bd3a2a04584b",
+      "name": "Buildings",
+      "description": {
+        "content": "University buildings and their facility attributes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aa73d15b-6fc4-4ab9-b530-0f53c0632d44",
+          "name": "List buildings",
+          "request": {
+            "name": "List buildings",
+            "description": {
+              "content": "Returns buildings with their facility attributes. Supports filtering on properties using comparison operators such as :eq, :ne, :ge, :le, :gt, :lt, :like, and :ilike (e.g. name:ilike=lab).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "buildings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Number of records to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by building name, optionally with an operator suffix."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by building status (e.g. ACTV)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c49df6c-2e90-4f4a-9ad3-2810129b864c",
+              "name": "A list of buildings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "buildings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"0402000\",\n    \"name\": \"Wartik Laboratory (Dr Thomas)\",\n    \"abbreviation\": \"Wartik Lab\",\n    \"maximoName\": \"WARTIK LAB\",\n    \"function\": \"30500\",\n    \"buildingFunctionCat\": \"EG\",\n    \"status\": \"ACTV\",\n    \"county\": \"Centre\",\n    \"address\": \"360 SCIENCE DR\",\n    \"city\": \"UNIVERSITY PARK\",\n    \"state\": \"PA\",\n    \"zipCode\": \"16802\",\n    \"businessAreaKey\": \"6390\",\n    \"isWorkspace\": true,\n    \"facilityCoordinators\": \"string\",\n    \"capacity\": 178,\n    \"occupancy\": 69,\n    \"campus\": {\n      \"id\": \"UP\",\n      \"maximoCampusCode\": \"UP\",\n      \"lionPathCampusCode\": \"UP\",\n      \"maximoCode\": \"UP\",\n      \"lionPathCode\": \"AE\",\n      \"name\": \"University Park\"\n    },\n    \"lastUpdateDate\": \"2026-04-29\",\n    \"dateInactivated\": \"1948-08-02\",\n    \"latLong\": {\n      \"latitude\": 40.79974,\n      \"longitude\": -77.86252\n    }\n  },\n  {\n    \"id\": \"0402000\",\n    \"name\": \"Wartik Laboratory (Dr Thomas)\",\n    \"abbreviation\": \"Wartik Lab\",\n    \"maximoName\": \"WARTIK LAB\",\n    \"function\": \"30500\",\n    \"buildingFunctionCat\": \"EG\",\n    \"status\": \"ACTV\",\n    \"county\": \"Centre\",\n    \"address\": \"360 SCIENCE DR\",\n    \"city\": \"UNIVERSITY PARK\",\n    \"state\": \"PA\",\n    \"zipCode\": \"16802\",\n    \"businessAreaKey\": \"6390\",\n    \"isWorkspace\": true,\n    \"facilityCoordinators\": \"string\",\n    \"capacity\": 178,\n    \"occupancy\": 69,\n    \"campus\": {\n      \"id\": \"UP\",\n      \"maximoCampusCode\": \"UP\",\n      \"lionPathCampusCode\": \"UP\",\n      \"maximoCode\": \"UP\",\n      \"lionPathCode\": \"AE\",\n      \"name\": \"University Park\"\n    },\n    \"lastUpdateDate\": \"2026-04-29\",\n    \"dateInactivated\": \"1972-03-29\",\n    \"latLong\": {\n      \"latitude\": 40.79974,\n      \"longitude\": -77.86252\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apps.opp.psu.edu/fis-api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "61ffa13b-1166-48f7-8b27-d41eaf821498",
+    "name": "LionSpaceFIS REST Buildings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API from the Penn State Office of Physical Plant (OPP) exposing the university's facilities and space data, the successor to the legacy FIS Facilities Information System. Exposes buildings, rooms, campuses, buildingEvents, and roomEvents entities with filtering, wildcard, and comparison operators, plus a health endpoint. This OpenAPI description was reconstructed from the public HTML documentation and from live, observed responses of the running service (appVersion 1.14.0); the provider does not publish a machine-readable specification of its own.\n\nContact Support:\n Name: Penn State Office of Physical Plant",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "item": [
+    {
+      "id": "1d10eff4-580d-499d-a75d-1d4b442d5765",
+      "name": "Health",
+      "description": {
+        "content": "Service health and status.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0625760f-e25d-41a4-a0cc-7fce8ceaa4c5",
+          "name": "Service health",
+          "request": {
+            "name": "Service health",
+            "description": {
+              "content": "Returns the service status and dependency health checks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{health-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "220daa65-016e-4ac8-9840-36dc13f35e9f",
+              "name": "Service health information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{health-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"appVersion\": \"1.14.0\",\n  \"appStatus\": \"UP\",\n  \"totalTime\": 59,\n  \"details\": [\n    {\n      \"name\": \"databaseConnectivity\",\n      \"result\": \"OK\",\n      \"time\": 51\n    },\n    {\n      \"name\": \"databaseConnectivity\",\n      \"result\": \"OK\",\n      \"time\": 51\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apps.opp.psu.edu/fis-api/v1",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://apps.opp.psu.edu/fis-api",
+      "key": "health-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "7a560019-bf64-4ad8-a880-057deb682615",
+    "name": "LionSpaceFIS REST Buildings Health API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API from the Penn State Office of Physical Plant (OPP) exposing the university's facilities and space data, the successor to the legacy FIS Facilities Information System. Exposes buildings, rooms, campuses, buildingEvents, and roomEvents entities with filtering, wildcard, and comparison operators, plus a health endpoint. This OpenAPI description was reconstructed from the public HTML documentation and from live, observed responses of the running service (appVersion 1.14.0); the provider does not publish a machine-readable specification of its own.\n\nContact Support:\n Name: Penn State Office of Physical Plant",
+      "type": "text/plain"
+    }
+  }
+}

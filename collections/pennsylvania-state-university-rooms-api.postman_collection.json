@@ -1,0 +1,134 @@
+{
+  "item": [
+    {
+      "id": "a6d38674-0d89-4c08-9743-c02a4841b44d",
+      "name": "Rooms",
+      "description": {
+        "content": "Rooms within buildings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6b0af660-3c9b-4dc1-98e9-233faeb72f24",
+          "name": "List rooms",
+          "request": {
+            "name": "List rooms",
+            "description": {
+              "content": "Returns rooms within buildings. Supports filtering by building id, floor, and other properties using the same comparison operators as buildings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rooms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Number of records to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "floor",
+                  "value": "<string>",
+                  "description": "Filter by room floor."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d48508a0-1bdf-4094-a178-58cc8964cd0a",
+              "name": "A list of rooms.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rooms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "floor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"0290012-1-109D\",\n    \"number\": \"109D\",\n    \"name\": \"string\",\n    \"floor\": \"1\",\n    \"floorVerticalOrder\": 4961,\n    \"netArea\": 12.09,\n    \"fireCodeCapacity\": 0,\n    \"capacity\": 0,\n    \"occupancy\": 0,\n    \"photoUrl\": \"string\",\n    \"collegeNetKey\": \"string\",\n    \"businessAreaKey\": \"6530\",\n    \"principalInvestigators\": \"string\",\n    \"occupants\": \"string\",\n    \"facilityCoordinators\": \"string\",\n    \"maximoLocation\": \"0290012-109D\",\n    \"lastUpdateDate\": \"2022-03-28\",\n    \"dateInactivated\": \"1969-08-14\",\n    \"campus\": {\n      \"id\": \"UP\",\n      \"maximoCampusCode\": \"UP\",\n      \"lionPathCampusCode\": \"UP\",\n      \"maximoCode\": \"UP\",\n      \"lionPathCode\": \"AE\",\n      \"name\": \"University Park\"\n    },\n    \"latLong\": {\n      \"latitude\": 40.79974,\n      \"longitude\": -77.86252\n    },\n    \"building\": {\n      \"id\": \"string\"\n    },\n    \"type\": {\n      \"id\": \"955\",\n      \"description\": \"Apartment Service\"\n    }\n  },\n  {\n    \"id\": \"0290012-1-109D\",\n    \"number\": \"109D\",\n    \"name\": \"string\",\n    \"floor\": \"1\",\n    \"floorVerticalOrder\": 7761,\n    \"netArea\": 12.09,\n    \"fireCodeCapacity\": 0,\n    \"capacity\": 0,\n    \"occupancy\": 0,\n    \"photoUrl\": \"string\",\n    \"collegeNetKey\": \"string\",\n    \"businessAreaKey\": \"6530\",\n    \"principalInvestigators\": \"string\",\n    \"occupants\": \"string\",\n    \"facilityCoordinators\": \"string\",\n    \"maximoLocation\": \"0290012-109D\",\n    \"lastUpdateDate\": \"2022-03-28\",\n    \"dateInactivated\": \"2017-08-20\",\n    \"campus\": {\n      \"id\": \"UP\",\n      \"maximoCampusCode\": \"UP\",\n      \"lionPathCampusCode\": \"UP\",\n      \"maximoCode\": \"UP\",\n      \"lionPathCode\": \"AE\",\n      \"name\": \"University Park\"\n    },\n    \"latLong\": {\n      \"latitude\": 40.79974,\n      \"longitude\": -77.86252\n    },\n    \"building\": {\n      \"id\": \"string\"\n    },\n    \"type\": {\n      \"id\": \"955\",\n      \"description\": \"Apartment Service\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apps.opp.psu.edu/fis-api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c31402eb-1ec7-4c6a-afa2-7d67b97f17bb",
+    "name": "LionSpaceFIS REST Buildings Rooms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API from the Penn State Office of Physical Plant (OPP) exposing the university's facilities and space data, the successor to the legacy FIS Facilities Information System. Exposes buildings, rooms, campuses, buildingEvents, and roomEvents entities with filtering, wildcard, and comparison operators, plus a health endpoint. This OpenAPI description was reconstructed from the public HTML documentation and from live, observed responses of the running service (appVersion 1.14.0); the provider does not publish a machine-readable specification of its own.\n\nContact Support:\n Name: Penn State Office of Physical Plant",
+      "type": "text/plain"
+    }
+  }
+}

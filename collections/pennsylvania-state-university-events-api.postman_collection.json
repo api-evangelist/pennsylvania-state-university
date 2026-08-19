@@ -1,0 +1,216 @@
+{
+  "item": [
+    {
+      "id": "93a952a5-e676-49d4-a104-16e5ff04b498",
+      "name": "Events",
+      "description": {
+        "content": "Change events for buildings and rooms.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "35db52d9-2aa9-46bf-ab9a-6ef19e6647e6",
+          "name": "List building change events",
+          "request": {
+            "name": "List building change events",
+            "description": {
+              "content": "Returns change events for buildings. Events are reported once daily to avoid redundant updates. Event codes include A (add) and U (update).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "buildingEvents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Number of records to skip for pagination."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32c4fd9d-1de0-4c62-adaa-d4b3bcc0fea7",
+              "name": "A list of building change events.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "buildingEvents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"event\": \"A\",\n    \"oldValue\": \"string\",\n    \"newValue\": \"string\",\n    \"changeDate\": \"2021-05-28\",\n    \"fieldName\": \"string\",\n    \"buildingId\": \"0002000\"\n  },\n  {\n    \"event\": \"A\",\n    \"oldValue\": \"string\",\n    \"newValue\": \"string\",\n    \"changeDate\": \"2021-05-28\",\n    \"fieldName\": \"string\",\n    \"buildingId\": \"0002000\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4bf07e66-319c-4c1b-a7f6-5bfa8b1b5738",
+          "name": "List room change events",
+          "request": {
+            "name": "List room change events",
+            "description": {
+              "content": "Returns change events for rooms. Events are reported once daily. Event codes include A (add) and U (update), with oldValue/newValue and the changed fieldName for updates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "roomEvents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Number of records to skip for pagination."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1df1959f-2086-4b67-822b-2dd603f118bd",
+              "name": "A list of room change events.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "roomEvents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"event\": \"U\",\n    \"oldValue\": \"1\",\n    \"newValue\": \"0\",\n    \"changeDate\": \"2021-05-28\",\n    \"fieldName\": \"OCCUPANCY\",\n    \"roomId\": \"0965002-G-164\"\n  },\n  {\n    \"event\": \"U\",\n    \"oldValue\": \"1\",\n    \"newValue\": \"0\",\n    \"changeDate\": \"2021-05-28\",\n    \"fieldName\": \"OCCUPANCY\",\n    \"roomId\": \"0965002-G-164\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apps.opp.psu.edu/fis-api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "77647c98-2455-48f7-8021-9c6b290fab67",
+    "name": "LionSpaceFIS REST Buildings Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API from the Penn State Office of Physical Plant (OPP) exposing the university's facilities and space data, the successor to the legacy FIS Facilities Information System. Exposes buildings, rooms, campuses, buildingEvents, and roomEvents entities with filtering, wildcard, and comparison operators, plus a health endpoint. This OpenAPI description was reconstructed from the public HTML documentation and from live, observed responses of the running service (appVersion 1.14.0); the provider does not publish a machine-readable specification of its own.\n\nContact Support:\n Name: Penn State Office of Physical Plant",
+      "type": "text/plain"
+    }
+  }
+}

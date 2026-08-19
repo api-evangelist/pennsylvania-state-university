@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LionSpaceFIS REST Buildings Events API",
+    "version": "1.14.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List building change events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apps.opp.psu.edu/fis-api/v1/buildingEvents",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              }
+            ]
+          },
+          "docs": "Returns change events for buildings. Events are reported once daily to avoid redundant updates. Event codes include A (add) and U (update)."
+        },
+        {
+          "info": {
+            "name": "List room change events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apps.opp.psu.edu/fis-api/v1/roomEvents",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              }
+            ]
+          },
+          "docs": "Returns change events for rooms. Events are reported once daily. Event codes include A (add) and U (update), with oldValue/newValue and the changed fieldName for updates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

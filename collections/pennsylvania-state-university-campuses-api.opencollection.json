@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LionSpaceFIS REST Buildings Campuses API",
+    "version": "1.14.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campuses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List campuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apps.opp.psu.edu/fis-api/v1/campuses",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              }
+            ]
+          },
+          "docs": "Returns the list of Penn State campuses known to the facilities system."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,130 @@
+{
+  "item": [
+    {
+      "id": "d03701e4-1a95-4094-9b76-b0bf97ec3d0d",
+      "name": "Campuses",
+      "description": {
+        "content": "Penn State campus reference data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "db77a13f-dcd6-4d37-bb0c-e745b3a79116",
+          "name": "List campuses",
+          "request": {
+            "name": "List campuses",
+            "description": {
+              "content": "Returns the list of Penn State campuses known to the facilities system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campuses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Number of records to skip for pagination."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1120038-a0e0-4d5d-bab8-3c25e4958f54",
+              "name": "A list of campuses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campuses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of matching records (pagination metadata).",
+                  "key": "X-Total-Count",
+                  "value": "8028"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"UP\",\n    \"maximoCampusCode\": \"UP\",\n    \"lionPathCampusCode\": \"UP\",\n    \"maximoCode\": \"UP\",\n    \"lionPathCode\": \"AE\",\n    \"name\": \"University Park\"\n  },\n  {\n    \"id\": \"UP\",\n    \"maximoCampusCode\": \"UP\",\n    \"lionPathCampusCode\": \"UP\",\n    \"maximoCode\": \"UP\",\n    \"lionPathCode\": \"AE\",\n    \"name\": \"University Park\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apps.opp.psu.edu/fis-api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dc122ca6-abd8-47ae-9996-b2da55c495c7",
+    "name": "LionSpaceFIS REST Buildings Campuses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API from the Penn State Office of Physical Plant (OPP) exposing the university's facilities and space data, the successor to the legacy FIS Facilities Information System. Exposes buildings, rooms, campuses, buildingEvents, and roomEvents entities with filtering, wildcard, and comparison operators, plus a health endpoint. This OpenAPI description was reconstructed from the public HTML documentation and from live, observed responses of the running service (appVersion 1.14.0); the provider does not publish a machine-readable specification of its own.\n\nContact Support:\n Name: Penn State Office of Physical Plant",
+      "type": "text/plain"
+    }
+  }
+}

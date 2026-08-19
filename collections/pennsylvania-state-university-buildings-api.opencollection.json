@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LionSpaceFIS REST Buildings API",
+    "version": "1.14.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Buildings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List buildings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apps.opp.psu.edu/fis-api/v1/buildings",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by building name, optionally with an operator suffix."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by building status (e.g. ACTV)."
+              }
+            ]
+          },
+          "docs": "Returns buildings with their facility attributes. Supports filtering on properties using comparison operators such as :eq, :ne, :ge, :le, :gt, :lt, :like, and :ilike (e.g. name:ilike=lab)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
