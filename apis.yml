@@ -146,6 +146,8 @@ apis:
   humanURL: https://apps.opp.psu.edu/fis-api/
   baseURL: https://apps.opp.psu.edu/fis-api/v1
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
