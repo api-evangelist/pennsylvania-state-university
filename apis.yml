@@ -1,44 +1,50 @@
 ---
 aid: pennsylvania-state-university
 name: Pennsylvania State University
+x-type: university
+x-category: Public Research University
 description: >-
-  Pennsylvania State University (Penn State) is a public, land-grant research
-  university with its primary campus at University Park, PA, and is ranked #69
-  in the QS World University Rankings 2025. Its public developer footprint is
-  centered on a Penn State IT web developer portal (docs.developer.psu.edu)
-  that catalogs internal REST services such as PSU ID, Academic Course,
-  Cornerstone, Sponsored Accounts, and ASR Lookup, though those API reference
-  pages sit behind Shibboleth/WebAccess single sign-on. Publicly reachable APIs
-  include the Office of Physical Plant LionSpaceFIS facilities REST API and the
-  University Libraries Researcher Metadata Database (RMD), which exposes
-  researcher/publication metadata via an OpenAPI-described REST API gated by a
-  license key. Penn State also maintains public open-source GitHub
-  organizations.
+  Pennsylvania State University (Penn State) is a public, land-grant research university with its
+  primary campus at University Park, PA, and is ranked #69 in the QS World University Rankings 2025.
+  Its programmable footprint is real but narrow, and it lives almost entirely in University
+  Libraries rather than in central IT. Penn State publishes two genuine first-party OpenAPI
+  descriptions of services it builds and operates itself: the Researcher Metadata Database (RMD), the
+  authority on faculty and research metadata, and ScholarSphere, its self-built institutional
+  repository — both key-gated, both described in OpenAPI 3.0 by the Libraries team that wrote them.
+  Alongside those it runs an open OAI-PMH 2.0 provider over the Electronic Theses and Dissertations
+  Archive, an unauthenticated facilities API from the Office of Physical Plant (LionSpaceFIS), and
+  its own Shibboleth identity provider registered in InCommon. Penn State also authors open-source
+  identity software, including a SCIM 2.0 server implementation. What it no longer has is a central
+  developer portal: docs.developer.psu.edu, which catalogued internal REST services such as PSU ID,
+  Academic Course and Cornerstone behind WebAccess single sign-on, now redirects to sites.psu.edu and
+  has been decommissioned. There is no unified API gateway, no shared credential, and no
+  self-service onboarding — each surface issues its own key out of the unit that operates it.
 type: Index
 deliveryModel:
   model: saas
   open_source: false
-  commercial: true
+  commercial: false
   callable_host: true
   label: Hosted service · you call their endpoint
   confidence: high
   source:
   - openapi
-  - pricing
-  generated: '2026-08-28'
-  method: derived
+  - probe
+  generated: '2026-08-30'
+  method: probed
 accessModel:
   pricing: free
-  onboarding: unknown
+  onboarding: request
   trial: false
   try_now: false
   public: false
-  label: Free
-  confidence: medium
+  label: Free · key issued on request by the operating unit
+  confidence: high
   source:
-  - plans
-  generated: '2026-07-22'
-  method: derived
+  - openapi
+  - authentication
+  generated: '2026-08-30'
+  method: probed
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/pennsylvania-state-university.png
@@ -47,58 +53,157 @@ tags:
   - Education
   - Higher Education
   - University
+  - Public Research University
+  - Land Grant
+  - Big Ten
   - Research
+  - Research Data
+  - Research Repository
+  - Open Access
+  - Identity Federation
   - Library
   - Facilities
   - United States
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 specificationVersion: '0.23'
 apis:
 - aid: pennsylvania-state-university:rmd
   name: Researcher Metadata Database (RMD) API
+  x-operator: institution
   description: >-
-    Penn State University Libraries' faculty and research metadata service, maintained with OSVPR and
-    West Arete. Publishes cleaned researcher metadata (publications, presentations, performances, advising,
-    news, and biographical content) through a RESTful API described with the OpenAPI standard. A license
-    key is required to query the data; interactive API docs are served at /api_docs.
+    Penn State University Libraries' faculty and research metadata service, built and run in-house
+    with OSVPR and West Arete. Publishes cleaned researcher metadata — publications, grants,
+    presentations, performances, ETDs, advising, news and biographical content — through a REST API
+    described by a first-party OpenAPI 3.0.1 document with 14 paths across user, publication and
+    organization resources. ORCID identifiers are required fields on the profile response, not
+    optional decoration. A license key (X-API-Key) is issued by the Libraries on request; the
+    unauthenticated response is a 401 JSON envelope.
   humanURL: https://metadata.libraries.psu.edu/api_docs
+  baseURL: https://metadata.libraries.psu.edu
   tags:
   - Research
   - Metadata
   - Publications
   - Library
-  - OpenAPI
+  - ORCID
   properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-researcher-metadata-api-openapi.yml
+  - type: OpenAPI
+    url: https://metadata.libraries.psu.edu/api-docs/v1/swagger.yaml
   - type: Documentation
     url: https://metadata.libraries.psu.edu/api_docs
   - type: Signup
     url: https://metadata.libraries.psu.edu/
   - type: GitHub
     url: https://github.com/psu-libraries/researcher-metadata
-- aid: pennsylvania-state-university:developer-portal
-  name: Penn State IT Web Developer Services
+  - type: Authentication
+    url: authentication/pennsylvania-state-university-authentication.yml
+  - type: x-examples
+    url: examples/pennsylvania-state-university-rmd-unauthenticated-example.json
+  - type: Errors
+    url: errors/pennsylvania-state-university-problem-types.yml
+- aid: pennsylvania-state-university:scholarsphere
+  name: ScholarSphere API
+  x-operator: institution
   description: >-
-    Penn State Information Technology operates a web developer portal that catalogs internal REST services
-    and events and lets developers find, subscribe to, and request elevated access for APIs. Documented
-    services include PSU ID Service, Academic Course Service, Cornerstone Service, Sponsored Accounts
-    Service, and ASR Lookup Service. The portal landing page is reachable, but individual API reference
-    pages redirect to Shibboleth/WebAccess single sign-on and are not publicly viewable.
-  humanURL: https://docs.developer.psu.edu/
+    Penn State's next-generation institutional repository, written by Penn State University Libraries
+    and released under MIT — not a Figshare, Dataverse or DSpace tenancy. The API is described by the
+    Libraries' own OpenAPI 3.0.2 document with servers set to https://scholarsphere.psu.edu/api/{version},
+    covering ingest, collections, file upload, featured resources and a public DOI index. Penn State
+    mints its own DataCite DOIs against the service under prefix 10.26207 as repository client
+    psu.scholar. Access is by X_API_KEY header issued by the ScholarSphere team.
+  humanURL: https://scholarsphere.psu.edu/
+  baseURL: https://scholarsphere.psu.edu/api/v1
   tags:
-  - Identity
-  - Courses
-  - Internal
-  - Gated
-  - Authentication
+  - Research Data
+  - Research Repository
+  - Open Access
+  - DOI
+  - DataCite
+  properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-scholarsphere-api-openapi.yml
+  - type: OpenAPI
+    url: https://raw.githubusercontent.com/psu-libraries/scholarsphere/main/openapi.yml
+  - type: Documentation
+    url: https://docs.scholarsphere.psu.edu/
+  - type: TermsOfService
+    url: https://scholarsphere.psu.edu/about
+  - type: GitHub
+    url: https://github.com/psu-libraries/scholarsphere
+  - type: SDK
+    url: https://github.com/psu-libraries/scholarsphere-client
+  - type: Authentication
+    url: authentication/pennsylvania-state-university-authentication.yml
+  - type: x-examples
+    url: examples/pennsylvania-state-university-scholarsphere-unauthenticated-example.json
+  - type: Errors
+    url: errors/pennsylvania-state-university-problem-types.yml
+- aid: pennsylvania-state-university:etda-oai-pmh
+  name: ETDA OAI-PMH Provider
+  x-operator: institution
+  description: >-
+    An open OAI-PMH 2.0 harvesting endpoint over Penn State's Electronic Theses and Dissertations
+    Archive, served by the Libraries' own etda_explore application on a psu.edu host. Identify
+    reports repositoryName Penn_State_University, adminEmail askalibrarian@psu.edu and an earliest
+    datestamp of 1999-04-07; oai_dc is the supported metadata format and the repository declares no
+    set hierarchy. No credential, no registration — the one Penn State surface an outside machine
+    can harvest today without asking anyone.
+  humanURL: https://etda.libraries.psu.edu/
+  baseURL: https://etda.libraries.psu.edu/catalog/oai
+  tags:
+  - OAI-PMH
+  - Theses
+  - Research
+  - Library
+  - Open Access
   properties:
   - type: Documentation
-    url: https://docs.developer.psu.edu/
+    url: https://etda.libraries.psu.edu/
+  - type: x-examples
+    url: examples/pennsylvania-state-university-etda-oai-identify-example.xml
+  - type: GitHub
+    url: https://github.com/psu-libraries/etda_explore
+  - type: Conformance
+    url: conformance/pennsylvania-state-university-conformance.yml
+- aid: pennsylvania-state-university:identity-federation
+  name: Penn State Identity Federation (InCommon / Shibboleth)
+  x-operator: institution
+  description: >-
+    Penn State operates its own Shibboleth identity provider and registers it in the InCommon
+    federation under entityID urn:mace:incommon:psu.edu. Penn State SERVES ITS OWN SAML metadata at
+    https://as1.fim.psu.edu/idp/shibboleth (200 application/xml, 9,398 bytes) — IDPSSODescriptor plus
+    SPSSODescriptor, shibmd:Scope psu.edu, OrganizationName "The Pennsylvania State University",
+    speaking Shibboleth 1.0, SAML 1.1 and SAML 2.0 over HTTP-Redirect, POST and SOAP ECP. InCommon
+    republishes that same document at mdq.incommon.org; the republication is the federation's, the
+    IdP is Penn State's. This is the machine-readable surface behind every WebAccess-gated Penn State
+    service, and it is the reason most of the institution's REST estate is unreadable from outside.
+  humanURL: https://as1.fim.psu.edu/idp/shibboleth
+  baseURL: https://as1.fim.psu.edu/idp
+  tags:
+  - Identity Federation
+  - Shibboleth
+  - SAML
+  - InCommon
+  - Single Sign-On
+  properties:
+  - type: x-metadata
+    url: https://as1.fim.psu.edu/idp/shibboleth
+  - type: x-federation-registration
+    url: https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Apsu.edu
   - type: Authentication
-    url: https://docs.developer.psu.edu/
+    url: authentication/pennsylvania-state-university-authentication.yml
+  - type: Conformance
+    url: conformance/pennsylvania-state-university-conformance.yml
 - aid: pennsylvania-state-university:pennsylvania-state-university-buildings-api
   name: Pennsylvania State University Buildings API
-  description: University buildings and their facility attributes.
+  x-operator: institution
+  description: >-
+    University buildings and their facility attributes. One tag of the Office of Physical Plant's
+    single LionSpaceFIS service; the buildings, campuses, rooms, events and health entries in this
+    file are five views of one contract, split per tag by refine-openapis.
   humanURL: https://apps.opp.psu.edu/fis-api/
   baseURL: https://apps.opp.psu.edu/fis-api/v1
   tags:
@@ -126,7 +231,8 @@ apis:
     url: json-ld/pennsylvania-state-university-context.jsonld
 - aid: pennsylvania-state-university:pennsylvania-state-university-campuses-api
   name: Pennsylvania State University Campuses API
-  description: Penn State campus reference data.
+  x-operator: institution
+  description: Penn State campus reference data, from the Office of Physical Plant LionSpaceFIS service.
   humanURL: https://apps.opp.psu.edu/fis-api/
   baseURL: https://apps.opp.psu.edu/fis-api/v1
   tags:
@@ -145,7 +251,7 @@ apis:
   - type: x-json-structure
     url: json-structure/pennsylvania-state-university-room-structure.json
   - type: x-examples
-    url: examples/pennsylvania-state-university-listBuildings-example.json
+    url: examples/pennsylvania-state-university-listCampuses-example.json
   - type: x-rules
     url: rules/pennsylvania-state-university-rules.yml
   - type: x-vocabulary
@@ -154,7 +260,8 @@ apis:
     url: json-ld/pennsylvania-state-university-context.jsonld
 - aid: pennsylvania-state-university:pennsylvania-state-university-events-api
   name: Pennsylvania State University Events API
-  description: Change events for buildings and rooms.
+  x-operator: institution
+  description: Change events for buildings and rooms, from the Office of Physical Plant LionSpaceFIS service.
   humanURL: https://apps.opp.psu.edu/fis-api/
   baseURL: https://apps.opp.psu.edu/fis-api/v1
   tags:
@@ -184,7 +291,11 @@ apis:
     url: json-ld/pennsylvania-state-university-context.jsonld
 - aid: pennsylvania-state-university:pennsylvania-state-university-health-api
   name: Pennsylvania State University Health API
-  description: Service health and status.
+  x-operator: institution
+  description: >-
+    Service health and status for the LionSpaceFIS facilities service; returns appVersion and
+    appStatus with a database connectivity check. Unauthenticated and live (appVersion 1.14.0,
+    probed 2026-08-30).
   humanURL: https://apps.opp.psu.edu/fis-api/
   baseURL: https://apps.opp.psu.edu/fis-api/v1
   tags:
@@ -194,16 +305,8 @@ apis:
     url: openapi/pennsylvania-state-university-health-api-openapi.yml
   - type: Documentation
     url: https://apps.opp.psu.edu/fis-api/
-  - type: JSONSchema
-    url: json-schema/pennsylvania-state-university-building-schema.json
-  - type: JSONSchema
-    url: json-schema/pennsylvania-state-university-room-schema.json
-  - type: x-json-structure
-    url: json-structure/pennsylvania-state-university-building-structure.json
-  - type: x-json-structure
-    url: json-structure/pennsylvania-state-university-room-structure.json
   - type: x-examples
-    url: examples/pennsylvania-state-university-listBuildings-example.json
+    url: examples/pennsylvania-state-university-getHealth-example.json
   - type: x-rules
     url: rules/pennsylvania-state-university-rules.yml
   - type: x-vocabulary
@@ -212,7 +315,8 @@ apis:
     url: json-ld/pennsylvania-state-university-context.jsonld
 - aid: pennsylvania-state-university:pennsylvania-state-university-rooms-api
   name: Pennsylvania State University Rooms API
-  description: Rooms within buildings.
+  x-operator: institution
+  description: Rooms within buildings, from the Office of Physical Plant LionSpaceFIS service.
   humanURL: https://apps.opp.psu.edu/fis-api/
   baseURL: https://apps.opp.psu.edu/fis-api/v1
   tags:
@@ -223,22 +327,99 @@ apis:
   - type: Documentation
     url: https://apps.opp.psu.edu/fis-api/
   - type: JSONSchema
-    url: json-schema/pennsylvania-state-university-building-schema.json
-  - type: JSONSchema
     url: json-schema/pennsylvania-state-university-room-schema.json
-  - type: x-json-structure
-    url: json-structure/pennsylvania-state-university-building-structure.json
   - type: x-json-structure
     url: json-structure/pennsylvania-state-university-room-structure.json
   - type: x-examples
-    url: examples/pennsylvania-state-university-listBuildings-example.json
+    url: examples/pennsylvania-state-university-listRooms-example.json
   - type: x-rules
     url: rules/pennsylvania-state-university-rules.yml
   - type: x-vocabulary
     url: vocabulary/pennsylvania-state-university-vocabulary.yml
   - type: x-json-ld
     url: json-ld/pennsylvania-state-university-context.jsonld
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Penn State operates five machine-readable surfaces of its own and we hold contracts or probed
+    evidence for all five. Two carry genuine first-party OpenAPI documents the university wrote
+    itself (Researcher Metadata Database, ScholarSphere); one is an open OAI-PMH 2.0 provider over
+    the ETD archive; one is an unauthenticated facilities API from the Office of Physical Plant
+    whose description in this repo is ours, reconstructed from HTML docs and live responses; one is
+    the university's own Shibboleth IdP published as SAML metadata in InCommon. No vendor contract
+    is attributed to Penn State in this repo and no tenant relationship was found — ScholarSphere is
+    self-built rather than a Figshare or Dataverse tenancy, which is unusual for this cohort. The
+    one real loss since the June 2026 profile is central IT's developer portal at
+    docs.developer.psu.edu, which brokered internal REST services (PSU ID, Academic Course,
+    Cornerstone, Sponsored Accounts, ASR Lookup) behind WebAccess and now 302s to sites.psu.edu; the
+    entry and its pointers have been removed rather than left standing as a dead claim. What remains
+    unreadable is by design: everything behind Shibboleth. Penn State also authors, but does not
+    publicly host, a SCIM 2.0 server implementation.
+  generated: '2026-08-30'
+  method: probed
+  evidence:
+  - url: https://metadata.libraries.psu.edu/api-docs/v1/swagger.yaml
+    status: 200
+  - url: https://metadata.libraries.psu.edu/v1/organizations
+    status: 401
+  - url: https://raw.githubusercontent.com/psu-libraries/scholarsphere/main/openapi.yml
+    status: 200
+  - url: https://scholarsphere.psu.edu/api/v1/dois
+    status: 401
+  - url: https://etda.libraries.psu.edu/catalog/oai?verb=Identify
+    status: 200
+  - url: https://as1.fim.psu.edu/idp/shibboleth
+    status: 200
+  - url: https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Apsu.edu
+    status: 200
+  - url: https://apps.opp.psu.edu/fis-api/v1/campuses
+    status: 200
+  - url: https://apps.opp.psu.edu/fis-api/health
+    status: 200
+  - url: https://docs.developer.psu.edu/
+    status: 302
+    note: >-
+      Redirects to https://sites.psu.edu/ — the Penn State developer portal has been decommissioned.
+  - url: https://www.psu.edu/.well-known/security.txt
+    status: 404
 common:
+  - type: Website
+    url: https://www.psu.edu/
+  - type: APIReference
+    url: https://metadata.libraries.psu.edu/api_docs
+  - type: Documentation
+    url: https://docs.scholarsphere.psu.edu/
+  - type: ResearchRepository
+    url: https://scholarsphere.psu.edu/
+  - type: ResearchRepository
+    url: https://etda.libraries.psu.edu/
+  - type: IdentityFederation
+    url: https://as1.fim.psu.edu/idp/shibboleth
+  - type: LibraryCatalog
+    url: https://libraries.psu.edu/
+  - type: CourseCatalog
+    url: https://bulletins.psu.edu/
+  - type: OpenData
+    url: https://www.datacommons.psu.edu/
+  - type: AIPolicy
+    url: https://ai.psu.edu/explore/guidelines
+  - type: AITooling
+    url: https://ai.psu.edu/
+  - type: GitHubOrganization
+    url: https://github.com/PennState
+  - type: SourceCode
+    url: https://github.com/psu-libraries
+  - type: PrivacyPolicy
+    url: https://www.psu.edu/web-privacy-statement
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/penn-state-university/
+  - type: Conformance
+    url: conformance/pennsylvania-state-university-conformance.yml
+  - type: Authentication
+    url: authentication/pennsylvania-state-university-authentication.yml
+  - type: Errors
+    url: errors/pennsylvania-state-university-problem-types.yml
   - type: AgenticAccess
     url: agentic-access/pennsylvania-state-university-agentic-access.yml
   - type: TrustCenter
@@ -247,16 +428,6 @@ common:
     url: security/pennsylvania-state-university-vulnerability-disclosure.yml
   - type: DomainSecurity
     url: security/pennsylvania-state-university-domain-security.yml
-  - type: Website
-    url: https://www.psu.edu/
-  - type: DeveloperPortal
-    url: https://docs.developer.psu.edu/
-  - type: GitHub
-    url: https://github.com/PennState
-  - type: SourceCode
-    url: https://github.com/psu-libraries
-  - type: LinkedIn
-    url: https://www.linkedin.com/school/penn-state-university/
   - type: Plans
     url: plans/pennsylvania-state-university-plans-pricing.yml
   - type: RateLimits
