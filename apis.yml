@@ -68,89 +68,15 @@ created: '2026-06-03'
 modified: '2026-08-30'
 specificationVersion: '0.23'
 apis:
-- aid: pennsylvania-state-university:rmd
-  name: Researcher Metadata Database (RMD) API
-  x-operator: institution
-  description: >-
-    Penn State University Libraries' faculty and research metadata service, built and run in-house
-    with OSVPR and West Arete. Publishes cleaned researcher metadata — publications, grants,
-    presentations, performances, ETDs, advising, news and biographical content — through a REST API
-    described by a first-party OpenAPI 3.0.1 document with 14 paths across user, publication and
-    organization resources. ORCID identifiers are required fields on the profile response, not
-    optional decoration. A license key (X-API-Key) is issued by the Libraries on request; the
-    unauthenticated response is a 401 JSON envelope.
-  humanURL: https://metadata.libraries.psu.edu/api_docs
-  baseURL: https://metadata.libraries.psu.edu
-  tags:
-  - Research
-  - Metadata
-  - Publications
-  - Library
-  - ORCID
-  properties:
-  - type: OpenAPI
-    url: openapi/pennsylvania-state-university-researcher-metadata-api-openapi.yml
-  - type: OpenAPI
-    url: https://metadata.libraries.psu.edu/api-docs/v1/swagger.yaml
-  - type: Documentation
-    url: https://metadata.libraries.psu.edu/api_docs
-  - type: Signup
-    url: https://metadata.libraries.psu.edu/
-  - type: GitHub
-    url: https://github.com/psu-libraries/researcher-metadata
-  - type: Authentication
-    url: authentication/pennsylvania-state-university-authentication.yml
-  - type: x-examples
-    url: examples/pennsylvania-state-university-rmd-unauthenticated-example.json
-  - type: Errors
-    url: errors/pennsylvania-state-university-problem-types.yml
-- aid: pennsylvania-state-university:scholarsphere
-  name: ScholarSphere API
-  x-operator: institution
-  description: >-
-    Penn State's next-generation institutional repository, written by Penn State University Libraries
-    and released under MIT — not a Figshare, Dataverse or DSpace tenancy. The API is described by the
-    Libraries' own OpenAPI 3.0.2 document with servers set to https://scholarsphere.psu.edu/api/{version},
-    covering ingest, collections, file upload, featured resources and a public DOI index. Penn State
-    mints its own DataCite DOIs against the service under prefix 10.26207 as repository client
-    psu.scholar. Access is by X_API_KEY header issued by the ScholarSphere team.
-  humanURL: https://scholarsphere.psu.edu/
-  baseURL: https://scholarsphere.psu.edu/api/v1
-  tags:
-  - Research Data
-  - Research Repository
-  - Open Access
-  - DOI
-  - DataCite
-  properties:
-  - type: OpenAPI
-    url: openapi/pennsylvania-state-university-scholarsphere-api-openapi.yml
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/psu-libraries/scholarsphere/main/openapi.yml
-  - type: Documentation
-    url: https://docs.scholarsphere.psu.edu/
-  - type: TermsOfService
-    url: https://scholarsphere.psu.edu/about
-  - type: GitHub
-    url: https://github.com/psu-libraries/scholarsphere
-  - type: SDK
-    url: https://github.com/psu-libraries/scholarsphere-client
-  - type: Authentication
-    url: authentication/pennsylvania-state-university-authentication.yml
-  - type: x-examples
-    url: examples/pennsylvania-state-university-scholarsphere-unauthenticated-example.json
-  - type: Errors
-    url: errors/pennsylvania-state-university-problem-types.yml
 - aid: pennsylvania-state-university:etda-oai-pmh
   name: ETDA OAI-PMH Provider
   x-operator: institution
   description: >-
-    An open OAI-PMH 2.0 harvesting endpoint over Penn State's Electronic Theses and Dissertations
-    Archive, served by the Libraries' own etda_explore application on a psu.edu host. Identify
-    reports repositoryName Penn_State_University, adminEmail askalibrarian@psu.edu and an earliest
-    datestamp of 1999-04-07; oai_dc is the supported metadata format and the repository declares no
-    set hierarchy. No credential, no registration — the one Penn State surface an outside machine
-    can harvest today without asking anyone.
+    An open OAI-PMH 2.0 harvesting endpoint over Penn State's Electronic Theses and Dissertations Archive,
+    served by the Libraries' own etda_explore application on a psu.edu host. Identify reports repositoryName
+    Penn_State_University, adminEmail askalibrarian@psu.edu and an earliest datestamp of 1999-04-07; oai_dc
+    is the supported metadata format and the repository declares no set hierarchy. No credential, no registration
+    — the one Penn State surface an outside machine can harvest today without asking anyone.
   humanURL: https://etda.libraries.psu.edu/
   baseURL: https://etda.libraries.psu.edu/catalog/oai
   tags:
@@ -172,14 +98,14 @@ apis:
   name: Penn State Identity Federation (InCommon / Shibboleth)
   x-operator: institution
   description: >-
-    Penn State operates its own Shibboleth identity provider and registers it in the InCommon
-    federation under entityID urn:mace:incommon:psu.edu. Penn State SERVES ITS OWN SAML metadata at
-    https://as1.fim.psu.edu/idp/shibboleth (200 application/xml, 9,398 bytes) — IDPSSODescriptor plus
-    SPSSODescriptor, shibmd:Scope psu.edu, OrganizationName "The Pennsylvania State University",
-    speaking Shibboleth 1.0, SAML 1.1 and SAML 2.0 over HTTP-Redirect, POST and SOAP ECP. InCommon
-    republishes that same document at mdq.incommon.org; the republication is the federation's, the
-    IdP is Penn State's. This is the machine-readable surface behind every WebAccess-gated Penn State
-    service, and it is the reason most of the institution's REST estate is unreadable from outside.
+    Penn State operates its own Shibboleth identity provider and registers it in the InCommon federation
+    under entityID urn:mace:incommon:psu.edu. Penn State SERVES ITS OWN SAML metadata at https://as1.fim.psu.edu/idp/shibboleth
+    (200 application/xml, 9,398 bytes) — IDPSSODescriptor plus SPSSODescriptor, shibmd:Scope psu.edu,
+    OrganizationName "The Pennsylvania State University", speaking Shibboleth 1.0, SAML 1.1 and SAML 2.0
+    over HTTP-Redirect, POST and SOAP ECP. InCommon republishes that same document at mdq.incommon.org;
+    the republication is the federation's, the IdP is Penn State's. This is the machine-readable surface
+    behind every WebAccess-gated Penn State service, and it is the reason most of the institution's REST
+    estate is unreadable from outside.
   humanURL: https://as1.fim.psu.edu/idp/shibboleth
   baseURL: https://as1.fim.psu.edu/idp
   tags:
@@ -201,9 +127,9 @@ apis:
   name: Pennsylvania State University Buildings API
   x-operator: institution
   description: >-
-    University buildings and their facility attributes. One tag of the Office of Physical Plant's
-    single LionSpaceFIS service; the buildings, campuses, rooms, events and health entries in this
-    file are five views of one contract, split per tag by refine-openapis.
+    University buildings and their facility attributes. One tag of the Office of Physical Plant's single
+    LionSpaceFIS service; the buildings, campuses, rooms, events and health entries in this file are five
+    views of one contract, split per tag by refine-openapis.
   humanURL: https://apps.opp.psu.edu/fis-api/
   baseURL: https://apps.opp.psu.edu/fis-api/v1
   tags:
@@ -232,7 +158,8 @@ apis:
 - aid: pennsylvania-state-university:pennsylvania-state-university-campuses-api
   name: Pennsylvania State University Campuses API
   x-operator: institution
-  description: Penn State campus reference data, from the Office of Physical Plant LionSpaceFIS service.
+  description: >-
+    Penn State campus reference data, from the Office of Physical Plant LionSpaceFIS service.
   humanURL: https://apps.opp.psu.edu/fis-api/
   baseURL: https://apps.opp.psu.edu/fis-api/v1
   tags:
@@ -261,7 +188,8 @@ apis:
 - aid: pennsylvania-state-university:pennsylvania-state-university-events-api
   name: Pennsylvania State University Events API
   x-operator: institution
-  description: Change events for buildings and rooms, from the Office of Physical Plant LionSpaceFIS service.
+  description: >-
+    Change events for buildings and rooms, from the Office of Physical Plant LionSpaceFIS service.
   humanURL: https://apps.opp.psu.edu/fis-api/
   baseURL: https://apps.opp.psu.edu/fis-api/v1
   tags:
@@ -293,9 +221,8 @@ apis:
   name: Pennsylvania State University Health API
   x-operator: institution
   description: >-
-    Service health and status for the LionSpaceFIS facilities service; returns appVersion and
-    appStatus with a database connectivity check. Unauthenticated and live (appVersion 1.14.0,
-    probed 2026-08-30).
+    Service health and status for the LionSpaceFIS facilities service; returns appVersion and appStatus
+    with a database connectivity check. Unauthenticated and live (appVersion 1.14.0, probed 2026-08-30).
   humanURL: https://apps.opp.psu.edu/fis-api/
   baseURL: https://apps.opp.psu.edu/fis-api/v1
   tags:
@@ -338,6 +265,296 @@ apis:
     url: vocabulary/pennsylvania-state-university-vocabulary.yml
   - type: x-json-ld
     url: json-ld/pennsylvania-state-university-context.jsonld
+- aid: pennsylvania-state-university:pennsylvania-state-university-collections-api
+  name: Pennsylvania State University Collections API
+  description: The Collections API from Pennsylvania State University — 1 operation(s) for collections.
+  humanURL: https://metadata.libraries.psu.edu/api_docs
+  baseURL: https://metadata.libraries.psu.edu
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-collections-api-openapi.yml
+  - type: Documentation
+    url: https://metadata.libraries.psu.edu/api_docs
+  - type: Signup
+    url: https://metadata.libraries.psu.edu/
+  - type: GitHub
+    url: https://github.com/psu-libraries/researcher-metadata
+  - type: Authentication
+    url: authentication/pennsylvania-state-university-authentication.yml
+  - type: x-examples
+    url: examples/pennsylvania-state-university-rmd-unauthenticated-example.json
+  - type: Errors
+    url: errors/pennsylvania-state-university-problem-types.yml
+  - type: Documentation
+    url: https://docs.scholarsphere.psu.edu/
+  - type: TermsOfService
+    url: https://scholarsphere.psu.edu/about
+  - type: GitHub
+    url: https://github.com/psu-libraries/scholarsphere
+  - type: SDK
+    url: https://github.com/psu-libraries/scholarsphere-client
+  - type: x-examples
+    url: examples/pennsylvania-state-university-scholarsphere-unauthenticated-example.json
+- aid: pennsylvania-state-university:pennsylvania-state-university-dois-api
+  name: Pennsylvania State University Dois API
+  description: The Dois API from Pennsylvania State University — 2 operation(s) for dois.
+  humanURL: https://metadata.libraries.psu.edu/api_docs
+  baseURL: https://metadata.libraries.psu.edu
+  tags:
+  - Dois
+  properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-dois-api-openapi.yml
+  - type: Documentation
+    url: https://metadata.libraries.psu.edu/api_docs
+  - type: Signup
+    url: https://metadata.libraries.psu.edu/
+  - type: GitHub
+    url: https://github.com/psu-libraries/researcher-metadata
+  - type: Authentication
+    url: authentication/pennsylvania-state-university-authentication.yml
+  - type: x-examples
+    url: examples/pennsylvania-state-university-rmd-unauthenticated-example.json
+  - type: Errors
+    url: errors/pennsylvania-state-university-problem-types.yml
+  - type: Documentation
+    url: https://docs.scholarsphere.psu.edu/
+  - type: TermsOfService
+    url: https://scholarsphere.psu.edu/about
+  - type: GitHub
+    url: https://github.com/psu-libraries/scholarsphere
+  - type: SDK
+    url: https://github.com/psu-libraries/scholarsphere-client
+  - type: x-examples
+    url: examples/pennsylvania-state-university-scholarsphere-unauthenticated-example.json
+- aid: pennsylvania-state-university:pennsylvania-state-university-featured-resources-api
+  name: Pennsylvania State University Featured Resources API
+  description: >-
+    The Featured Resources API from Pennsylvania State University — 1 operation(s) for featured resources.
+  humanURL: https://metadata.libraries.psu.edu/api_docs
+  baseURL: https://metadata.libraries.psu.edu
+  tags:
+  - Featured Resources
+  properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-featured-resources-api-openapi.yml
+  - type: Documentation
+    url: https://metadata.libraries.psu.edu/api_docs
+  - type: Signup
+    url: https://metadata.libraries.psu.edu/
+  - type: GitHub
+    url: https://github.com/psu-libraries/researcher-metadata
+  - type: Authentication
+    url: authentication/pennsylvania-state-university-authentication.yml
+  - type: x-examples
+    url: examples/pennsylvania-state-university-rmd-unauthenticated-example.json
+  - type: Errors
+    url: errors/pennsylvania-state-university-problem-types.yml
+  - type: Documentation
+    url: https://docs.scholarsphere.psu.edu/
+  - type: TermsOfService
+    url: https://scholarsphere.psu.edu/about
+  - type: GitHub
+    url: https://github.com/psu-libraries/scholarsphere
+  - type: SDK
+    url: https://github.com/psu-libraries/scholarsphere-client
+  - type: x-examples
+    url: examples/pennsylvania-state-university-scholarsphere-unauthenticated-example.json
+- aid: pennsylvania-state-university:pennsylvania-state-university-files-api
+  name: Pennsylvania State University Files API
+  description: The Files API from Pennsylvania State University — 1 operation(s) for files.
+  humanURL: https://metadata.libraries.psu.edu/api_docs
+  baseURL: https://metadata.libraries.psu.edu
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-files-api-openapi.yml
+  - type: Documentation
+    url: https://metadata.libraries.psu.edu/api_docs
+  - type: Signup
+    url: https://metadata.libraries.psu.edu/
+  - type: GitHub
+    url: https://github.com/psu-libraries/researcher-metadata
+  - type: Authentication
+    url: authentication/pennsylvania-state-university-authentication.yml
+  - type: x-examples
+    url: examples/pennsylvania-state-university-rmd-unauthenticated-example.json
+  - type: Errors
+    url: errors/pennsylvania-state-university-problem-types.yml
+  - type: Documentation
+    url: https://docs.scholarsphere.psu.edu/
+  - type: TermsOfService
+    url: https://scholarsphere.psu.edu/about
+  - type: GitHub
+    url: https://github.com/psu-libraries/scholarsphere
+  - type: SDK
+    url: https://github.com/psu-libraries/scholarsphere-client
+  - type: x-examples
+    url: examples/pennsylvania-state-university-scholarsphere-unauthenticated-example.json
+- aid: pennsylvania-state-university:pennsylvania-state-university-ingest-api
+  name: Pennsylvania State University Ingest API
+  description: The Ingest API from Pennsylvania State University — 1 operation(s) for ingest.
+  humanURL: https://metadata.libraries.psu.edu/api_docs
+  baseURL: https://metadata.libraries.psu.edu
+  tags:
+  - Ingest
+  properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-ingest-api-openapi.yml
+  - type: Documentation
+    url: https://metadata.libraries.psu.edu/api_docs
+  - type: Signup
+    url: https://metadata.libraries.psu.edu/
+  - type: GitHub
+    url: https://github.com/psu-libraries/researcher-metadata
+  - type: Authentication
+    url: authentication/pennsylvania-state-university-authentication.yml
+  - type: x-examples
+    url: examples/pennsylvania-state-university-rmd-unauthenticated-example.json
+  - type: Errors
+    url: errors/pennsylvania-state-university-problem-types.yml
+  - type: Documentation
+    url: https://docs.scholarsphere.psu.edu/
+  - type: TermsOfService
+    url: https://scholarsphere.psu.edu/about
+  - type: GitHub
+    url: https://github.com/psu-libraries/scholarsphere
+  - type: SDK
+    url: https://github.com/psu-libraries/scholarsphere-client
+  - type: x-examples
+    url: examples/pennsylvania-state-university-scholarsphere-unauthenticated-example.json
+- aid: pennsylvania-state-university:pennsylvania-state-university-organization-api
+  name: Pennsylvania State University Organization API
+  description: >-
+    The organization API from Pennsylvania State University — 2 operation(s) for organization.
+  humanURL: https://metadata.libraries.psu.edu/api_docs
+  baseURL: https://metadata.libraries.psu.edu
+  tags:
+  - organization
+  properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-organization-api-openapi.yml
+  - type: Documentation
+    url: https://metadata.libraries.psu.edu/api_docs
+  - type: Signup
+    url: https://metadata.libraries.psu.edu/
+  - type: GitHub
+    url: https://github.com/psu-libraries/researcher-metadata
+  - type: Authentication
+    url: authentication/pennsylvania-state-university-authentication.yml
+  - type: x-examples
+    url: examples/pennsylvania-state-university-rmd-unauthenticated-example.json
+  - type: Errors
+    url: errors/pennsylvania-state-university-problem-types.yml
+  - type: Documentation
+    url: https://docs.scholarsphere.psu.edu/
+  - type: TermsOfService
+    url: https://scholarsphere.psu.edu/about
+  - type: GitHub
+    url: https://github.com/psu-libraries/scholarsphere
+  - type: SDK
+    url: https://github.com/psu-libraries/scholarsphere-client
+  - type: x-examples
+    url: examples/pennsylvania-state-university-scholarsphere-unauthenticated-example.json
+- aid: pennsylvania-state-university:pennsylvania-state-university-publication-api
+  name: Pennsylvania State University Publication API
+  description: The publication API from Pennsylvania State University — 3 operation(s) for publication.
+  humanURL: https://metadata.libraries.psu.edu/api_docs
+  baseURL: https://metadata.libraries.psu.edu
+  tags:
+  - publication
+  properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-publication-api-openapi.yml
+  - type: Documentation
+    url: https://metadata.libraries.psu.edu/api_docs
+  - type: Signup
+    url: https://metadata.libraries.psu.edu/
+  - type: GitHub
+    url: https://github.com/psu-libraries/researcher-metadata
+  - type: Authentication
+    url: authentication/pennsylvania-state-university-authentication.yml
+  - type: x-examples
+    url: examples/pennsylvania-state-university-rmd-unauthenticated-example.json
+  - type: Errors
+    url: errors/pennsylvania-state-university-problem-types.yml
+  - type: Documentation
+    url: https://docs.scholarsphere.psu.edu/
+  - type: TermsOfService
+    url: https://scholarsphere.psu.edu/about
+  - type: GitHub
+    url: https://github.com/psu-libraries/scholarsphere
+  - type: SDK
+    url: https://github.com/psu-libraries/scholarsphere-client
+  - type: x-examples
+    url: examples/pennsylvania-state-university-scholarsphere-unauthenticated-example.json
+- aid: pennsylvania-state-university:pennsylvania-state-university-uploads-api
+  name: Pennsylvania State University Uploads API
+  description: The Uploads API from Pennsylvania State University — 1 operation(s) for uploads.
+  humanURL: https://metadata.libraries.psu.edu/api_docs
+  baseURL: https://metadata.libraries.psu.edu
+  tags:
+  - Uploads
+  properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-uploads-api-openapi.yml
+  - type: Documentation
+    url: https://metadata.libraries.psu.edu/api_docs
+  - type: Signup
+    url: https://metadata.libraries.psu.edu/
+  - type: GitHub
+    url: https://github.com/psu-libraries/researcher-metadata
+  - type: Authentication
+    url: authentication/pennsylvania-state-university-authentication.yml
+  - type: x-examples
+    url: examples/pennsylvania-state-university-rmd-unauthenticated-example.json
+  - type: Errors
+    url: errors/pennsylvania-state-university-problem-types.yml
+  - type: Documentation
+    url: https://docs.scholarsphere.psu.edu/
+  - type: TermsOfService
+    url: https://scholarsphere.psu.edu/about
+  - type: GitHub
+    url: https://github.com/psu-libraries/scholarsphere
+  - type: SDK
+    url: https://github.com/psu-libraries/scholarsphere-client
+  - type: x-examples
+    url: examples/pennsylvania-state-university-scholarsphere-unauthenticated-example.json
+- aid: pennsylvania-state-university:pennsylvania-state-university-user-api
+  name: Pennsylvania State University User API
+  description: The user API from Pennsylvania State University — 9 operation(s) for user.
+  humanURL: https://metadata.libraries.psu.edu/api_docs
+  baseURL: https://metadata.libraries.psu.edu
+  tags:
+  - user
+  properties:
+  - type: OpenAPI
+    url: openapi/pennsylvania-state-university-user-api-openapi.yml
+  - type: Documentation
+    url: https://metadata.libraries.psu.edu/api_docs
+  - type: Signup
+    url: https://metadata.libraries.psu.edu/
+  - type: GitHub
+    url: https://github.com/psu-libraries/researcher-metadata
+  - type: Authentication
+    url: authentication/pennsylvania-state-university-authentication.yml
+  - type: x-examples
+    url: examples/pennsylvania-state-university-rmd-unauthenticated-example.json
+  - type: Errors
+    url: errors/pennsylvania-state-university-problem-types.yml
+  - type: Documentation
+    url: https://docs.scholarsphere.psu.edu/
+  - type: TermsOfService
+    url: https://scholarsphere.psu.edu/about
+  - type: GitHub
+    url: https://github.com/psu-libraries/scholarsphere
+  - type: SDK
+    url: https://github.com/psu-libraries/scholarsphere-client
+  - type: x-examples
+    url: examples/pennsylvania-state-university-scholarsphere-unauthenticated-example.json
 x-coverage:
   state: covered
   reason: covered
