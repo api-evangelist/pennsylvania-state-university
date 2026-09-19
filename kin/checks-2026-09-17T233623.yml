@@ -2,14 +2,15 @@
 kin_checks:
   slug: pennsylvania-state-university
   schema_version: 0.22.0
-  scored_at: '2026-09-15'
-  run_ts: 2026-09-15T230249
-  note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.22.0.yml; counts below let you verify that.
+  scored_at: '2026-09-17'
+  run_ts: 2026-09-17T233623
+  note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
+    apply in `na`. Everything else in rubric/scoring-0.22.0.yml was earned; counts
+    below let you verify that.
   counts:
     total: 136
-    earned: 33
-    partial: 29
+    earned: 41
+    partial: 21
     missed: 50
     na: 24
   checks:
@@ -21,13 +22,13 @@ kin_checks:
     status: missed
   - id: openapi_3_2
     status: missed
-    detail: 0 of 7 openapi documents pass
+    detail: 0 of 14 openapi documents pass
   - id: openapi_3_1
     status: missed
-    detail: 0 of 7 openapi documents pass
+    detail: 0 of 14 openapi documents pass
   - id: webhooks_or_callbacks
     status: missed
-    detail: 0 of 7 openapi documents pass
+    detail: 0 of 14 openapi documents pass
   - id: asyncapi_present
     status: missed
   - id: json_ld_property_depth
@@ -116,75 +117,44 @@ kin_checks:
     status: missed
   - id: agentic_commerce
     status: missed
-  - id: contract_present
-    status: partial
-    earned: 5.71
-  - id: openapi_3_0
-    status: partial
-    earned: 0.86
-    detail: 7 of 7 openapi documents pass
   - id: info_complete
     status: partial
-    earned: 0.98
-    detail: 6 of 7 openapi documents pass
+    earned: 1.43
+    detail: 5 of 14 openapi documents pass
   - id: servers_defined
     status: partial
-    earned: 0.86
-    detail: 7 of 7 openapi documents pass
+    earned: 2.36
+    detail: 11 of 14 openapi documents pass
   - id: servers_resolvable
     status: partial
-    earned: 1.43
-  - id: operations_summary_coverage
-    status: partial
-    earned: 1.71
-    detail: 7 of 7 openapi documents pass
+    earned: 3.93
   - id: operations_description_coverage
     status: partial
-    earned: 1.47
-    detail: 6 of 7 openapi documents pass
-  - id: operations_tagged
-    status: partial
-    earned: 1.14
-    detail: 7 of 7 openapi documents pass
-  - id: operations_operation_ids
-    status: partial
-    earned: 0.82
-    detail: 5 of 7 openapi documents pass
+    earned: 4.71
+    detail: 11 of 14 openapi documents pass
   - id: response_coverage
     status: partial
-    earned: 1.22
-    detail: 6 of 7 openapi documents pass
+    earned: 4.29
+    detail: 12 of 14 openapi documents pass
   - id: error_responses_documented
     status: partial
-    earned: 0.16
-    detail: 1 of 7 openapi documents pass
+    earned: 1.14
+    detail: 4 of 14 openapi documents pass
   - id: examples_present
     status: partial
-    earned: 0.15
+    earned: 1.01
   - id: components_reuse
     status: partial
-    earned: 0.25
-    detail: 2 of 7 openapi documents pass
+    earned: 0.64
+    detail: 3 of 14 openapi documents pass
   - id: security_schemes_defined
     status: partial
-    earned: 0.33
-    detail: 2 of 7 openapi documents pass
+    earned: 2.57
+    detail: 9 of 14 openapi documents pass
   - id: security_applied
     status: partial
-    earned: 0.25
-    detail: 2 of 7 openapi documents pass
-  - id: oauth_flows_current
-    status: partial
-    earned: 1.14
-    detail: 7 of 7 openapi documents pass
-  - id: credentials_not_in_query
-    status: partial
-    earned: 0.86
-    detail: 7 of 7 openapi documents pass
-  - id: oauth_scopes_enumerated
-    status: partial
-    earned: 1.14
-    detail: 7 of 7 openapi documents pass
+    earned: 1.71
+    detail: 8 of 14 openapi documents pass
   - id: rules_present
     status: partial
     earned: 2.5
@@ -223,3 +193,28 @@ kin_checks:
     status: partial
     earned: 3.5
     detail: 'grade: documented'
+  na:
+  - asyncapi_3_x
+  - channels_defined
+  - fhir_capability_statement
+  - fhir_resource_coverage
+  - graphql_descriptions
+  - graphql_sdl_present
+  - graphql_type_depth
+  - inbound_contract_published
+  - messages_with_schema
+  - os_code_of_conduct
+  - os_contribution_guide
+  - os_releases
+  - os_security_policy
+  - reg_camara_conformance
+  - reg_certification_signal
+  - reg_consent_model
+  - reg_entitlement_terms
+  - reg_fapi_profile
+  - reg_mandate_verified
+  - reg_pci_sca
+  - reg_smart_configuration
+  - reg_write_surface
+  - security_schemes
+  - server_bindings

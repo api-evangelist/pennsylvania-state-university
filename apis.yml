@@ -113,6 +113,12 @@ apis:
   - Shibboleth
   - SAML
   - InCommon
+  - SSO
+  tags_raw:
+  - Identity Federation
+  - Shibboleth
+  - SAML
+  - InCommon
   - Single Sign-On
   properties:
   - type: x-metadata
@@ -271,6 +277,8 @@ apis:
   humanURL: https://metadata.libraries.psu.edu/api_docs
   baseURL: https://metadata.libraries.psu.edu
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -303,6 +311,8 @@ apis:
   humanURL: https://metadata.libraries.psu.edu/api_docs
   baseURL: https://metadata.libraries.psu.edu
   tags:
+  - DOIs
+  tags_raw:
   - Dois
   properties:
   - type: OpenAPI
@@ -368,6 +378,8 @@ apis:
   humanURL: https://metadata.libraries.psu.edu/api_docs
   baseURL: https://metadata.libraries.psu.edu
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -433,6 +445,8 @@ apis:
   humanURL: https://metadata.libraries.psu.edu/api_docs
   baseURL: https://metadata.libraries.psu.edu
   tags:
+  - Organization
+  tags_raw:
   - organization
   properties:
   - type: OpenAPI
@@ -465,6 +479,8 @@ apis:
   humanURL: https://metadata.libraries.psu.edu/api_docs
   baseURL: https://metadata.libraries.psu.edu
   tags:
+  - Publication
+  tags_raw:
   - publication
   properties:
   - type: OpenAPI
@@ -529,6 +545,8 @@ apis:
   humanURL: https://metadata.libraries.psu.edu/api_docs
   baseURL: https://metadata.libraries.psu.edu
   tags:
+  - User
+  tags_raw:
   - user
   properties:
   - type: OpenAPI
