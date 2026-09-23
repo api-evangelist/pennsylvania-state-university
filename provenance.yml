@@ -6,6 +6,9 @@ artifacts:
   agentic-access/pennsylvania-state-university-agentic-access.yml:
     method: generated
     evidence: declared in the artifact
+  authentication/pennsylvania-state-university-authentication.yml:
+    method: generated
+    evidence: declared in the artifact
   collections/pennsylvania-state-university-buildings-api.opencollection.json:
     method: derived
     evidence: openapi/pennsylvania-state-university-buildings-api
@@ -36,18 +39,36 @@ artifacts:
   collections/pennsylvania-state-university-rooms-api.postman_collection.json:
     method: derived
     evidence: openapi/pennsylvania-state-university-rooms-api
+  conformance/pennsylvania-state-university-conformance.yml:
+    method: generated
+    evidence: declared in the artifact
+  errors/pennsylvania-state-university-problem-types.yml:
+    method: generated
+    evidence: declared in the artifact
+  examples/pennsylvania-state-university-etda-oai-identify-example.xml:
+    method: harvested
+    evidence: declared in the artifact
   examples/pennsylvania-state-university-getHealth-example.json:
     method: unknown
     evidence: no authorship recorded
   examples/pennsylvania-state-university-listBuildings-example.json:
     method: unknown
     evidence: no authorship recorded
+  examples/pennsylvania-state-university-listCampuses-example.json:
+    method: unknown
+    evidence: no authorship recorded
   examples/pennsylvania-state-university-listRooms-example.json:
     method: unknown
     evidence: no authorship recorded
-  finops/pennsylvania-state-university-finops.yml:
+  examples/pennsylvania-state-university-rmd-unauthenticated-example.json:
     method: unknown
     evidence: no authorship recorded
+  examples/pennsylvania-state-university-scholarsphere-unauthenticated-example.json:
+    method: unknown
+    evidence: no authorship recorded
+  finops/pennsylvania-state-university-finops.yml:
+    method: generated
+    evidence: declared in the artifact
   json-ld/pennsylvania-state-university-context.jsonld:
     method: unknown
     evidence: no authorship recorded
@@ -63,70 +84,7 @@ artifacts:
   json-structure/pennsylvania-state-university-room-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-23T094130.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-23T182523.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-26T223651.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-27T083119.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-27T190208.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T115055.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T170848.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T172558.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T192327.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T200725.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T133250.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T151044.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T162206.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T202106.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T163141.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T163302.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T171935.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-03T113057.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-03T161012.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-04T083143.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-05T153418.yml:
+  kin/checks-2026-09-05T072335.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-06T210741.yml:
@@ -210,33 +168,99 @@ artifacts:
   kin/score-2026-08-28T221322.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-29T213958.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-29T230545.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-30T203505.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-30T220315.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-31T223420.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T063623.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T210448.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T222808.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-02T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-02T224043.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-03T161828.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-03T174231.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T062714.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T212454.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T224856.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T055819.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T072335.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  openapi/_original/pennsylvania-state-university-fis.yaml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/pennsylvania-state-university-researcher-metadata.yaml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/pennsylvania-state-university-scholarsphere.yaml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
   openapi/pennsylvania-state-university-buildings-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: openapi/_original/pennsylvania-state-university-fis.yaml
   openapi/pennsylvania-state-university-campuses-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: openapi/_original/pennsylvania-state-university-fis.yaml
   openapi/pennsylvania-state-university-events-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: openapi/_original/pennsylvania-state-university-fis.yaml
   openapi/pennsylvania-state-university-health-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: openapi/_original/pennsylvania-state-university-fis.yaml
+  openapi/pennsylvania-state-university-researcher-metadata-api-openapi.yml:
+    method: searched
+    evidence: https://metadata.libraries.psu.edu/api-docs/v1/swagger.yaml
   openapi/pennsylvania-state-university-rooms-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: openapi/_original/pennsylvania-state-university-fis.yaml
+  openapi/pennsylvania-state-university-scholarsphere-api-openapi.yml:
+    method: searched
+    evidence: https://raw.githubusercontent.com/psu-libraries/scholarsphere/main/openapi.yml
   plans/pennsylvania-state-university-plans-pricing.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: generated
+    evidence: declared in the artifact
   rate-limits/pennsylvania-state-university-rate-limits.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: generated
+    evidence: declared in the artifact
   rules/pennsylvania-state-university-jsonschema-spectral-rules.yml:
     method: generated
     evidence: declared in the artifact
   rules/pennsylvania-state-university-rules.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: openapi/_original/pennsylvania-state-university-fis.yaml
   security/pennsylvania-state-university-domain-security.yml:
     method: unknown
     evidence: no authorship recorded
@@ -247,5 +271,5 @@ artifacts:
     method: searched
     evidence: declared in the artifact
   vocabulary/pennsylvania-state-university-vocabulary.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: openapi/_original/pennsylvania-state-university-fis.yaml

@@ -2,7 +2,7 @@
   "@context": {
     "@version": 1.1,
     "schema": "https://schema.org/",
-    "psu": "https://docs.developer.psu.edu/vocab#",
+    "psu": "https://apps.opp.psu.edu/fis-api/vocab#",
     "name": "schema:name",
     "url": "schema:url",
     "description": "schema:description",

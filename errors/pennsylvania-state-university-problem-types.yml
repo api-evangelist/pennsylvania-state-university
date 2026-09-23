@@ -1,0 +1,44 @@
+generated: '2026-08-30'
+method: generated
+x-evidence: probed
+source: >-
+  openapi/pennsylvania-state-university-researcher-metadata-api-openapi.yml,
+  openapi/pennsylvania-state-university-scholarsphere-api-openapi.yml, plus live probes 2026-08-30.
+format: bare-json-message-code
+rfc9457: false
+note: >-
+  Neither Penn State-published API serves application/problem+json. Both Libraries-built services
+  return the same flat {"message": "...", "code": <int>} envelope — a shared house style across
+  psu-libraries applications, verified identical byte-for-byte in the 401 from RMD and from
+  ScholarSphere. The LionSpaceFIS facilities API is separately built by the Office of Physical
+  Plant and its errors are not documented; only its 200 path was observable.
+envelope:
+  content_type: application/json
+  schema: ErrorModelV1
+  required:
+  - message
+  - code
+  example:
+    message: '401: Request not authorized. Please provide a valid API key for access.'
+    code: 401
+status_codes:
+- status: 200
+  meaning: Success.
+  retryable: false
+- status: 401
+  meaning: Missing or invalid API key.
+  retryable: false
+  observed_on:
+  - https://metadata.libraries.psu.edu/v1/organizations
+  - https://scholarsphere.psu.edu/api/v1/dois
+- status: 404
+  meaning: >-
+    Resource not found. Note that both Libraries applications fall through to a Rails HTML 404 page
+    for paths outside the API mount, so a 404 with text/html means the path is wrong, while a 404
+    with application/json means the record is missing.
+  retryable: false
+- status: 422
+  meaning: >-
+    Unprocessable entity on write operations (RMD PATCH /v1/publications, POST /v1/users/publications;
+    ScholarSphere POST /ingest, POST /collections, PUT /files). Declared in the contracts.
+  retryable: false

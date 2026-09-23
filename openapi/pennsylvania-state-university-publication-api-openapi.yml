@@ -1,0 +1,520 @@
+openapi: 3.2.0
+info:
+  title: Researcher Metadata Database Publication API
+  description: An API that serves as the authority on faculty and research metadata at Penn State University in the swagger-2.0 specification.
+  version: v1
+tags:
+- name: Publication
+paths:
+  /v1/publications/{id}/grants:
+    get:
+      summary: Retrieve a publication's grants
+      description: Returns grant data associated with a publication
+      operationId: findPublicationGrants
+      tags:
+      - Publication
+      parameters:
+      - name: id
+        in: path
+        description: ID of publication to retrieve grants
+        required: true
+        schema:
+          type: string
+      security:
+      - api_key: []
+      responses:
+        '200':
+          description: publication grants response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - id
+                      - type
+                      - attributes
+                      properties:
+                        id:
+                          type: string
+                          example: '123'
+                          description: The ID of the object
+                        type:
+                          type: string
+                          example: grant
+                          description: The type of the object
+                        attributes:
+                          type: object
+                          required:
+                          - title
+                          - agency
+                          - abstract
+                          - amount_in_dollars
+                          - start_date
+                          - end_date
+                          - identifier
+                          properties:
+                            title:
+                              type:
+                              - string
+                              - 'null'
+                              example: A Research Project Proposal
+                              description: The title of the grant
+                            agency:
+                              type:
+                              - string
+                              - 'null'
+                              example: National Science Foundation
+                              description: The name of the organization that awarded the grant
+                            abstract:
+                              type:
+                              - string
+                              - 'null'
+                              example: Information about this grant
+                              description: A description of the grant's purpose
+                            amount_in_dollars:
+                              type:
+                              - integer
+                              - 'null'
+                              example: 50000
+                              description: The monetary amount of the grant in U.S. dollars
+                            start_date:
+                              type:
+                              - string
+                              - 'null'
+                              example: '2017-12-05'
+                              description: The date on which the grant begins
+                            end_date:
+                              type:
+                              - string
+                              - 'null'
+                              example: '2019-12-05'
+                              description: The date on which the grant ends
+                            identifier:
+                              type:
+                              - string
+                              - 'null'
+                              example: '1789352'
+                              description: A code identifying the grant that is unique to the awarding agency
+                required:
+                - data
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModelV1'
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModelV1'
+  /v1/publications/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID of publication to fetch
+      required: true
+      schema:
+        type: integer
+        format: int64
+    get:
+      summary: Find Publication by ID
+      tags:
+      - Publication
+      description: Returns a single publication if the user has access
+      operationId: findPublicationById
+      security:
+      - api_key: []
+      responses:
+        '200':
+          description: publication response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/PublicationV1'
+            text/html:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/PublicationV1'
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModelV1'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ErrorModelV1'
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModelV1'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ErrorModelV1'
+  /v1/publications:
+    get:
+      summary: All Publications
+      tags:
+      - Publication
+      description: Returns all publications from the system that the user has access to
+      operationId: findPublications
+      parameters:
+      - name: activity_insight_id
+        in: query
+        description: Activity Insight ID to filter by
+        required: false
+        schema:
+          type: string
+      - name: doi
+        in: query
+        description: DOI to filter by
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: max number publications to return
+        required: false
+        schema:
+          type: integer
+          format: int32
+      security:
+      - api_key: []
+      responses:
+        '200':
+          description: publication response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PublicationV1'
+                required:
+                - data
+            text/html:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PublicationV1'
+                required:
+                - data
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModelV1'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ErrorModelV1'
+    patch:
+      summary: Update publication's ScholarSphere Open Access Link
+      tags:
+      - Publication
+      description: Update publication's ScholarSphere Open Access Link by doi or activity insight id
+      operationId: updateOpenAccessLink
+      parameters: []
+      security:
+      - api_key: []
+      responses:
+        '200':
+          description: ScholarSphere Open Access Link successfully updated response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicationPatchResult'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModelV1'
+        '404':
+          description: No publications found response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModelV1'
+        '422':
+          description: Invalid params response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModelV1'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublicationInput'
+        required: true
+        description: ScholarSphere Open Access Link update requires either a doi or an activity insight id
+components:
+  schemas:
+    PublicationInput:
+      type: object
+      required:
+      - scholarsphere_open_access_url
+      properties:
+        activity_insight_id:
+          type: string
+        doi:
+          type: string
+        scholarsphere_open_access_url:
+          type: string
+    PublicationPatchResult:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    ErrorModelV1:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+          format: int32
+    PublicationV1:
+      type: object
+      required:
+      - id
+      - type
+      - attributes
+      properties:
+        id:
+          type: string
+          example: '123'
+          description: The ID of the object
+        type:
+          type: string
+          example: publication
+          description: The type of the object
+        attributes:
+          type: object
+          required:
+          - title
+          - publication_type
+          - contributors
+          - tags
+          - pure_ids
+          - activity_insight_ids
+          properties:
+            title:
+              type: string
+              example: A Scholarly Research Article
+              description: The title of the publication
+            secondary_title:
+              type:
+              - string
+              - 'null'
+              example: A Comparative Analysis
+              description: The sub-title of the publication
+            journal_title:
+              type:
+              - string
+              - 'null'
+              example: An Academic Journal
+              description: The title of the journal in which the publication was published
+            publication_type:
+              type: string
+              example: Academic Journal Article
+              description: The type of the publication
+            publisher:
+              type:
+              - string
+              - 'null'
+              example: A Publishing Company
+              description: The publisher of the publication
+            status:
+              type:
+              - string
+              - 'null'
+              example: Published
+              description: The status of the publication
+            volume:
+              type:
+              - string
+              - 'null'
+              example: '30'
+              description: The volume of the journal in which the publication was published
+            issue:
+              type:
+              - string
+              - 'null'
+              example: '12'
+              description: The issue of the journal in which the publication was published
+            edition:
+              type:
+              - string
+              - 'null'
+              example: '6'
+              description: The edition of the journal in which the publication was published
+            page_range:
+              type:
+              - string
+              - 'null'
+              example: 110-123
+              description: The range of page numbers on which the publication content appears in the journal
+            authors_et_al:
+              type:
+              - boolean
+              - 'null'
+              example: true
+              description: Whether or not the publication has additional, unlisted authors
+            abstract:
+              type:
+              - string
+              - 'null'
+              example: A summary of the research
+              description: A brief summary of the content of the publication
+            doi:
+              type:
+              - string
+              - 'null'
+              example: https://doi.org/example
+              description: The Digital Object Identifier URL for the publication
+            preferred_open_access_url:
+              type:
+              - string
+              - 'null'
+              example: https://example.org/articles/article-123.pdf
+              description: A URL for an open access copy of the publication
+            published_on:
+              type:
+              - string
+              - 'null'
+              example: '2010-12-05'
+              description: The date on which the publication was published
+            citation_count:
+              type:
+              - integer
+              - 'null'
+              example: 50
+              description: The number of times that the publication has been cited in other works
+            supplementary_url:
+              type:
+              - string
+              - 'null'
+              example: https://blog.com/post
+              description: A URL for supplementary information or a secondary location of the publication
+            contributors:
+              type: array
+              items:
+                type: object
+                properties:
+                  first_name:
+                    type:
+                    - string
+                    - 'null'
+                    example: Anne
+                    description: The first name of a person who contributed to the publication
+                  middle_name:
+                    type:
+                    - string
+                    - 'null'
+                    example: Example
+                    description: The middle name of a person who contributed to the publication
+                  last_name:
+                    type:
+                    - string
+                    - 'null'
+                    example: Contributor
+                    description: The last name of a person who contributed to the publication
+                  psu_user_id:
+                    type:
+                    - string
+                    - 'null'
+                    example: abc1234
+                    description: The Penn State user ID of a person who contributed to the publication if they have one
+            tags:
+              type: array
+              items:
+                type: object
+                required:
+                - name
+                properties:
+                  name:
+                    type: string
+                    example: A Topic
+                    description: The name of a tag
+                  rank:
+                    type:
+                    - number
+                    - 'null'
+                    example: 1.25
+                    description: The ranking of the tag
+            pure_ids:
+              type: array
+              description: Unique identifiers for corresponding records in the Pure database that represent the publication
+              items:
+                type: string
+                example: abc-def-123-456
+            activity_insight_ids:
+              type: array
+              description: Unique identifiers for corresponding records in the Activity Insight database that represent the publication
+              items:
+                type: string
+                example: '1234567890'
+            profile_preferences:
+              type: array
+              description: An array of settings for each user who is an author of the publication indicating how they prefer to have the publication displayed in a profile
+              items:
+                type: object
+                required:
+                - user_id
+                - webaccess_id
+                - visible_in_profile
+                - position_in_profile
+                properties:
+                  user_id:
+                    type: number
+                    example: 123
+                    description: The ID of the user to which this set of preferences belongs
+                  webaccess_id:
+                    type: string
+                    example: abc123
+                    description: The WebAccess ID of the user to which this set of preferences belongs
+                  visible_in_profile:
+                    type: boolean
+                    example: true
+                    description: The user's preference for whether or not this publication should be displayed in their profile
+                  position_in_profile:
+                    type:
+                    - number
+                    - 'null'
+                    example: 8
+                    description: The user's preference for what position this publication should occupy in a list of their publications in their profile
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: X-API-Key
+      in: header

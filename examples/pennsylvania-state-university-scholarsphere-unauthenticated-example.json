@@ -1,0 +1,18 @@
+{
+  "x-generated": "2026-08-30",
+  "x-method": "probed",
+  "x-source": "Live unauthenticated GET against the ScholarSphere API. Confirms the servers[] base URL declared in Penn State Libraries' own openapi.yml and the X_API_KEY header gate.",
+  "x-operator": "institution",
+  "request": {
+    "method": "GET",
+    "url": "https://scholarsphere.psu.edu/api/v1/dois",
+    "auth": "none \u2014 X_API_KEY deliberately omitted"
+  },
+  "response": {
+    "status": 401,
+    "body": {
+      "message": "401: Request not authorized. Please provide a valid API key for access.",
+      "code": 401
+    }
+  }
+}

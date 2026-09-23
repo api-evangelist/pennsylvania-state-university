@@ -3,7 +3,7 @@ name: Pennsylvania State University
 description: Pennsylvania State University public developer/API footprint review for APIs.json cataloging.
 url: https://raw.githubusercontent.com/api-evangelist/pennsylvania-state-university/refs/heads/main/review.yml
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 reviews:
   - date: '2026-06-03'
     rating: 3
@@ -37,7 +37,11 @@ reviews:
         note: Interactive API docs page (client-rendered SPA); API is OpenAPI-described, license-key gated.
       - url: https://docs.developer.psu.edu/
         status: 200
-        note: Penn State IT developer portal landing; service sub-pages redirect to Shibboleth SSO.
+        note: >-
+          Penn State IT developer portal landing; service sub-pages redirect to Shibboleth SSO.
+          SUPERSEDED — on 2026-08-30 this URL returned 302 to https://sites.psu.edu/. The portal
+          has been decommissioned. The 200 above was true on 2026-06-03 and is left as the record
+          of that day; do not read it as current.
       - url: https://public.lionpath.psu.edu/
         status: 403
         note: Public LionPATH class search UI; returned 403 to automated request, not an API.
@@ -50,3 +54,68 @@ reviews:
       - url: https://www.psu.edu/
         status: 200
         note: Official university website.
+  - date: '2026-08-30'
+    rating: 4
+    summary: >-
+      Re-profiled under the API Evangelist university pipeline, which settles operator attribution
+      before saving any contract. The 2026-06-03 review understated Penn State: it holds TWO genuine
+      first-party OpenAPI documents the university wrote itself, not one. The Researcher Metadata
+      Database publishes OpenAPI 3.0.1 at /api-docs/v1/swagger.yaml (14 paths; ORCID required on the
+      profile schema; the document ships with NO servers[] block, so the base URL was resolved by
+      probe and the resolution recorded in the file). ScholarSphere — Penn State's SELF-BUILT
+      institutional repository, MIT-licensed, not a Figshare or Dataverse tenancy — publishes
+      OpenAPI 3.0.2 with its own servers[] block, and Penn State mints its own DataCite DOIs against
+      it under prefix 10.26207 as client psu.scholar. Two further institution-operated surfaces were
+      found that no prior review had: an open OAI-PMH 2.0 provider over the ETD archive, and Penn
+      State's own Shibboleth IdP metadata served from as1.fim.psu.edu. Against that, one real loss:
+      the central developer portal at docs.developer.psu.edu has been decommissioned and its entry
+      removed. Every surface in this repo is x-operator institution; no vendor contract is
+      attributed to Penn State and no tenant relationship was found.
+    endpoints:
+      - url: https://metadata.libraries.psu.edu/api-docs/v1/swagger.yaml
+        status: 200
+        note: First-party OpenAPI 3.0.1, text/yaml, 103,101 bytes. Penn State University Libraries.
+      - url: https://metadata.libraries.psu.edu/v1/organizations
+        status: 401
+        note: >-
+          Live and key-gated. Confirms the base URL the published spec omits — /api/v1/organizations
+          returns a Rails HTML 404, /v1/organizations returns a JSON 401.
+      - url: https://raw.githubusercontent.com/psu-libraries/scholarsphere/main/openapi.yml
+        status: 200
+        note: >-
+          ScholarSphere OpenAPI 3.0.2, 20,960 bytes, MIT. A code host is not a vendor — servers[] is
+          https://scholarsphere.psu.edu/api/{version} and the service runs on a psu.edu host.
+      - url: https://scholarsphere.psu.edu/api/v1/dois
+        status: 401
+        note: Live and key-gated (X_API_KEY), confirming the provider's own servers[] block.
+      - url: https://etda.libraries.psu.edu/catalog/oai?verb=Identify
+        status: 200
+        note: >-
+          OAI-PMH 2.0, text/xml. repositoryName Penn_State_University, adminEmail askalibrarian@psu.edu,
+          earliest datestamp 1999-04-07, oai_dc, no set hierarchy. No credential required.
+      - url: https://as1.fim.psu.edu/idp/shibboleth
+        status: 200
+        note: >-
+          Penn State's own SAML metadata, application/xml, 9,398 bytes. entityID
+          urn:mace:incommon:psu.edu, IDPSSODescriptor + SPSSODescriptor, shibmd:Scope psu.edu.
+      - url: https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Apsu.edu
+        status: 200
+        note: InCommon's republication of the same document. The federation's host, Penn State's IdP.
+      - url: https://apps.opp.psu.edu/fis-api/v1/campuses
+        status: 200
+        note: Still live and unauthenticated; response captured as a probed example.
+      - url: https://apps.opp.psu.edu/fis-api/health
+        status: 200
+        note: appVersion 1.14.0, appStatus UP, databaseConnectivity OK.
+      - url: https://docs.developer.psu.edu/
+        status: 302
+        note: >-
+          DEAD. Redirects to https://sites.psu.edu/ (Sites at Penn State, a WordPress service).
+          developer.psu.edu behaves identically. The developer portal entry and both of its pointers
+          were removed from apis.yml.
+      - url: https://www.psu.edu/.well-known/security.txt
+        status: 404
+        note: No RFC 9116 security.txt on the primary domain.
+      - url: https://www.linkedin.com/school/penn-state-university/
+        status: 999
+        note: LinkedIn's standard bot challenge. A fact about our client, not about Penn State — kept.

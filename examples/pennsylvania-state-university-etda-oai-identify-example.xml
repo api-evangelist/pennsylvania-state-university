@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  x-generated: 2026-08-30
+  x-method:    harvested
+  x-source:    Live GET https://etda.libraries.psu.edu/catalog/oai?verb=Identify — response captured verbatim.
+  x-operator:  institution
+  Penn State University Libraries' Electronic Theses and Dissertations Archive, OAI-PMH 2.0 provider.
+-->
+<?xml-stylesheet type="text/xsl" href="/assets/blacklight_oai_provider/oai2-c712d08e60b467bf15139c32b1af420fc8301219f1cbb0ba8503a9f194f0eed4.xsl"?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-08-30T21:13:42Z</responseDate><request verb="Identify">https://etda.libraries.psu.edu/catalog/oai</request><Identify><repositoryName>Penn_State_University</repositoryName><baseURL>https://etda.libraries.psu.edu/catalog/oai</baseURL><protocolVersion>2.0</protocolVersion><adminEmail>askalibrarian@psu.edu</adminEmail><earliestDatestamp>1999-04-07T12:00:00Z</earliestDatestamp><deletedRecord>transient</deletedRecord><granularity>YYYY-MM-DDThh:mm:ssZ</granularity><description><oai-identifier xmlns="http://www.openarchives.org/OAI/2.0/oai-identifier" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai-identifier http://www.openarchives.org/OAI/2.0/oai-identifier.xsd"><scheme>oai</scheme><repositoryIdentifier>etda.libraries.psu.edu</repositoryIdentifier><delimiter>:</delimiter><sampleIdentifier>oai:etda.libraries.psu.edu:109660</sampleIdentifier></oai-identifier></description></Identify></OAI-PMH>

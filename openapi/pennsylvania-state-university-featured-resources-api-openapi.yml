@@ -1,0 +1,128 @@
+openapi: 3.2.0
+info:
+  title: ScholarSphere Featured Resources API
+  description: API specification for ScholarSphere
+  termsOfService: https://scholarsphere.psu.edu/about
+  contact:
+    name: ScholarSphere Support
+    email: https://scholarsphere.psu.edu/help
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: '1.0'
+servers:
+- url: https://scholarsphere.psu.edu/api/{version}
+  description: API endpoint
+  variables:
+    version:
+      description: Version of the API
+      enum:
+      - v1
+      default: v1
+tags:
+- name: Featured Resources
+paths:
+  /featured_resources:
+    post:
+      summary: Adds a new featured resource to the home page
+      security:
+      - APIKey: []
+      requestBody:
+        description: Given an existing UUID for a resource, feature it on the homepage
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/featuredResource'
+            examples:
+              standard:
+                summary: Makes this work a featured work on the homepage
+                description: Client posts a json object containing the uuid of the resource they want to have featured.
+                value:
+                  uuid: a0fc525b-0d49-48e0-a385-f86bd13bce4d
+      responses:
+        200:
+          description: If the resources has been featured before, or is already featured, it will update with a new timestamp and moved to the top of the list.
+        201:
+          description: The resource has not been featured before, and a new entry is made in the list of featured resources, moving this one to the top.
+        default:
+          $ref: '#/components/responses/defaultPostError'
+      tags:
+      - Featured Resources
+      operationId: postFeaturedResources
+      x-operation-id-source: derived
+components:
+  schemas:
+    errorResponse:
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+    uuid:
+      type: object
+      properties:
+        uuid:
+          type: string
+          example: a0fc525b-0d49-48e0-a385-f86bd13bce4d
+    featuredResource:
+      allOf:
+      - $ref: '#/components/schemas/uuid'
+      - type: object
+        required:
+        - uuid
+  examples:
+    unprocessableEntity:
+      summary: The request has missing or incorrect information
+      value:
+        code: 411
+        message: Unable to complete the request
+        errors:
+        - Sample error from server
+    notFound:
+      summary: The requested resource does not exist
+      value:
+        code: 404
+        message: Record not found
+    unauthorized:
+      summary: The client is not authorized to perform the requested action
+      value:
+        code: 401
+        message: '401: Request not authorized. Please provide a valid API key for access.'
+    serverError:
+      summary: The server threw some kind of error or exception
+      value:
+        code: 500
+        message: We're sorry, but something went wrong
+        errors:
+        - NoMethodError
+        - undefined method `application' for nil:NilClass
+  responses:
+    defaultPostError:
+      description: If the resource can't be created, then there is some kind of error. The client can interpret the responses.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            unauthorized:
+              $ref: '#/components/examples/unauthorized'
+            notFound:
+              $ref: '#/components/examples/notFound'
+            unprocessableEntity:
+              $ref: '#/components/examples/unprocessableEntity'
+            serverError:
+              $ref: '#/components/examples/serverError'
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      description: Key-based authorization mechanism to the API. A key is obtained fron the ScholarSphere team and is included in the header of all requests.
+      name: X_API_KEY
+      in: header

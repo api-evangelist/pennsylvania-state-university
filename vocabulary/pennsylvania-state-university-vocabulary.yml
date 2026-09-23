@@ -1,3 +1,8 @@
+# authorship: derived by API Evangelist from the reconstructed LionSpaceFIS contract; the terms
+# were read out of that spec's schemas, not published as a vocabulary by Penn State.
+x-method: derived
+x-source-url: openapi/_original/pennsylvania-state-university-fis.yaml
+x-generated: '2026-08-30'
 vocabulary:
   name: Penn State LionSpaceFIS Facilities Vocabulary
   description: >-

@@ -1,0 +1,31 @@
+{
+  "x-generated": "2026-08-30",
+  "x-method": "probed",
+  "x-source": "Live GET against the Penn State Office of Physical Plant LionSpaceFIS API; response captured verbatim, truncated to the first 3 records.",
+  "x-operator": "institution",
+  "request": {
+    "method": "GET",
+    "url": "https://apps.opp.psu.edu/fis-api/v1/campuses?limit=3",
+    "auth": "none \u2014 this endpoint is open"
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "maximoCode": "GP",
+        "lionPathCode": "GP",
+        "name": "(GP) Land & Real Estate Use Only"
+      },
+      {
+        "maximoCode": "UP",
+        "lionPathCode": "AE",
+        "name": "University Park"
+      },
+      {
+        "maximoCode": "AA",
+        "lionPathCode": "AL",
+        "name": "Penn State Altoona"
+      }
+    ]
+  }
+}

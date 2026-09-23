@@ -1,0 +1,59 @@
+openapi: 3.2.0
+info:
+  title: ScholarSphere Uploads API
+  description: API specification for ScholarSphere
+  termsOfService: https://scholarsphere.psu.edu/about
+  contact:
+    name: ScholarSphere Support
+    email: https://scholarsphere.psu.edu/help
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: '1.0'
+servers:
+- url: https://scholarsphere.psu.edu/api/{version}
+  description: API endpoint
+  variables:
+    version:
+      description: Version of the API
+      enum:
+      - v1
+      default: v1
+tags:
+- name: Uploads
+paths:
+  /uploads:
+    post:
+      summary: Requests a pre-signed URL to upload a file into ScholarSphere's S3 instance
+      security:
+      - APIKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/uploads'
+      tags:
+      - Uploads
+      operationId: postUploads
+      x-operation-id-source: derived
+components:
+  schemas:
+    uploads:
+      type: object
+      required:
+      - extension
+      - content_md5
+      properties:
+        extension:
+          type: string
+          description: Three-letter file extension of the file your are requesting to upload into S3. This is used to created a unique filename for the file in S3.
+        content_md5:
+          type: string
+          description: Binary encoded md5 checksum of the file you are requesting to upload into S3. This is required so that we can verify the integrity of the file when it is uploaded into S3.
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      description: Key-based authorization mechanism to the API. A key is obtained fron the ScholarSphere team and is included in the header of all requests.
+      name: X_API_KEY
+      in: header

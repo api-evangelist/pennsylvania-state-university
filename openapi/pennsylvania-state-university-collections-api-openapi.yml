@@ -1,0 +1,38 @@
+openapi: 3.2.0
+info:
+  title: ScholarSphere Collections API
+  description: API specification for ScholarSphere
+  termsOfService: https://scholarsphere.psu.edu/about
+  contact:
+    name: ScholarSphere Support
+    email: https://scholarsphere.psu.edu/help
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: '1.0'
+servers:
+- url: https://scholarsphere.psu.edu/api/{version}
+  description: API endpoint
+  variables:
+    version:
+      description: Version of the API
+      enum:
+      - v1
+      default: v1
+tags:
+- name: Collections
+paths:
+  /collections:
+    post:
+      summary: Creates a new collection
+      tags:
+      - Collections
+      operationId: postCollections
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      description: Key-based authorization mechanism to the API. A key is obtained fron the ScholarSphere team and is included in the header of all requests.
+      name: X_API_KEY
+      in: header

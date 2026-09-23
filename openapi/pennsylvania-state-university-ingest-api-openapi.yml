@@ -1,0 +1,350 @@
+openapi: 3.2.0
+info:
+  title: ScholarSphere Ingest API
+  description: API specification for ScholarSphere
+  termsOfService: https://scholarsphere.psu.edu/about
+  contact:
+    name: ScholarSphere Support
+    email: https://scholarsphere.psu.edu/help
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: '1.0'
+servers:
+- url: https://scholarsphere.psu.edu/api/{version}
+  description: API endpoint
+  variables:
+    version:
+      description: Version of the API
+      enum:
+      - v1
+      default: v1
+tags:
+- name: Ingest
+paths:
+  /ingest:
+    post:
+      summary: Publishes a new work
+      description: Creates a new work with a single version, and if all the requirements are present, the version will be published and publicly available.
+      security:
+      - APIKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ingest'
+      responses:
+        200:
+          description: The work was successfully published
+        201:
+          description: The work was created, but not published
+        default:
+          $ref: '#/components/responses/defaultPostError'
+      tags:
+      - Ingest
+      operationId: postIngest
+      x-operation-id-source: derived
+components:
+  schemas:
+    ingest:
+      type: object
+      required:
+      - metadata
+      - depositor
+      - content
+      properties:
+        metadata:
+          $ref: '#/components/schemas/metadata'
+        content:
+          type: array
+          description: Files that have been uploaded to S3 in a previous step. The location information for each one, as well as their original names and mime types, is included here.
+          items:
+            $ref: '#/components/schemas/uploadedFile'
+        depositor:
+          type: string
+          example: axc123
+          description: The Penn State access of the person who is depositing the work. This is typically the same person who is the creator, but not always. There is no restriction regarding who the depositor is other than they must have an active account in Penn State's identity management system.
+        permissions:
+          $ref: '#/components/schemas/permissions'
+        publish:
+          type: boolean
+          example: 'false'
+          description: Whether the ingest call should publish the Work or simply create a draft. If left blank, this will default to "true"
+    errorResponse:
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+    uploadedFile:
+      type: object
+    permissions:
+      type: object
+      description: Additional permissions for the work such as users or groups that can edit work. By default, only the depositor may edit the work after it has been uploaded.
+    creator:
+      type: object
+      required:
+      - display_name
+      properties:
+        display_name:
+          type: string
+          example: Dr. Pat Researcher
+        surname:
+          type: string
+          example: Researcher
+        given_name:
+          type: string
+          example: Pat
+        email:
+          type: string
+          example: pat@example.com
+        psu_id:
+          type: string
+          example: axb123
+        orcid:
+          type: string
+          example: 0000-0000-1234-123X
+    metadata:
+      type: object
+      required:
+      - title
+      - work_type
+      - description
+      - published_date
+      - creators
+      - rights
+      - visibility
+      properties:
+        title:
+          type: string
+          example: Classifying Independent Hybridity
+        work_type:
+          type: string
+          enum:
+          - article
+          - audio
+          - book
+          - collection
+          - conference_proceeding
+          - dataset
+          - image
+          - instrument
+          - journal
+          - map_or_cartographic_material
+          - masters_culminating_experience
+          - other
+          - part_of_book
+          - poster
+          - presentation
+          - professional_doctoral_culminating_experience
+          - project
+          - report
+          - research_paper
+          - software_or_program_code
+          - video
+          example: dataset
+        description:
+          type: string
+          example: Anaesthesiology anthropology chaology craniology ecology endocrinology epileptology gnomonics ichthyology linguistics mammalogy mazology nasology nematology neurobiology palaeontology psychopathology pterylology textology toponymics. Aerostatics anemology avionics diplomatology euthenics geochemistry historiography historiology hydrology hydrometeorology hygiastics iatromathematics lexigraphy martyrology metallogeny neonatology numismatics oikology patrology pestology photobiology psychobiology psychology sphagnology stemmatology threpsology ufology vinology. Arctophily astrophysics carcinology dactylology electrology genealogy horography hydrobiology immunopathology lexigraphy molinology nidology paidonosology palaeopedology venereology.
+        published_date:
+          type: string
+          format: date
+          example: '2020-10-31'
+          description: EDTF date formats are also supported. See https://www.loc.gov/standards/datetime/
+        publisher_statement:
+          type: string
+          example: This is a pre-print from Joe Publisher, Inc. We are not responsible for anything.
+          description: This is also referred to as a "set statement" and is often a required part for Open Access articles.
+        keyword:
+          type: array
+          items:
+            type: string
+          example:
+          - optics
+          - quantum physics
+          - fake paper names
+        subtitle:
+          type: string
+          example: Quantum Optics and/in the Clan
+        publisher:
+          type: array
+          items:
+            type: string
+        subject:
+          type: array
+          items:
+            type: string
+        language:
+          type: array
+          items:
+            type: string
+        identifier:
+          type: array
+          items:
+            type: string
+        based_near:
+          type: array
+          items:
+            type: string
+        owner:
+          type: string
+        manufacturer:
+          type: string
+        model:
+          type: string
+        instrument_type:
+          type: string
+        measured_variable:
+          type: string
+        available_date:
+          type: string
+        decommission_date:
+          type: string
+        related_identifier:
+          type: string
+        instrument_resource_type:
+          type: string
+        funding_reference:
+          type: string
+        related_url:
+          type: array
+          items:
+            type: string
+        sub_work_type:
+          type: string
+          enum:
+          - Capstone Course Work Product
+          - Capstone Project
+          - Culminating Research Project
+          - Doctor of Nursing Practice Project
+          - Integrative Doctoral Research Project
+          - Praxis Project
+          - Public Performance
+          - Scholarly Paper/Essay (MA/MS)
+          example: Capstone Project
+        program:
+          type: string
+          example: Acoustics
+        degree:
+          type: string
+          enum:
+          - Doctor of Education
+          - Doctor of Musical Arts
+          - Doctor of Nursing Practice
+          - Doctor of Public Health
+          - Doctor of Business Administration
+          - Doctor of Engineering
+          - Master of Arts
+          - Master of Science
+          example: Master of Science
+        source:
+          type: array
+          items:
+            type: string
+        creators:
+          type: array
+          items:
+            $ref: '#/components/schemas/creator'
+        contributor:
+          type: array
+          items:
+            type: string
+          example:
+          - Dr. Phyllis Abracadabra
+          - Harry L. Snethers
+        rights:
+          type: string
+          enum:
+          - https://creativecommons.org/licenses/by/4.0/
+          - https://creativecommons.org/licenses/by-sa/4.0/
+          - https://creativecommons.org/licenses/by-nc/4.0/
+          - https://creativecommons.org/licenses/by-nd/4.0/
+          - https://creativecommons.org/licenses/by-nc-nd/4.0/
+          - https://creativecommons.org/licenses/by-nc-sa/4.0/
+          - http://creativecommons.org/publicdomain/mark/1.0/
+          - http://creativecommons.org/publicdomain/zero/1.0/
+          - https://rightsstatements.org/page/InC/1.0/
+          - http://www.apache.org/licenses/LICENSE-2.0
+          - https://www.gnu.org/licenses/gpl.html
+          - https://opensource.org/licenses/MIT
+          - https://opensource.org/licenses/BSD-3-Clause
+          example: https://creativecommons.org/licenses/by/4.0/
+        visibility:
+          type: string
+          enum:
+          - open
+          - authenticated
+        open_access:
+          type: boolean
+          description: Whether the work is an upload for open access compliance.
+        imported_metadata_from_rmd:
+          type: boolean
+          description: Whether the metadata was imported from The Researcher Metadata Database (RMD).
+        embargoed_until:
+          type: string
+          format: date
+        version_name:
+          type: string
+          example: 1.0.0
+          description: Must be in semantic version format. See https://semver.org/
+        doi:
+          type: string
+          example: doi:10.26207/002c-bb83
+          description: A DOI minted under Scholarsphere's current prefix, 10.26207. If you have another DOI that was previously supplied by a publisher or someone else, that can be put into the identifier field.
+  examples:
+    unprocessableEntity:
+      summary: The request has missing or incorrect information
+      value:
+        code: 411
+        message: Unable to complete the request
+        errors:
+        - Sample error from server
+    notFound:
+      summary: The requested resource does not exist
+      value:
+        code: 404
+        message: Record not found
+    unauthorized:
+      summary: The client is not authorized to perform the requested action
+      value:
+        code: 401
+        message: '401: Request not authorized. Please provide a valid API key for access.'
+    serverError:
+      summary: The server threw some kind of error or exception
+      value:
+        code: 500
+        message: We're sorry, but something went wrong
+        errors:
+        - NoMethodError
+        - undefined method `application' for nil:NilClass
+  responses:
+    defaultPostError:
+      description: If the resource can't be created, then there is some kind of error. The client can interpret the responses.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+          examples:
+            unauthorized:
+              $ref: '#/components/examples/unauthorized'
+            notFound:
+              $ref: '#/components/examples/notFound'
+            unprocessableEntity:
+              $ref: '#/components/examples/unprocessableEntity'
+            serverError:
+              $ref: '#/components/examples/serverError'
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      description: Key-based authorization mechanism to the API. A key is obtained fron the ScholarSphere team and is included in the header of all requests.
+      name: X_API_KEY
+      in: header

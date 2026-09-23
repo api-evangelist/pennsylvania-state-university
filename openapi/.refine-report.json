@@ -1,22 +1,66 @@
 {
   "provider": "pennsylvania-state-university",
   "sources": [
-    "pennsylvania-state-university-buildings-api-openapi.yml",
-    "pennsylvania-state-university-campuses-api-openapi.yml",
-    "pennsylvania-state-university-events-api-openapi.yml",
-    "pennsylvania-state-university-health-api-openapi.yml",
-    "pennsylvania-state-university-rooms-api-openapi.yml"
+    "_original/pennsylvania-state-university-fis.yaml",
+    "_original/pennsylvania-state-university-researcher-metadata.yaml",
+    "_original/pennsylvania-state-university-scholarsphere.yaml"
   ],
   "outputs": [
     "pennsylvania-state-university-buildings-api-openapi.yml",
     "pennsylvania-state-university-campuses-api-openapi.yml",
     "pennsylvania-state-university-events-api-openapi.yml",
     "pennsylvania-state-university-health-api-openapi.yml",
-    "pennsylvania-state-university-rooms-api-openapi.yml"
+    "pennsylvania-state-university-rooms-api-openapi.yml",
+    "pennsylvania-state-university-organization-api-openapi.yml",
+    "pennsylvania-state-university-publication-api-openapi.yml",
+    "pennsylvania-state-university-user-api-openapi.yml",
+    "pennsylvania-state-university-collections-api-openapi.yml",
+    "pennsylvania-state-university-dois-api-openapi.yml",
+    "pennsylvania-state-university-featured-resources-api-openapi.yml",
+    "pennsylvania-state-university-files-api-openapi.yml",
+    "pennsylvania-state-university-ingest-api-openapi.yml",
+    "pennsylvania-state-university-uploads-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "pennsylvania-state-university-fis.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "pennsylvania-state-university-researcher-metadata.yaml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "pennsylvania-state-university-researcher-metadata.yaml: declared missing tag: organization",
+    "pennsylvania-state-university-researcher-metadata.yaml: declared missing tag: publication",
+    "pennsylvania-state-university-researcher-metadata.yaml: declared missing tag: user",
+    "pennsylvania-state-university-scholarsphere.yaml: upgraded openapi 3.0.2 -> OpenAPI 3.2.0",
+    "pennsylvania-state-university-scholarsphere.yaml: tagged paths POST /ingest -> Ingest",
+    "pennsylvania-state-university-scholarsphere.yaml: tagged paths POST /collections -> Collections",
+    "pennsylvania-state-university-scholarsphere.yaml: tagged paths GET /dois -> Dois",
+    "pennsylvania-state-university-scholarsphere.yaml: tagged paths GET /dois/{doi} -> Dois",
+    "pennsylvania-state-university-scholarsphere.yaml: tagged paths PUT /files -> Files",
+    "pennsylvania-state-university-scholarsphere.yaml: tagged paths POST /featured_resources -> Featured Resources",
+    "pennsylvania-state-university-scholarsphere.yaml: tagged paths POST /uploads -> Uploads",
+    "pennsylvania-state-university-scholarsphere.yaml: declared missing tag: Collections",
+    "pennsylvania-state-university-scholarsphere.yaml: declared missing tag: Dois",
+    "pennsylvania-state-university-scholarsphere.yaml: declared missing tag: Featured Resources",
+    "pennsylvania-state-university-scholarsphere.yaml: declared missing tag: Files",
+    "pennsylvania-state-university-scholarsphere.yaml: declared missing tag: Ingest",
+    "pennsylvania-state-university-scholarsphere.yaml: declared missing tag: Uploads",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "pennsylvania-state-university-buildings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pennsylvania-state-university-campuses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pennsylvania-state-university-collections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pennsylvania-state-university-dois-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pennsylvania-state-university-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pennsylvania-state-university-featured-resources-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pennsylvania-state-university-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pennsylvania-state-university-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pennsylvania-state-university-ingest-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pennsylvania-state-university-organization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pennsylvania-state-university-publication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pennsylvania-state-university-rooms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pennsylvania-state-university-uploads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pennsylvania-state-university-user-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

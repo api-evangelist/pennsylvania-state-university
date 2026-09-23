@@ -1,0 +1,18 @@
+{
+  "x-generated": "2026-08-30",
+  "x-method": "probed",
+  "x-source": "Live unauthenticated GET against the Researcher Metadata Database API. Recorded because it is the only response observable without a Penn State-issued license key, and it confirms both the base URL and the X-API-Key gate.",
+  "x-operator": "institution",
+  "request": {
+    "method": "GET",
+    "url": "https://metadata.libraries.psu.edu/v1/organizations",
+    "auth": "none \u2014 X-API-Key deliberately omitted"
+  },
+  "response": {
+    "status": 401,
+    "body": {
+      "message": "401: Request not authorized. Please provide a valid API key for access.",
+      "code": 401
+    }
+  }
+}

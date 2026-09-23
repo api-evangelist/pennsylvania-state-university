@@ -1,0 +1,127 @@
+generated: '2026-08-30'
+method: generated
+x-evidence: probed
+source: >-
+  Live probes run 2026-08-30 against Penn State-operated hosts (etda.libraries.psu.edu,
+  metadata.libraries.psu.edu, scholarsphere.psu.edu, apps.opp.psu.edu, www.psu.edu), the
+  InCommon per-entity metadata service, and the DataCite REST API.
+docs: https://libraries.psu.edu/
+note: >-
+  Conformance targets are the Kin Score `education` regime standards[] set: scim, lti, oneroster,
+  ed-fi, caliper, qti, oai-pmh, shibboleth, saml, orcid, datacite, crossref. Every `conforms: true`
+  below is backed by a fetched response, not by a prose claim on a Penn State page. Penn State is a
+  buyer for most of its administrative software; only surfaces it actually operates on a psu.edu
+  host — or a federation entry it owns — are recorded here. Absences are recorded as absences.
+standards:
+
+# ---- education regime ----
+- id: oai-pmh
+  conforms: true
+  x-operator: institution
+  evidence: >-
+    https://etda.libraries.psu.edu/catalog/oai?verb=Identify returns 200 text/xml with a valid
+    OAI-PMH 2.0 envelope: repositoryName "Penn_State_University", baseURL
+    https://etda.libraries.psu.edu/catalog/oai, protocolVersion 2.0, adminEmail askalibrarian@psu.edu,
+    earliestDatestamp 1999-04-07T12:00:00Z, granularity YYYY-MM-DDThh:mm:ssZ, repositoryIdentifier
+    etda.libraries.psu.edu. verb=ListMetadataFormats returns oai_dc; verb=ListSets returns
+    noSetHierarchy. Served by Penn State University Libraries' own etda_explore application
+    (github.com/psu-libraries/etda_explore) on a psu.edu host.
+- id: shibboleth
+  conforms: true
+  x-operator: institution
+  evidence: >-
+    Penn State serves its own IdP SAML metadata on its own host:
+    https://as1.fim.psu.edu/idp/shibboleth returns 200 application/xml (9,398 bytes) with
+    entityID urn:mace:incommon:psu.edu, an IDPSSODescriptor whose protocolSupportEnumeration begins
+    "urn:mace:shibboleth:1.0", a Shibboleth 1.0 AuthnRequest SingleSignOnService at
+    https://as1.fim.psu.edu/idp/profile/Shibboleth/SSO, shibmd:Scope psu.edu and OrganizationName
+    "The Pennsylvania State University". InCommon republishes the same document at
+    https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Apsu.edu (200,
+    application/samlmetadata+xml) — that republication is the federation's; the IdP is Penn State's.
+- id: saml
+  conforms: true
+  x-operator: institution
+  evidence: >-
+    Same self-hosted metadata document. It carries BOTH an IDPSSODescriptor and an SPSSODescriptor,
+    declaring urn:oasis:names:tc:SAML:1.1:protocol and urn:oasis:names:tc:SAML:2.0:protocol, with
+    SAML 2.0 HTTP-Redirect SSO at https://as1.fim.psu.edu/idp/profile/SAML2/Redirect/SSO (400 on a
+    bare GET, which is the correct response to a request carrying no AuthnRequest) and SOAP ECP at
+    .../SAML2/SOAP/ECP. Penn State is both an identity provider and a service provider in the
+    federation.
+- id: orcid
+  conforms: true
+  x-operator: institution
+  evidence: >-
+    The Researcher Metadata Database OpenAPI
+    (https://metadata.libraries.psu.edu/api-docs/v1/swagger.yaml, 200 text/yaml, 103,101 bytes)
+    defines orcid_identifier on the user profile response schema, typed as the ORCID URL form
+    (example https://orcid.org/0000-0000-0000-0000) and listed in that schema's required[].
+    ORCID is a first-class identifier in the contract, not an optional prose mention.
+- id: datacite
+  conforms: true
+  x-operator: institution
+  evidence: >-
+    DataCite REST API reports 1,788 DOIs under prefix 10.26207 (registered 2017-05-22), minted by
+    repository client id "psu.scholar" with publisher "scholarsphere" and landing pages under
+    https://scholarsphere.psu.edu/resources/. ScholarSphere's own OpenAPI exposes GET /dois and
+    GET /dois/{doi} over that DOI set.
+- id: scim
+  conforms: partial
+  x-operator: institution
+  evidence: >-
+    Penn State AUTHORS a SCIM 2.0 server implementation — SCIMple
+    (https://github.com/PennState/SCIMple-Identity, 200, described as "Penn State's Open Source
+    JavaEE implementation of the SCIM version 2.0 protocol"), plus github.com/PennState/scim-client.
+    Partial, and deliberately so: no SCIM service-provider endpoint is publicly reachable on any
+    psu.edu host, so this is evidence of institutional engineering against the standard, not of a
+    callable conformant service. Do not read it as a public SCIM API.
+- id: lti
+  conforms: false
+  evidence: >-
+    No LTI tool or platform registration surface found on a psu.edu host. Penn State's LMS is
+    Canvas (Instructure), so any LTI conformance belongs to the vendor's contract, not the
+    institution's.
+- id: oneroster
+  conforms: false
+  evidence: No OneRoster endpoint or claim found on any psu.edu host.
+- id: ed-fi
+  conforms: false
+  evidence: >-
+    No Ed-Fi ODS/API surface found. Ed-Fi is a K-12 data standard; it is not expected at a
+    research university and none is claimed.
+- id: caliper
+  conforms: false
+  evidence: No Caliper Analytics event store or sensor endpoint found on a psu.edu host.
+- id: qti
+  conforms: false
+  evidence: No QTI assessment interchange surface found on a psu.edu host.
+- id: crossref
+  conforms: false
+  evidence: >-
+    Penn State mints DOIs through DataCite (client psu.scholar), not Crossref. No Crossref member
+    prefix or deposit surface was found under an institution-operated host.
+
+# ---- general contract standards, for the surfaces recorded in apis.yml ----
+- id: openapi-3.0
+  conforms: true
+  evidence: >-
+    Two first-party OpenAPI documents published by Penn State itself: Researcher Metadata Database
+    (openapi 3.0.1, 14 paths, served at https://metadata.libraries.psu.edu/api-docs/v1/swagger.yaml)
+    and ScholarSphere (openapi 3.0.2, 7 paths, MIT-licensed, at
+    https://raw.githubusercontent.com/psu-libraries/scholarsphere/main/openapi.yml). The LionSpaceFIS
+    description in this repo is ours, reconstructed from HTML docs and live responses — see
+    provenance.yml.
+- id: rfc7235-api-key-auth
+  conforms: true
+  evidence: >-
+    Both first-party APIs declare an apiKey security scheme in header — X-API-Key on RMD,
+    X_API_KEY on ScholarSphere — and both enforce it: https://metadata.libraries.psu.edu/v1/organizations
+    and https://scholarsphere.psu.edu/api/v1/dois each return 401 application/json unauthenticated.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: https://www.psu.edu/.well-known/security.txt returns 404 (HTML 404 body, 64,174 bytes).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    RMD defines ErrorModelV1 as {message, code} application/json; ScholarSphere returns a plain JSON
+    error envelope. Neither serves application/problem+json.

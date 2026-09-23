@@ -1,3 +1,8 @@
+# authorship: derived by API Evangelist from the reconstructed LionSpaceFIS contract. Penn State
+# publishes no Spectral ruleset; these rules encode the read-only shape we observed.
+x-method: derived
+x-source-url: openapi/_original/pennsylvania-state-university-fis.yaml
+x-generated: '2026-08-30'
 extends: spectral:oas
 formats:
   - oas3

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: LionSpaceFIS REST Buildings Rooms API
-  description: Public REST API from the Penn State Office of Physical Plant (OPP) exposing the university's facilities and space data, the successor to the legacy FIS Facilities Information System. Exposes buildings, rooms, campuses, buildingEvents, and roomEvents entities with filtering, wildcard, and comparison operators, plus a health endpoint. This OpenAPI description was reconstructed from the public HTML documentation and from live, observed responses of the running service (appVersion 1.14.0); the provider does not publish a machine-readable specification of its own.
+  title: LionSpaceFIS REST Rooms API
+  description: Public REST API from the Penn State Office of Physical Plant (OPP) exposing the university's facilities and space data, the successor to the legacy FIS Facilities Information System.
   version: 1.14.0
   contact:
     name: Penn State Office of Physical Plant
@@ -42,6 +42,12 @@ paths:
                   $ref: '#/components/schemas/Room'
 components:
   schemas:
+    BuildingRef:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 0290012
     RoomType:
       type: object
       properties:
@@ -51,6 +57,82 @@ components:
         description:
           type: string
           example: Apartment Service
+    Room:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 0290012-1-109D
+        number:
+          type: string
+          example: 109D
+        name:
+          type:
+          - string
+          - 'null'
+        floor:
+          type: string
+          example: '1'
+        floorVerticalOrder:
+          type:
+          - integer
+          - 'null'
+        netArea:
+          type: number
+          format: double
+          example: 12.09
+        fireCodeCapacity:
+          type: integer
+          example: 0
+        capacity:
+          type: integer
+          example: 0
+        occupancy:
+          type: integer
+          example: 0
+        photoUrl:
+          type:
+          - string
+          - 'null'
+        collegeNetKey:
+          type:
+          - string
+          - 'null'
+        businessAreaKey:
+          type: string
+          example: '6530'
+        principalInvestigators:
+          type:
+          - string
+          - 'null'
+        occupants:
+          type:
+          - string
+          - 'null'
+        facilityCoordinators:
+          type:
+          - string
+          - 'null'
+        maximoLocation:
+          type: string
+          example: 0290012-109D
+        lastUpdateDate:
+          type: string
+          format: date
+          example: '2022-03-28'
+        dateInactivated:
+          type:
+          - string
+          - 'null'
+          format: date
+        campus:
+          $ref: '#/components/schemas/Campus'
+        latLong:
+          $ref: '#/components/schemas/LatLong'
+        building:
+          $ref: '#/components/schemas/BuildingRef'
+        type:
+          $ref: '#/components/schemas/RoomType'
     Campus:
       type: object
       properties:
@@ -72,80 +154,6 @@ components:
         name:
           type: string
           example: University Park
-    BuildingRef:
-      type: object
-      properties:
-        id:
-          type: string
-          example: 0290012
-    Room:
-      type: object
-      properties:
-        id:
-          type: string
-          example: 0290012-1-109D
-        number:
-          type: string
-          example: 109D
-        name:
-          type: string
-          nullable: true
-        floor:
-          type: string
-          example: '1'
-        floorVerticalOrder:
-          type: integer
-          nullable: true
-        netArea:
-          type: number
-          format: double
-          example: 12.09
-        fireCodeCapacity:
-          type: integer
-          example: 0
-        capacity:
-          type: integer
-          example: 0
-        occupancy:
-          type: integer
-          example: 0
-        photoUrl:
-          type: string
-          nullable: true
-        collegeNetKey:
-          type: string
-          nullable: true
-        businessAreaKey:
-          type: string
-          example: '6530'
-        principalInvestigators:
-          type: string
-          nullable: true
-        occupants:
-          type: string
-          nullable: true
-        facilityCoordinators:
-          type: string
-          nullable: true
-        maximoLocation:
-          type: string
-          example: 0290012-109D
-        lastUpdateDate:
-          type: string
-          format: date
-          example: '2022-03-28'
-        dateInactivated:
-          type: string
-          format: date
-          nullable: true
-        campus:
-          $ref: '#/components/schemas/Campus'
-        latLong:
-          $ref: '#/components/schemas/LatLong'
-        building:
-          $ref: '#/components/schemas/BuildingRef'
-        type:
-          $ref: '#/components/schemas/RoomType'
     LatLong:
       type: object
       properties:

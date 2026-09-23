@@ -1,0 +1,84 @@
+generated: '2026-08-30'
+method: generated
+x-evidence: probed
+source: >-
+  openapi/pennsylvania-state-university-researcher-metadata-api-openapi.yml,
+  openapi/pennsylvania-state-university-scholarsphere-api-openapi.yml,
+  openapi/pennsylvania-state-university-fis-* (LionSpaceFIS), plus live 401/200 probes 2026-08-30.
+note: >-
+  Penn State has no single API gateway and no unified credential. Each institution-operated surface
+  issues its own key out of the unit that runs it, and the campus-wide identity layer (Shibboleth /
+  WebAccess) is not an API credential at all — it gates people, not machines. The former central
+  developer portal at docs.developer.psu.edu, which brokered elevated access to internal REST
+  services, now 302s to sites.psu.edu and no longer exists.
+summary:
+  types:
+  - apiKey
+  - none
+  - saml
+schemes:
+- name: rmd-api-key
+  api: Researcher Metadata Database (RMD) API
+  x-operator: institution
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  description: >-
+    License key issued by Penn State University Libraries. Requested through
+    https://metadata.libraries.psu.edu/ — not self-service.
+  verified: >-
+    GET https://metadata.libraries.psu.edu/v1/organizations without the header returns 401
+    application/json {"message":"401: Request not authorized. Please provide a valid API key for
+    access.","code":401} (probed 2026-08-30).
+  sources:
+  - openapi/pennsylvania-state-university-researcher-metadata-api-openapi.yml
+  - examples/pennsylvania-state-university-rmd-unauthenticated-example.json
+- name: scholarsphere-api-key
+  api: ScholarSphere API
+  x-operator: institution
+  type: apiKey
+  in: header
+  parameter: X_API_KEY
+  description: >-
+    Key obtained from the ScholarSphere team at Penn State University Libraries; the spec states it
+    is included in the header of all requests. Note the underscore form of the header name — it is
+    X_API_KEY, not X-API-Key, and differs from the sibling RMD service.
+  verified: >-
+    GET https://scholarsphere.psu.edu/api/v1/dois without the header returns 401 application/json
+    (probed 2026-08-30).
+  sources:
+  - openapi/pennsylvania-state-university-scholarsphere-api-openapi.yml
+  - examples/pennsylvania-state-university-scholarsphere-unauthenticated-example.json
+- name: lionspacefis-open
+  api: LionSpaceFIS Facilities API
+  x-operator: institution
+  type: none
+  description: >-
+    No authentication. The Office of Physical Plant facilities API answers unauthenticated GETs.
+  verified: >-
+    GET https://apps.opp.psu.edu/fis-api/v1/campuses returns 200 application/json and
+    /fis-api/health returns 200 with appStatus UP, both with no credential (probed 2026-08-30).
+  sources:
+  - examples/pennsylvania-state-university-listCampuses-example.json
+- name: etda-oai-open
+  api: ETDA OAI-PMH provider
+  x-operator: institution
+  type: none
+  description: >-
+    OAI-PMH is an open harvesting protocol; no credential, no registration.
+  verified: >-
+    GET https://etda.libraries.psu.edu/catalog/oai?verb=Identify returns 200 text/xml
+    (probed 2026-08-30).
+- name: incommon-shibboleth-idp
+  api: Penn State Identity Federation (InCommon)
+  x-operator: institution
+  type: saml
+  description: >-
+    Institutional SSO, not an API credential. entityID urn:mace:incommon:psu.edu; IdP at
+    as1.fim.psu.edu speaking Shibboleth 1.0, SAML 1.1 and SAML 2.0. This is what stands in front of
+    every internal Penn State service and is the reason most of the institution's REST surface is
+    unreadable from outside.
+  verified: >-
+    https://as1.fim.psu.edu/idp/shibboleth returns 200 application/xml (9,398 bytes) directly from
+    Penn State, and https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Apsu.edu returns 200
+    application/samlmetadata+xml from the federation (both probed 2026-08-30).

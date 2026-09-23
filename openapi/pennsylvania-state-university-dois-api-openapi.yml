@@ -1,0 +1,101 @@
+openapi: 3.2.0
+info:
+  title: ScholarSphere Dois API
+  description: API specification for ScholarSphere
+  termsOfService: https://scholarsphere.psu.edu/about
+  contact:
+    name: ScholarSphere Support
+    email: https://scholarsphere.psu.edu/help
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: '1.0'
+servers:
+- url: https://scholarsphere.psu.edu/api/{version}
+  description: API endpoint
+  variables:
+    version:
+      description: Version of the API
+      enum:
+      - v1
+      default: v1
+tags:
+- name: DOIs
+paths:
+  /dois:
+    get:
+      summary: List of all DOIs
+      description: Retrieve a dictionary of all DOIs known to Scholarsphere. The keys in this dictionary will be the DOI, like `"doi:10.26207/002c-bb83"` and the value will be an array of UUIDs of all resources that reference that DOI
+      security:
+      - APIKey: []
+      responses:
+        200:
+          description: A list of all DOIs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/doi_list'
+      tags:
+      - DOIs
+      operationId: getDois
+      x-operation-id-source: derived
+  /dois/{doi}:
+    get:
+      summary: Search for a DOI
+      description: Retrieve a list of resources that mention the given DOI.
+      security:
+      - APIKey: []
+      parameters:
+      - name: doi
+        in: path
+        description: A DOI name, including the slash ("/"). Just put the slash right in the url, like `/dois/10.26207/002c-bb83`
+        required: true
+        schema:
+          type: string
+          example: 10.26207/002c-bb83
+      responses:
+        200:
+          description: The DOI was found in one or more resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/doi_response'
+        404:
+          description: The DOI was not found in any of ScholarSphere's resources
+      tags:
+      - DOIs
+      operationId: getDoisByDoi
+      x-operation-id-source: derived
+components:
+  schemas:
+    doi_response:
+      type: array
+      items:
+        type: object
+        properties:
+          url:
+            type: string
+            format: uri
+            example: /resources/a0fc525b-0d49-48e0-a385-f86bd13bce4d
+            description: path to a Scholarsphere resource
+    doi_list:
+      type: object
+      additionalProperties:
+        type: array
+        description: a list of resource UUIDs
+        items:
+          type: string
+          description: a resource UUID
+          example: a0fc525b-0d49-48e0-a385-f86bd13bce4d
+      example:
+        doi:10.26207/002c-bb83:
+        - a0fc525b-0d49-48e0-a385-f86bd13bce4d
+        - 146a74e3-ae66-4802-b5f8-471bcac80d58
+        doi:10.18113/dmnf-6dzs:
+        - 87287b53-76be-424e-b202-bc6d521c841b
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      description: Key-based authorization mechanism to the API. A key is obtained fron the ScholarSphere team and is included in the header of all requests.
+      name: X_API_KEY
+      in: header

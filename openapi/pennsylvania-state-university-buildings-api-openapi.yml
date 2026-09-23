@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: LionSpaceFIS REST Buildings API
-  description: Public REST API from the Penn State Office of Physical Plant (OPP) exposing the university's facilities and space data, the successor to the legacy FIS Facilities Information System. Exposes buildings, rooms, campuses, buildingEvents, and roomEvents entities with filtering, wildcard, and comparison operators, plus a health endpoint. This OpenAPI description was reconstructed from the public HTML documentation and from live, observed responses of the running service (appVersion 1.14.0); the provider does not publish a machine-readable specification of its own.
+  description: Public REST API from the Penn State Office of Physical Plant (OPP) exposing the university's facilities and space data, the successor to the legacy FIS Facilities Information System.
   version: 1.14.0
   contact:
     name: Penn State Office of Physical Plant
@@ -47,45 +47,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Building'
 components:
-  parameters:
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
-      required: false
-      schema:
-        type: integer
-        minimum: 0
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return.
-      required: false
-      schema:
-        type: integer
-        minimum: 1
   schemas:
-    Campus:
-      type: object
-      properties:
-        id:
-          type: string
-          example: UP
-        maximoCampusCode:
-          type: string
-          example: UP
-        lionPathCampusCode:
-          type: string
-          example: UP
-        maximoCode:
-          type: string
-          example: UP
-        lionPathCode:
-          type: string
-          example: AE
-        name:
-          type: string
-          example: University Park
     Building:
       type: object
       properties:
@@ -132,8 +94,9 @@ components:
           type: boolean
           example: true
         facilityCoordinators:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         capacity:
           type: integer
           example: 178
@@ -147,11 +110,33 @@ components:
           format: date
           example: '2026-04-29'
         dateInactivated:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
         latLong:
           $ref: '#/components/schemas/LatLong'
+    Campus:
+      type: object
+      properties:
+        id:
+          type: string
+          example: UP
+        maximoCampusCode:
+          type: string
+          example: UP
+        lionPathCampusCode:
+          type: string
+          example: UP
+        maximoCode:
+          type: string
+          example: UP
+        lionPathCode:
+          type: string
+          example: AE
+        name:
+          type: string
+          example: University Park
     LatLong:
       type: object
       properties:
@@ -163,3 +148,20 @@ components:
           type: number
           format: double
           example: -77.86252
+  parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
