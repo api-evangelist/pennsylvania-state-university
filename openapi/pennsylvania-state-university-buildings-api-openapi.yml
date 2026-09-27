@@ -48,6 +48,17 @@ paths:
                   $ref: '#/components/schemas/Building'
 components:
   schemas:
+    LatLong:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+          example: 40.79974
+        longitude:
+          type: number
+          format: double
+          example: -77.86252
     Building:
       type: object
       properties:
@@ -137,26 +148,7 @@ components:
         name:
           type: string
           example: University Park
-    LatLong:
-      type: object
-      properties:
-        latitude:
-          type: number
-          format: double
-          example: 40.79974
-        longitude:
-          type: number
-          format: double
-          example: -77.86252
   parameters:
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
-      required: false
-      schema:
-        type: integer
-        minimum: 0
     limit:
       name: limit
       in: query
@@ -165,3 +157,11 @@ components:
       schema:
         type: integer
         minimum: 1
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      required: false
+      schema:
+        type: integer
+        minimum: 0

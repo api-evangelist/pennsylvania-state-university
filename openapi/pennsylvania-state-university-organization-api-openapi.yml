@@ -113,17 +113,6 @@ paths:
                 $ref: '#/components/schemas/ErrorModelV1'
 components:
   schemas:
-    ErrorModelV1:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        message:
-          type: string
-        code:
-          type: integer
-          format: int32
     PublicationV1:
       type: object
       required:
@@ -334,6 +323,17 @@ components:
                     - 'null'
                     example: 8
                     description: The user's preference for what position this publication should occupy in a list of their publications in their profile
+    ErrorModelV1:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+          format: int32
   securitySchemes:
     api_key:
       type: apiKey

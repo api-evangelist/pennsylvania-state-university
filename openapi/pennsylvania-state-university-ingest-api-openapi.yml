@@ -47,6 +47,46 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    permissions:
+      type: object
+      description: Additional permissions for the work such as users or groups that can edit work. By default, only the depositor may edit the work after it has been uploaded.
+    errorResponse:
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+    creator:
+      type: object
+      required:
+      - display_name
+      properties:
+        display_name:
+          type: string
+          example: Dr. Pat Researcher
+        surname:
+          type: string
+          example: Researcher
+        given_name:
+          type: string
+          example: Pat
+        email:
+          type: string
+          example: pat@example.com
+        psu_id:
+          type: string
+          example: axb123
+        orcid:
+          type: string
+          example: 0000-0000-1234-123X
     ingest:
       type: object
       required:
@@ -71,48 +111,6 @@ components:
           type: boolean
           example: 'false'
           description: Whether the ingest call should publish the Work or simply create a draft. If left blank, this will default to "true"
-    errorResponse:
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            type: string
-    uploadedFile:
-      type: object
-    permissions:
-      type: object
-      description: Additional permissions for the work such as users or groups that can edit work. By default, only the depositor may edit the work after it has been uploaded.
-    creator:
-      type: object
-      required:
-      - display_name
-      properties:
-        display_name:
-          type: string
-          example: Dr. Pat Researcher
-        surname:
-          type: string
-          example: Researcher
-        given_name:
-          type: string
-          example: Pat
-        email:
-          type: string
-          example: pat@example.com
-        psu_id:
-          type: string
-          example: axb123
-        orcid:
-          type: string
-          example: 0000-0000-1234-123X
     metadata:
       type: object
       required:
@@ -300,19 +298,9 @@ components:
           type: string
           example: doi:10.26207/002c-bb83
           description: A DOI minted under Scholarsphere's current prefix, 10.26207. If you have another DOI that was previously supplied by a publisher or someone else, that can be put into the identifier field.
+    uploadedFile:
+      type: object
   examples:
-    unprocessableEntity:
-      summary: The request has missing or incorrect information
-      value:
-        code: 411
-        message: Unable to complete the request
-        errors:
-        - Sample error from server
-    notFound:
-      summary: The requested resource does not exist
-      value:
-        code: 404
-        message: Record not found
     unauthorized:
       summary: The client is not authorized to perform the requested action
       value:
@@ -326,6 +314,18 @@ components:
         errors:
         - NoMethodError
         - undefined method `application' for nil:NilClass
+    notFound:
+      summary: The requested resource does not exist
+      value:
+        code: 404
+        message: Record not found
+    unprocessableEntity:
+      summary: The request has missing or incorrect information
+      value:
+        code: 411
+        message: Unable to complete the request
+        errors:
+        - Sample error from server
   responses:
     defaultPostError:
       description: If the resource can't be created, then there is some kind of error. The client can interpret the responses.

@@ -66,31 +66,19 @@ components:
           type: array
           items:
             type: string
-    uuid:
-      type: object
-      properties:
-        uuid:
-          type: string
-          example: a0fc525b-0d49-48e0-a385-f86bd13bce4d
     featuredResource:
       allOf:
       - $ref: '#/components/schemas/uuid'
       - type: object
         required:
         - uuid
+    uuid:
+      type: object
+      properties:
+        uuid:
+          type: string
+          example: a0fc525b-0d49-48e0-a385-f86bd13bce4d
   examples:
-    unprocessableEntity:
-      summary: The request has missing or incorrect information
-      value:
-        code: 411
-        message: Unable to complete the request
-        errors:
-        - Sample error from server
-    notFound:
-      summary: The requested resource does not exist
-      value:
-        code: 404
-        message: Record not found
     unauthorized:
       summary: The client is not authorized to perform the requested action
       value:
@@ -104,6 +92,18 @@ components:
         errors:
         - NoMethodError
         - undefined method `application' for nil:NilClass
+    notFound:
+      summary: The requested resource does not exist
+      value:
+        code: 404
+        message: Record not found
+    unprocessableEntity:
+      summary: The request has missing or incorrect information
+      value:
+        code: 411
+        message: Unable to complete the request
+        errors:
+        - Sample error from server
   responses:
     defaultPostError:
       description: If the resource can't be created, then there is some kind of error. The client can interpret the responses.

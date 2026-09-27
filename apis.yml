@@ -22,16 +22,22 @@ description: >-
 type: Index
 deliveryModel:
   model: saas
-  open_source: false
-  commercial: false
+  license_evidence:
+    not_product:
+    - psu-libraries/etda_explore
+    - psu-libraries/researcher-metadata
+    - psu-libraries/scholarsphere
+  open_source: unknown
+  commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
-  - probe
-  generated: '2026-08-30'
-  method: probed
+  - pricing
+  - repository-not-product
+  generated: '2026-09-25'
+  method: derived
 accessModel:
   pricing: free
   onboarding: request

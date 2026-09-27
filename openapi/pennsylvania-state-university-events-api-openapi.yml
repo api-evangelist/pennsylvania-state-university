@@ -54,50 +54,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/RoomEvent'
 components:
-  parameters:
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return.
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
-      required: false
-      schema:
-        type: integer
-        minimum: 0
   schemas:
-    BuildingEvent:
-      type: object
-      properties:
-        event:
-          type: string
-          description: Event code (A = add, U = update).
-          example: A
-        oldValue:
-          type:
-          - string
-          - 'null'
-        newValue:
-          type:
-          - string
-          - 'null'
-        changeDate:
-          type: string
-          format: date
-          example: '2021-05-28'
-        fieldName:
-          type:
-          - string
-          - 'null'
-        buildingId:
-          type: string
-          example: '0002000'
     RoomEvent:
       type: object
       properties:
@@ -127,3 +84,46 @@ components:
         roomId:
           type: string
           example: 0965002-G-164
+    BuildingEvent:
+      type: object
+      properties:
+        event:
+          type: string
+          description: Event code (A = add, U = update).
+          example: A
+        oldValue:
+          type:
+          - string
+          - 'null'
+        newValue:
+          type:
+          - string
+          - 'null'
+        changeDate:
+          type: string
+          format: date
+          example: '2021-05-28'
+        fieldName:
+          type:
+          - string
+          - 'null'
+        buildingId:
+          type: string
+          example: '0002000'
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      required: false
+      schema:
+        type: integer
+        minimum: 0

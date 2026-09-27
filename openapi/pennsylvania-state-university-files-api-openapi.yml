@@ -72,12 +72,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    successResponse:
-      required:
-      - message
+    id:
+      type: object
       properties:
-        message:
-          type: string
+        id:
+          type: integer
+          example: '1'
     errorResponse:
       required:
       - code
@@ -101,12 +101,6 @@ components:
         metadata:
           allOf:
           - $ref: '#/components/schemas/virusCheck'
-    id:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: '1'
     virusCheck:
       properties:
         status:
@@ -118,19 +112,13 @@ components:
         scanned_at:
           type: string
           format: date
+    successResponse:
+      required:
+      - message
+      properties:
+        message:
+          type: string
   examples:
-    unprocessableEntity:
-      summary: The request has missing or incorrect information
-      value:
-        code: 411
-        message: Unable to complete the request
-        errors:
-        - Sample error from server
-    notFound:
-      summary: The requested resource does not exist
-      value:
-        code: 404
-        message: Record not found
     unauthorized:
       summary: The client is not authorized to perform the requested action
       value:
@@ -144,6 +132,18 @@ components:
         errors:
         - NoMethodError
         - undefined method `application' for nil:NilClass
+    notFound:
+      summary: The requested resource does not exist
+      value:
+        code: 404
+        message: Record not found
+    unprocessableEntity:
+      summary: The request has missing or incorrect information
+      value:
+        code: 411
+        message: Unable to complete the request
+        errors:
+        - Sample error from server
   responses:
     defaultPostError:
       description: If the resource can't be created, then there is some kind of error. The client can interpret the responses.
