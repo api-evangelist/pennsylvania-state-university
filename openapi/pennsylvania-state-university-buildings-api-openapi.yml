@@ -47,18 +47,45 @@ paths:
                 items:
                   $ref: '#/components/schemas/Building'
 components:
+  parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
   schemas:
-    LatLong:
+    Campus:
       type: object
       properties:
-        latitude:
-          type: number
-          format: double
-          example: 40.79974
-        longitude:
-          type: number
-          format: double
-          example: -77.86252
+        id:
+          type: string
+          example: UP
+        maximoCampusCode:
+          type: string
+          example: UP
+        lionPathCampusCode:
+          type: string
+          example: UP
+        maximoCode:
+          type: string
+          example: UP
+        lionPathCode:
+          type: string
+          example: AE
+        name:
+          type: string
+          example: University Park
     Building:
       type: object
       properties:
@@ -127,41 +154,14 @@ components:
           format: date
         latLong:
           $ref: '#/components/schemas/LatLong'
-    Campus:
+    LatLong:
       type: object
       properties:
-        id:
-          type: string
-          example: UP
-        maximoCampusCode:
-          type: string
-          example: UP
-        lionPathCampusCode:
-          type: string
-          example: UP
-        maximoCode:
-          type: string
-          example: UP
-        lionPathCode:
-          type: string
-          example: AE
-        name:
-          type: string
-          example: University Park
-  parameters:
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return.
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
-      required: false
-      schema:
-        type: integer
-        minimum: 0
+        latitude:
+          type: number
+          format: double
+          example: 40.79974
+        longitude:
+          type: number
+          format: double
+          example: -77.86252

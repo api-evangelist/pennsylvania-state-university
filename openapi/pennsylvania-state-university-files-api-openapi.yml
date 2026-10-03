@@ -72,12 +72,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    id:
-      type: object
+    fileMetadata:
+      required:
+      - id
       properties:
         id:
-          type: integer
-          example: '1'
+          $ref: '#/components/schemas/id'
+        metadata:
+          allOf:
+          - $ref: '#/components/schemas/virusCheck'
     errorResponse:
       required:
       - code
@@ -92,15 +95,6 @@ components:
           type: array
           items:
             type: string
-    fileMetadata:
-      required:
-      - id
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        metadata:
-          allOf:
-          - $ref: '#/components/schemas/virusCheck'
     virusCheck:
       properties:
         status:
@@ -112,6 +106,12 @@ components:
         scanned_at:
           type: string
           format: date
+    id:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: '1'
     successResponse:
       required:
       - message
@@ -119,11 +119,23 @@ components:
         message:
           type: string
   examples:
+    unprocessableEntity:
+      summary: The request has missing or incorrect information
+      value:
+        code: 411
+        message: Unable to complete the request
+        errors:
+        - Sample error from server
     unauthorized:
       summary: The client is not authorized to perform the requested action
       value:
         code: 401
         message: '401: Request not authorized. Please provide a valid API key for access.'
+    notFound:
+      summary: The requested resource does not exist
+      value:
+        code: 404
+        message: Record not found
     serverError:
       summary: The server threw some kind of error or exception
       value:
@@ -132,18 +144,6 @@ components:
         errors:
         - NoMethodError
         - undefined method `application' for nil:NilClass
-    notFound:
-      summary: The requested resource does not exist
-      value:
-        code: 404
-        message: Record not found
-    unprocessableEntity:
-      summary: The request has missing or incorrect information
-      value:
-        code: 411
-        message: Unable to complete the request
-        errors:
-        - Sample error from server
   responses:
     defaultPostError:
       description: If the resource can't be created, then there is some kind of error. The client can interpret the responses.

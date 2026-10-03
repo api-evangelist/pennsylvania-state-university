@@ -281,6 +281,28 @@ components:
           format: int32
         message:
           type: string
+    PublicationInput:
+      type: object
+      required:
+      - scholarsphere_open_access_url
+      properties:
+        activity_insight_id:
+          type: string
+        doi:
+          type: string
+        scholarsphere_open_access_url:
+          type: string
+    ErrorModelV1:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+          format: int32
     PublicationV1:
       type: object
       required:
@@ -491,28 +513,6 @@ components:
                     - 'null'
                     example: 8
                     description: The user's preference for what position this publication should occupy in a list of their publications in their profile
-    ErrorModelV1:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        message:
-          type: string
-        code:
-          type: integer
-          format: int32
-    PublicationInput:
-      type: object
-      required:
-      - scholarsphere_open_access_url
-      properties:
-        activity_insight_id:
-          type: string
-        doi:
-          type: string
-        scholarsphere_open_access_url:
-          type: string
   securitySchemes:
     api_key:
       type: apiKey

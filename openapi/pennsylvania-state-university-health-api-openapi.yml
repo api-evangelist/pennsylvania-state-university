@@ -33,6 +33,18 @@ paths:
                 $ref: '#/components/schemas/Health'
 components:
   schemas:
+    HealthDetail:
+      type: object
+      properties:
+        name:
+          type: string
+          example: databaseConnectivity
+        result:
+          type: string
+          example: OK
+        time:
+          type: integer
+          example: 51
     Health:
       type: object
       properties:
@@ -49,15 +61,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/HealthDetail'
-    HealthDetail:
-      type: object
-      properties:
-        name:
-          type: string
-          example: databaseConnectivity
-        result:
-          type: string
-          example: OK
-        time:
-          type: integer
-          example: 51

@@ -51,6 +51,32 @@ paths:
       operationId: postFeaturedResources
       x-operation-id-source: derived
 components:
+  examples:
+    unprocessableEntity:
+      summary: The request has missing or incorrect information
+      value:
+        code: 411
+        message: Unable to complete the request
+        errors:
+        - Sample error from server
+    unauthorized:
+      summary: The client is not authorized to perform the requested action
+      value:
+        code: 401
+        message: '401: Request not authorized. Please provide a valid API key for access.'
+    notFound:
+      summary: The requested resource does not exist
+      value:
+        code: 404
+        message: Record not found
+    serverError:
+      summary: The server threw some kind of error or exception
+      value:
+        code: 500
+        message: We're sorry, but something went wrong
+        errors:
+        - NoMethodError
+        - undefined method `application' for nil:NilClass
   schemas:
     errorResponse:
       required:
@@ -66,44 +92,18 @@ components:
           type: array
           items:
             type: string
-    featuredResource:
-      allOf:
-      - $ref: '#/components/schemas/uuid'
-      - type: object
-        required:
-        - uuid
     uuid:
       type: object
       properties:
         uuid:
           type: string
           example: a0fc525b-0d49-48e0-a385-f86bd13bce4d
-  examples:
-    unauthorized:
-      summary: The client is not authorized to perform the requested action
-      value:
-        code: 401
-        message: '401: Request not authorized. Please provide a valid API key for access.'
-    serverError:
-      summary: The server threw some kind of error or exception
-      value:
-        code: 500
-        message: We're sorry, but something went wrong
-        errors:
-        - NoMethodError
-        - undefined method `application' for nil:NilClass
-    notFound:
-      summary: The requested resource does not exist
-      value:
-        code: 404
-        message: Record not found
-    unprocessableEntity:
-      summary: The request has missing or incorrect information
-      value:
-        code: 411
-        message: Unable to complete the request
-        errors:
-        - Sample error from server
+    featuredResource:
+      allOf:
+      - $ref: '#/components/schemas/uuid'
+      - type: object
+        required:
+        - uuid
   responses:
     defaultPostError:
       description: If the resource can't be created, then there is some kind of error. The client can interpret the responses.
