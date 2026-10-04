@@ -54,6 +54,23 @@ paths:
                 items:
                   $ref: '#/components/schemas/RoomEvent'
 components:
+  parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
   schemas:
     RoomEvent:
       type: object
@@ -110,20 +127,3 @@ components:
         buildingId:
           type: string
           example: '0002000'
-  parameters:
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return.
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
-      required: false
-      schema:
-        type: integer
-        minimum: 0

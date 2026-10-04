@@ -41,71 +41,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Room'
 components:
-  parameters:
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
-      required: false
-      schema:
-        type: integer
-        minimum: 0
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return.
-      required: false
-      schema:
-        type: integer
-        minimum: 1
   schemas:
-    Campus:
-      type: object
-      properties:
-        id:
-          type: string
-          example: UP
-        maximoCampusCode:
-          type: string
-          example: UP
-        lionPathCampusCode:
-          type: string
-          example: UP
-        maximoCode:
-          type: string
-          example: UP
-        lionPathCode:
-          type: string
-          example: AE
-        name:
-          type: string
-          example: University Park
-    BuildingRef:
-      type: object
-      properties:
-        id:
-          type: string
-          example: 0290012
-    RoomType:
-      type: object
-      properties:
-        id:
-          type: string
-          example: '955'
-        description:
-          type: string
-          example: Apartment Service
-    LatLong:
-      type: object
-      properties:
-        latitude:
-          type: number
-          format: double
-          example: 40.79974
-        longitude:
-          type: number
-          format: double
-          example: -77.86252
     Room:
       type: object
       properties:
@@ -182,3 +118,67 @@ components:
           $ref: '#/components/schemas/BuildingRef'
         type:
           $ref: '#/components/schemas/RoomType'
+    RoomType:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '955'
+        description:
+          type: string
+          example: Apartment Service
+    Campus:
+      type: object
+      properties:
+        id:
+          type: string
+          example: UP
+        maximoCampusCode:
+          type: string
+          example: UP
+        lionPathCampusCode:
+          type: string
+          example: UP
+        maximoCode:
+          type: string
+          example: UP
+        lionPathCode:
+          type: string
+          example: AE
+        name:
+          type: string
+          example: University Park
+    LatLong:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+          example: 40.79974
+        longitude:
+          type: number
+          format: double
+          example: -77.86252
+    BuildingRef:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 0290012
+  parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        minimum: 1

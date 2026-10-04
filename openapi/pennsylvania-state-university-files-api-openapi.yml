@@ -71,16 +71,39 @@ paths:
       operationId: putFiles
       x-operation-id-source: derived
 components:
+  examples:
+    notFound:
+      summary: The requested resource does not exist
+      value:
+        code: 404
+        message: Record not found
+    unauthorized:
+      summary: The client is not authorized to perform the requested action
+      value:
+        code: 401
+        message: '401: Request not authorized. Please provide a valid API key for access.'
+    unprocessableEntity:
+      summary: The request has missing or incorrect information
+      value:
+        code: 411
+        message: Unable to complete the request
+        errors:
+        - Sample error from server
+    serverError:
+      summary: The server threw some kind of error or exception
+      value:
+        code: 500
+        message: We're sorry, but something went wrong
+        errors:
+        - NoMethodError
+        - undefined method `application' for nil:NilClass
   schemas:
-    fileMetadata:
-      required:
-      - id
+    id:
+      type: object
       properties:
         id:
-          $ref: '#/components/schemas/id'
-        metadata:
-          allOf:
-          - $ref: '#/components/schemas/virusCheck'
+          type: integer
+          example: '1'
     errorResponse:
       required:
       - code
@@ -106,44 +129,21 @@ components:
         scanned_at:
           type: string
           format: date
-    id:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: '1'
     successResponse:
       required:
       - message
       properties:
         message:
           type: string
-  examples:
-    unprocessableEntity:
-      summary: The request has missing or incorrect information
-      value:
-        code: 411
-        message: Unable to complete the request
-        errors:
-        - Sample error from server
-    unauthorized:
-      summary: The client is not authorized to perform the requested action
-      value:
-        code: 401
-        message: '401: Request not authorized. Please provide a valid API key for access.'
-    notFound:
-      summary: The requested resource does not exist
-      value:
-        code: 404
-        message: Record not found
-    serverError:
-      summary: The server threw some kind of error or exception
-      value:
-        code: 500
-        message: We're sorry, but something went wrong
-        errors:
-        - NoMethodError
-        - undefined method `application' for nil:NilClass
+    fileMetadata:
+      required:
+      - id
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        metadata:
+          allOf:
+          - $ref: '#/components/schemas/virusCheck'
   responses:
     defaultPostError:
       description: If the resource can't be created, then there is some kind of error. The client can interpret the responses.

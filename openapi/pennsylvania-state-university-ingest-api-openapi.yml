@@ -47,6 +47,22 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    uploadedFile:
+      type: object
+    errorResponse:
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
     ingest:
       type: object
       required:
@@ -74,8 +90,6 @@ components:
     permissions:
       type: object
       description: Additional permissions for the work such as users or groups that can edit work. By default, only the depositor may edit the work after it has been uploaded.
-    uploadedFile:
-      type: object
     creator:
       type: object
       required:
@@ -99,20 +113,6 @@ components:
         orcid:
           type: string
           example: 0000-0000-1234-123X
-    errorResponse:
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            type: string
     metadata:
       type: object
       required:
@@ -301,6 +301,16 @@ components:
           example: doi:10.26207/002c-bb83
           description: A DOI minted under Scholarsphere's current prefix, 10.26207. If you have another DOI that was previously supplied by a publisher or someone else, that can be put into the identifier field.
   examples:
+    notFound:
+      summary: The requested resource does not exist
+      value:
+        code: 404
+        message: Record not found
+    unauthorized:
+      summary: The client is not authorized to perform the requested action
+      value:
+        code: 401
+        message: '401: Request not authorized. Please provide a valid API key for access.'
     unprocessableEntity:
       summary: The request has missing or incorrect information
       value:
@@ -308,16 +318,6 @@ components:
         message: Unable to complete the request
         errors:
         - Sample error from server
-    unauthorized:
-      summary: The client is not authorized to perform the requested action
-      value:
-        code: 401
-        message: '401: Request not authorized. Please provide a valid API key for access.'
-    notFound:
-      summary: The requested resource does not exist
-      value:
-        code: 404
-        message: Record not found
     serverError:
       summary: The server threw some kind of error or exception
       value:

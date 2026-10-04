@@ -65,27 +65,6 @@ components:
         type: integer
         minimum: 1
   schemas:
-    Campus:
-      type: object
-      properties:
-        id:
-          type: string
-          example: UP
-        maximoCampusCode:
-          type: string
-          example: UP
-        lionPathCampusCode:
-          type: string
-          example: UP
-        maximoCode:
-          type: string
-          example: UP
-        lionPathCode:
-          type: string
-          example: AE
-        name:
-          type: string
-          example: University Park
     Building:
       type: object
       properties:
@@ -154,6 +133,27 @@ components:
           format: date
         latLong:
           $ref: '#/components/schemas/LatLong'
+    Campus:
+      type: object
+      properties:
+        id:
+          type: string
+          example: UP
+        maximoCampusCode:
+          type: string
+          example: UP
+        lionPathCampusCode:
+          type: string
+          example: UP
+        maximoCode:
+          type: string
+          example: UP
+        lionPathCode:
+          type: string
+          example: AE
+        name:
+          type: string
+          example: University Park
     LatLong:
       type: object
       properties:

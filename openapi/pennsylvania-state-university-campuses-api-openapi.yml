@@ -40,6 +40,23 @@ paths:
                 items:
                   $ref: '#/components/schemas/Campus'
 components:
+  parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
   schemas:
     Campus:
       type: object
@@ -62,20 +79,3 @@ components:
         name:
           type: string
           example: University Park
-  parameters:
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of records to return.
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
-      required: false
-      schema:
-        type: integer
-        minimum: 0
