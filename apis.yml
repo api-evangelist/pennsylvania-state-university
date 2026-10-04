@@ -625,6 +625,9 @@ x-coverage:
   - url: https://www.psu.edu/.well-known/security.txt
     status: 404
 common:
+  - type: CapabilityMap
+    url: capabilities/pennsylvania-state-university-capability-edges.yml
+    name: Pennsylvania State University Business Capability Map
   - type: Website
     url: https://www.psu.edu/
   - type: APIReference
