@@ -71,7 +71,7 @@ tags:
   - Facilities
   - United States
 created: '2026-06-03'
-modified: '2026-08-30'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: pennsylvania-state-university:etda-oai-pmh
@@ -625,6 +625,10 @@ x-coverage:
   - url: https://www.psu.edu/.well-known/security.txt
     status: 404
 common:
+  - url: https://www.psu.edu/news
+    type: Blog
+  - url: https://www.psu.edu/news/rss/rss.xml
+    type: BlogRSS
   - type: CapabilityMap
     url: capabilities/pennsylvania-state-university-capability-edges.yml
     name: Pennsylvania State University Business Capability Map
