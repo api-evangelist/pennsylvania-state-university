@@ -1,4 +1,4 @@
-generated: '2026-09-16'
+generated: '2026-09-23'
 method: generated
 source: openapi/pennsylvania-state-university-buildings-api-openapi.yml, openapi/pennsylvania-state-university-campuses-api-openapi.yml,
   openapi/pennsylvania-state-university-collections-api-openapi.yml, openapi/pennsylvania-state-university-dois-api-openapi.yml,
@@ -13,11 +13,11 @@ description: Recommended x-agentic-access execution contracts, classified heuris
 summary:
   operations: 28
   by_action_class:
-    connected: 21
-    acting: 7
+    connected: 22
+    acting: 6
   by_consequence:
-    read: 21
-    write: 7
+    read: 22
+    write: 6
   human_in_the_loop_required: 0
 operations:
 - path: /buildings
@@ -330,15 +330,9 @@ operations:
   method: post
   operationId: findUsersPublications
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
