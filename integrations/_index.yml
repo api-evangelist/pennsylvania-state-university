@@ -44,3 +44,36 @@
     detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
+- slug: pennsylvania-state-university-edugain
+  label: eduGAIN
+  partner_name: eduGAIN
+  category: research and education identity federation
+  type: register
+  channel: standard-directory
+  evidence: https://technical.edugain.org/api.php?action=list_entities&type=idp&format=json
+  source: edge
+  relationship: network-participant
+  contract_reference:
+    network: eduGAIN (GÉANT interfederation)
+    spec_file: null
+    roles:
+    - identity-provider
+    role: identity-provider
+    federations:
+    - INCOMMON
+    matched_by: domain+idp-scope:psu.edu
+    entities:
+    - entity_id: urn:mace:incommon:psu.edu
+      role: identity-provider
+      federation: INCOMMON
+      display_name: Penn State
+      entity_categories:
+      - '11'
+      - '43'
+      - '76'
+      sirtfi: true
+      coco: false
+    detected_by: sweep-higher-ed.py
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
