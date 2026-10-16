@@ -1,0 +1,21 @@
+{
+  "repo": "pennsylvania-state-university",
+  "feeds": [
+    {
+      "source": "https://www.psu.edu/news",
+      "feed_url": "https://www.psu.edu/news/rss/rss.xml",
+      "title": "",
+      "saved": 3,
+      "method": "discovered"
+    },
+    {
+      "source": "https://www.psu.edu/news/rss/rss.xml",
+      "feed_url": "https://www.psu.edu/news/rss/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    }
+  ],
+  "post_count": 3,
+  "fetched": "2026-10-10T13:15:00Z"
+}
