@@ -57,11 +57,6 @@ components:
       value:
         code: 404
         message: Record not found
-    unauthorized:
-      summary: The client is not authorized to perform the requested action
-      value:
-        code: 401
-        message: '401: Request not authorized. Please provide a valid API key for access.'
     unprocessableEntity:
       summary: The request has missing or incorrect information
       value:
@@ -69,6 +64,11 @@ components:
         message: Unable to complete the request
         errors:
         - Sample error from server
+    unauthorized:
+      summary: The client is not authorized to perform the requested action
+      value:
+        code: 401
+        message: '401: Request not authorized. Please provide a valid API key for access.'
     serverError:
       summary: The server threw some kind of error or exception
       value:
