@@ -1,4 +1,4 @@
-# Pennsylvania State University (pennsylvania-state-university)
+# Pennsylvania State University
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,56 +64,186 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Pennsylvania State University (Penn State) is a public, land-grant research university headquartered at University Park, PA, and ranked #69 in the QS World University Rankings 2025. This repository catalogs Penn State's public developer/API footprint as an [APIs.json](http://apisjson.org) provider profile for the api-evangelist network.
+Pennsylvania State University (Penn State) is a public, land-grant research university with its primary campus at University Park, PA, and is ranked #69 in the QS World University Rankings 2025. Its programmable footprint is real but narrow, and it lives almost entirely in University Libraries rather than in central IT. Penn State publishes two genuine first-party OpenAPI descriptions of services it builds and operates itself: the Researcher Metadata Database (RMD), the authority on faculty and research metadata, and ScholarSphere, its self-built institutional repository — both key-gated, both described in OpenAPI 3.0 by the Libraries team that wrote them. Alongside those it runs an open OAI-PMH 2.0 provider over the Electronic Theses and Dissertations Archive, an unauthenticated facilities API from the Office of Physical Plant (LionSpaceFIS), and its own Shibboleth identity provider registered in InCommon. Penn State also authors open-source identity software, including a SCIM 2.0 server implementation. What it no longer has is a central developer portal: docs.developer.psu.edu, which catalogued internal REST services such as PSU ID, Academic Course and Cornerstone behind WebAccess single sign-on, now redirects to sites.psu.edu and has been decommissioned. There is no unified API gateway, no shared credential, and no self-service onboarding — each surface issues its own key out of the unit that operates it.
 
-- APIs.json: https://raw.githubusercontent.com/api-evangelist/pennsylvania-state-university/refs/heads/main/apis.yml
-- Run with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=pennsylvania-state-university-api-evangelist&utm_content=repo
+**Areas:** Education · Higher Education · University · Public Research University · Land Grant · Big Ten · Research · Research Data · Research Repository · Open Access · Identity Federation · Library
 
-## Type
+## Pennsylvania State University on APIs.io
 
-- Type: Index
-- Position: Consumer
-- Access: 3rd-Party
+Everything profiled for Pennsylvania State University is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/pennsylvania-state-university/](https://apis.io/providers/pennsylvania-state-university/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (16)
 
-Education, Higher Education, University, Research, Library, Facilities, United States
+- [ETDA OAI-PMH Provider](https://apis.io/apis/pennsylvania-state-university/etda-oai-pmh/) — An open OAI-PMH 2.0 harvesting endpoint over Penn State's Electronic Theses and Dissertations Archive, served by the Libraries' own etda_explore application…
+- [Penn State Identity Federation (InCommon / Shibboleth)](https://apis.io/apis/pennsylvania-state-university/identity-federation/) — Penn State operates its own Shibboleth identity provider and registers it in the InCommon federation under entityID urn:mace:incommon:psu.edu. Penn State…
+- [Pennsylvania State University Buildings API](https://apis.io/apis/pennsylvania-state-university/pennsylvania-state-university-buildings-api/) — University buildings and their facility attributes. One tag of the Office of Physical Plant's single LionSpaceFIS service; the buildings, campuses, rooms,…
+- [Pennsylvania State University Campuses API](https://apis.io/apis/pennsylvania-state-university/pennsylvania-state-university-campuses-api/) — Penn State campus reference data, from the Office of Physical Plant LionSpaceFIS service.
+- [Pennsylvania State University Events API](https://apis.io/apis/pennsylvania-state-university/pennsylvania-state-university-events-api/) — Change events for buildings and rooms, from the Office of Physical Plant LionSpaceFIS service.
+- [Pennsylvania State University Health API](https://apis.io/apis/pennsylvania-state-university/pennsylvania-state-university-health-api/) — Service health and status for the LionSpaceFIS facilities service; returns appVersion and appStatus with a database connectivity check. Unauthenticated and…
+- [Pennsylvania State University Rooms API](https://apis.io/apis/pennsylvania-state-university/pennsylvania-state-university-rooms-api/) — Rooms within buildings, from the Office of Physical Plant LionSpaceFIS service.
+- [Pennsylvania State University Collections API](https://apis.io/apis/pennsylvania-state-university/pennsylvania-state-university-collections-api/) — The Collections API from Pennsylvania State University — 1 operation(s) for collections.
+- [Pennsylvania State University Dois API](https://apis.io/apis/pennsylvania-state-university/pennsylvania-state-university-dois-api/) — The Dois API from Pennsylvania State University — 2 operation(s) for dois.
+- [Pennsylvania State University Featured Resources API](https://apis.io/apis/pennsylvania-state-university/pennsylvania-state-university-featured-resources-api/) — The Featured Resources API from Pennsylvania State University — 1 operation(s) for featured resources.
+- [Pennsylvania State University Files API](https://apis.io/apis/pennsylvania-state-university/pennsylvania-state-university-files-api/) — The Files API from Pennsylvania State University — 1 operation(s) for files.
+- [Pennsylvania State University Ingest API](https://apis.io/apis/pennsylvania-state-university/pennsylvania-state-university-ingest-api/) — The Ingest API from Pennsylvania State University — 1 operation(s) for ingest.
+- [Pennsylvania State University Organization API](https://apis.io/apis/pennsylvania-state-university/pennsylvania-state-university-organization-api/) — The organization API from Pennsylvania State University — 2 operation(s) for organization.
+- [Pennsylvania State University Publication API](https://apis.io/apis/pennsylvania-state-university/pennsylvania-state-university-publication-api/) — The publication API from Pennsylvania State University — 3 operation(s) for publication.
+- [Pennsylvania State University Uploads API](https://apis.io/apis/pennsylvania-state-university/pennsylvania-state-university-uploads-api/) — The Uploads API from Pennsylvania State University — 1 operation(s) for uploads.
+- [Pennsylvania State University User API](https://apis.io/apis/pennsylvania-state-university/pennsylvania-state-university-user-api/) — The user API from Pennsylvania State University — 9 operation(s) for user.
 
-## APIs
+### Published properties
 
-- **LionSpaceFIS REST API** — Office of Physical Plant facilities/space data (buildings, rooms, campuses, events). Verified live and public. Docs: https://apps.opp.psu.edu/fis-api/
-- **Researcher Metadata Database (RMD) API** — University Libraries researcher/publication metadata via an OpenAPI-described REST API; requires a license key. Docs: https://metadata.libraries.psu.edu/api_docs
-- **Penn State IT Web Developer Services** — Portal cataloging internal REST services (PSU ID, Academic Course, Cornerstone, Sponsored Accounts, ASR Lookup); reference pages are behind Shibboleth SSO. Docs: https://docs.developer.psu.edu/
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Plans
+#### Agentic access (1)
 
-- [plans/pennsylvania-state-university-plans-pricing.yml](plans/pennsylvania-state-university-plans-pricing.yml)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Rate Limits
+- [Pennsylvania State University Agentic Access](https://apis.io/agentic-access/pennsylvania-state-university/pennsylvania-state-university-agentic-access/)
 
-- [rate-limits/pennsylvania-state-university-rate-limits.yml](rate-limits/pennsylvania-state-university-rate-limits.yml)
+#### JSON Schema (2)
 
-## FinOps
+The data models the API reads and writes.
 
-- [finops/pennsylvania-state-university-finops.yml](finops/pennsylvania-state-university-finops.yml)
+- [Building](https://apis.io/schemas/pennsylvania-state-university/pennsylvania-state-university-building/)
+- [Room](https://apis.io/schemas/pennsylvania-state-university/pennsylvania-state-university-room/)
 
-## Timestamps
+#### JSON Structure (2)
 
-- Created: 2026-06-03
-- Modified: 2026-06-03
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Pennsylvania State University Building Structure](https://apis.io/json-structure/pennsylvania-state-university/pennsylvania-state-university-building-structure/)
+- [Pennsylvania State University Room Structure](https://apis.io/json-structure/pennsylvania-state-university/pennsylvania-state-university-room-structure/)
 
-- Website: https://www.psu.edu/
-- Developer Portal: https://docs.developer.psu.edu/
-- GitHub (open source): https://github.com/PennState
-- Source Code (Libraries): https://github.com/psu-libraries
-- LinkedIn: https://www.linkedin.com/school/penn-state-university/
+#### JSON-LD (1)
 
-## Notes
+Linked-data contexts for the provider's vocabulary.
 
-All entries reflect what could be publicly verified on 2026-06-03. The LionSpaceFIS API was confirmed reachable (HTTP 200 on `/fis-api/health` and `/fis-api/v1/campuses`). The Researcher Metadata Database API is documented per the OpenAPI standard but is license-key gated, so its endpoints were not exercised. The Penn State IT developer portal landing page loads, but each documented service reference redirects to Shibboleth/WebAccess single sign-on and is not publicly viewable. The public LionPATH class search is a UI (not an API) and returned 403 to automated requests. No endpoints or authentication schemes were fabricated.
+- [Pennsylvania State University Context](https://apis.io/jsonld/pennsylvania-state-university/pennsylvania-state-university-context/)
 
-## Maintainers
+#### Vocabulary (1)
 
-- Kin Lane — kin@apievangelist.com
+The provider's domain terms, defined.
+
+- [Penn State LionSpaceFIS Facilities Vocabulary](https://apis.io/vocabularies/pennsylvania-state-university/pennsylvania-state-university-vocabulary/)
+
+#### Examples (6)
+
+Example requests and responses.
+
+- [Pennsylvania State University Gethealth Example](https://apis.io/examples/pennsylvania-state-university/pennsylvania-state-university-getHealth-example/)
+- [Pennsylvania State University Listbuildings Example](https://apis.io/examples/pennsylvania-state-university/pennsylvania-state-university-listBuildings-example/)
+- [Pennsylvania State University Listcampuses Example](https://apis.io/examples/pennsylvania-state-university/pennsylvania-state-university-listCampuses-example/)
+- [Pennsylvania State University Listrooms Example](https://apis.io/examples/pennsylvania-state-university/pennsylvania-state-university-listRooms-example/)
+- [Pennsylvania State University Rmd Unauthenticated Example](https://apis.io/examples/pennsylvania-state-university/pennsylvania-state-university-rmd-unauthenticated-example/)
+- [Pennsylvania State University Scholarsphere Unauthenticated Example](https://apis.io/examples/pennsylvania-state-university/pennsylvania-state-university-scholarsphere-unauthenticated-example/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [LionSpaceFIS REST Buildings API](https://apis.io/collections/pennsylvania-state-university/open-pennsylvania-state-university-buildings-api/)
+- [LionSpaceFIS REST Buildings Campuses API](https://apis.io/collections/pennsylvania-state-university/open-pennsylvania-state-university-campuses-api/)
+- [LionSpaceFIS REST Buildings Events API](https://apis.io/collections/pennsylvania-state-university/open-pennsylvania-state-university-events-api/)
+- [LionSpaceFIS REST Buildings Health API](https://apis.io/collections/pennsylvania-state-university/open-pennsylvania-state-university-health-api/)
+- [LionSpaceFIS REST Buildings Rooms API](https://apis.io/collections/pennsylvania-state-university/open-pennsylvania-state-university-rooms-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Pennsylvania State University — jsonschema rules](https://apis.io/rules/pennsylvania-state-university/pennsylvania-state-university-jsonschema-spectral-rules/)
+- [Pennsylvania State University API Rules](https://apis.io/rules/pennsylvania-state-university/pennsylvania-state-university-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Pennsylvania State University Authentication](https://apis.io/security/pennsylvania-state-university/pennsylvania-state-university-authentication/)
+- [Pennsylvania State University Domain Security](https://apis.io/security/pennsylvania-state-university/pennsylvania-state-university-domain-security/)
+- [Pennsylvania State University Trust Center](https://apis.io/security/pennsylvania-state-university/pennsylvania-state-university-trust-center/)
+- [Pennsylvania State University Vulnerability Disclosure](https://apis.io/security/pennsylvania-state-university/pennsylvania-state-university-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Pennsylvania State University Plans Pricing](https://apis.io/plans/pennsylvania-state-university/pennsylvania-state-university-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Pennsylvania State University Rate Limits](https://apis.io/rate-limits/pennsylvania-state-university/pennsylvania-state-university-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Pennsylvania State University Finops](https://apis.io/finops/pennsylvania-state-university/pennsylvania-state-university-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.psu.edu/)
+- [Documentation](https://docs.scholarsphere.psu.edu/)
+- [API reference](https://metadata.libraries.psu.edu/api_docs)
+- [Blog](https://www.psu.edu/news)
+- [Privacy policy](https://www.psu.edu/web-privacy-statement)
+- [GitHub](https://github.com/PennState)
+
+## API Evangelist rating
+
+**Kin Score 46.1** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 57.3 |
+| Contract governance | 18.2 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 38.1 |
+| Access clarity | 47.4 |
+
+**Agent readiness 26.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 43.1** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/pennsylvania-state-university/](https://apis.io/providers/pennsylvania-state-university/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Pennsylvania State University: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/pennsylvania-state-university/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
